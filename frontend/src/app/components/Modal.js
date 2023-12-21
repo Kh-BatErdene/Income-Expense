@@ -18,7 +18,7 @@ export default function Modal() {
               ✕
             </button>
           </form>
-          <h3 className="font-bold text-lg">Add Record</h3>
+          <h3 className="font-bold text-lg mb-3">Add Record</h3>
         </div>
         <div className="flex justify-between">
           <div className="max-w-[348px] w-full h-10 relative bg-[#F3F4F6]  rounded-3xl">
@@ -51,14 +51,46 @@ export default function Modal() {
               <p className="absolute z-20 top-2 left-4 text-5">Amount</p>
             </div>
             <p className="mt-4">Category</p>
-            <label className="form-control w-full max-w-xs  mt-2">
-              <select className="outline-none bg-[#F3F4F6] w-full h-12 text-[#94A3B8] px-4 py-2 rounded-md border-solid border-2 border-[#D1D5DB] mb-4 ">
-                <option className="font-semibold" selected>
-                  Find or choose category
-                </option>{" "}
-              </select>
-            </label>
+            <div className="dropdown w-full ">
+              <div
+                tabIndex={0}
+                role="button"
+                className="flex items-center justify-center w-full form-control max-w-xs outline-none bg-[#F3F4F6] h-12 text-[#94A3B8]  rounded-md border-solid border-2 border-[#D1D5DB] mb-4 mt-2 pr-5 pl-3"
+              >
+                <div className="flex justify-between w-full">
+                  <p>Find or choose category</p>
+                  <img src="/dropdown.svg" />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full"
+              >
+                <li>
+                  <a>Item 1</a>
+                </li>
+                <li>
+                  <a>Item 2</a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="flex justify-between">
+              <input type="date" className="border-2 w-[168px] h-[68px] px-3" />
+              <input type="date" className="border-2 w-[168px] h-[68px] px-3" />
+            </div>
+            <button
+              className="absolute right-0 px-5 py-2 text-white text-black bg-[#F3F4F6] rounded-3xl w-full h-10 mt-8 mb-6"
+              style={{
+                background: change1 ? "#16A34A" : "#0166FF",
+              }}
+            >
+              Add Record
+            </button>
           </div>
+
+          {/* //column2 */}
+
           <div className="w-1/2">
             <p>Payee</p>
             <label className="form-control w-full max-w-xs  ">
@@ -69,6 +101,14 @@ export default function Modal() {
                 <option className="font-semibold">I said Write here</option>
               </select>
             </label>
+            <p className=" mb-1">Note</p>
+            <div className="w-[348px] h-[280px] border-2 bg-[#F3F4F6] p-4 rounded-md">
+              <input
+                className="outline-none bg-[#F3F4F6]"
+                type="text"
+                placeholder="Write here"
+              />
+            </div>
           </div>
         </div>
       </div>

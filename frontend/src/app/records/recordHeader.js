@@ -23,7 +23,6 @@ export default function Header() {
         >
           + Record
         </button>
-        {/* Modal start here */}
         <Modal />
         <img src="/profile.svg" />
       </div>

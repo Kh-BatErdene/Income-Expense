@@ -96,7 +96,10 @@ export default function Main() {
     <div className="w-full max-w-[1200px] h-[1148px] m-auto flex gap-6 ">
       <div className="w-[282px] h-[1080px] bg-white p-4 mb-6">
         <h1 className="font-black text-[24px] mb-6">Records</h1>
-        <button className="btn bg-[#0166FF] hover:bg-[#2f81fc] text-white h-8 rounded-3xl w-full mb-6">
+        <button
+          onClick={() => document.getElementById("my_modal_3").showModal()}
+          className="btn bg-[#0166FF] hover:bg-[#2f81fc] text-white h-8 rounded-3xl w-full mb-6"
+        >
           + Add
         </button>
         <div className="mb-6">
