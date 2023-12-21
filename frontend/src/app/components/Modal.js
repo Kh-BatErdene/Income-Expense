@@ -22,7 +22,6 @@ export default function Modal() {
         </div>
         <div className="flex justify-between">
           <div className="max-w-[348px] w-full h-10 relative bg-[#F3F4F6]  rounded-3xl">
-            {" "}
             <button
               onClick={handleClick}
               className="z-10 absolute left-0 px-5 py-2  text-black bg-[#F3F4F6] rounded-3xl w-[172px] h-10 "
@@ -43,13 +42,22 @@ export default function Modal() {
             >
               Expense
             </button>
-            <div></div>
-            <input
-              type="text"
-              placeholder="Type here"
-              className="input input-bordered rounded-md w-full h-[76px] relative bg-[#F3F4F6] mt-16"
-            />
-            <p className="absolute top-0">Amount</p>
+            <div className="relative w-full background mt-16">
+              <input
+                type="text"
+                placeholder="₮ 000.00"
+                className="input input-bordered rounded-md w-full h-[76px] bg-[#F3F4F6] pt-5"
+              />
+              <p className="absolute z-20 top-2 left-4 text-5">Amount</p>
+            </div>
+            <p className="mt-4">Category</p>
+            <label className="form-control w-full max-w-xs  mt-2">
+              <select className="outline-none bg-[#F3F4F6] w-full h-12 text-[#94A3B8] px-4 py-2 rounded-md border-solid border-2 border-[#D1D5DB] mb-4 ">
+                <option className="font-semibold" selected>
+                  Find or choose category
+                </option>{" "}
+              </select>
+            </label>
           </div>
           <div className="w-1/2">
             <p>Payee</p>
