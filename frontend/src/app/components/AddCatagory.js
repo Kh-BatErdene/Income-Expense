@@ -1,3 +1,4 @@
+"use client";
 export default function AddCatagory() {
   return (
     <dialog id="AddCatagory" className="modal">

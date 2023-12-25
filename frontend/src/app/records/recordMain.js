@@ -1,5 +1,7 @@
 "use client";
 
+import Range from "../components/Range";
+import { useAll } from "../layout";
 import Cards from "./cards";
 import Category from "./category";
 
@@ -90,14 +92,18 @@ export default function Main() {
   ];
   const Today = Array.from(data).slice(5);
   const Yesterday = Array.from(data).slice(4);
-
+  const { setModal, modal } = useAll();
   return (
     // column-1
     <div className="w-full max-w-[1200px] h-[1148px] m-auto flex gap-6 ">
+      <div
+        className="  bg-black opacity-30 z-30 w-screen h-screen absolute top-0 left-0"
+        style={{ display: modal ? "flex" : "none" }}
+      ></div>
       <div className="w-[282px] h-[1080px] bg-white p-4 mb-6">
         <h1 className="font-black text-[24px] mb-6">Records</h1>
         <button
-          onClick={() => document.getElementById("my_modal_3").showModal()}
+          onClick={() => setModal(!modal)}
           className="btn bg-[#0166FF] hover:bg-[#2f81fc] text-white h-8 rounded-3xl w-full mb-6"
         >
           + Add
@@ -134,21 +140,8 @@ export default function Main() {
           <button className="mt-1">+ Add Category</button>
         </div>
         <p className="mb-4 mt-6">Amount Range</p>
-        <div className="flex gap-4">
-          <input
-            className="bg-[#F3F4F6] w-[114.5px] h-[48px] p-3 outline-none border-2 rounded-md"
-            type="text"
-          />
-          <input
-            className="bg-[#F3F4F6] w-[114.5px] h-[48px] p-3 outline-none border-2 rounded-md"
-            type="text"
-          />
-        </div>
-        <input type="range" className="mt-4 range" />
-        <div className="flex justify-between text-base">
-          <span>0</span>
-          <span>1000</span>
-        </div>
+
+        <Range />
       </div>
       {/* column-2 */}
       <div className="w-full">

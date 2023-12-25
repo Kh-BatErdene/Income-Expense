@@ -1,31 +1,19 @@
 "use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// export const metadata = {
-//   title: "Geld",
-// };
 const AuthContext = createContext();
-export default function RootLayout({ children }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const signIn = () => {
-    setIsLoggedIn(true);
-    localStorage.setItem("token", "abv");
-  };
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+export default function RootLayout({ children }) {
+  const [drop, setDrop] = useState();
+  const [modal, setModal] = useState(false);
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, signIn }}>
+        <AuthContext.Provider value={{ drop, setDrop, modal, setModal }}>
           {children}
         </AuthContext.Provider>
       </body>
@@ -33,6 +21,6 @@ export default function RootLayout({ children }) {
   );
 }
 
-export const useAuth = () => {
+export const useAll = () => {
   return useContext(AuthContext);
 };

@@ -1,27 +1,30 @@
 "use client";
 
 import { useState } from "react";
+import axios from "axios";
 
 export default function Home() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const signup = async (email, password) => {
+  const login = async (email, password) => {
     try {
-      const res = await fetch("http://localhost:3001/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const { data } = await axios.post(
+        "http://localhost:3001/login",
+        {
+          email,
+          password,
         },
-        body: JSON.stringify({ email, password }),
-      });
+        {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluIiwiaWF0IjoxNzAzNDcyODM0LCJleHAiOjE3MDM0NzY0MzR9.6w0czKT2Jcl8yFITpJE1SRr1YGqoyIFWry8huatdbzI",
+          },
+        }
+      );
 
-      if (res.status !== 200) {
-        throw new Error("Invalid credentials");
-      }
-      const data = await res.json();
       const { token } = data;
+
       console.log(token);
     } catch (err) {
       console.log("Error", err);
@@ -55,7 +58,7 @@ export default function Home() {
             />
             <div className="flex justify-center ">
               <button
-                onClick={() => signup(email, password)}
+                onClick={() => login(email, password)}
                 className="rounded-3xl w-full text-white max-w-[384px] mt-4  mb-11 h-[48px] bg-[#0166FF]"
               >
                 Log in

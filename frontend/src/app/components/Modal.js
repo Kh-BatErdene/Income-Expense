@@ -1,16 +1,13 @@
 "use client";
 
-import { FaCirclePlus } from "react-icons/fa6";
-import { IoFastFood } from "react-icons/io5";
-import { BiSolidDrink } from "react-icons/bi";
-import { FaTaxi } from "react-icons/fa";
-import { IoHomeSharp } from "react-icons/io5";
-import { FaGift } from "react-icons/fa6";
-import { FaCartShopping } from "react-icons/fa6";
 import { useState } from "react";
 import AddCatagory from "./AddCatagory";
+import Dropdown from "./Dropdown";
+import { useAll } from "../layout";
 
 export default function Modal() {
+  const { modal, setModal } = useAll();
+
   const [change1, setChange1] = useState("");
   const [change2, setChange2] = useState("#F3F4F6");
 
@@ -20,11 +17,17 @@ export default function Modal() {
   };
 
   return (
-    <dialog id="my_modal_3" className="modal ">
-      <div className="modal-box w-full h-full max-w-[792px] max-h-[512px] bg-white">
+    <dialog
+      className=" mt-[70%] rounded-2xl z-40 "
+      style={{ display: modal ? "flex" : "none" }}
+    >
+      <div className="w-[800px] h-[542px] bg-white  border-2 rounded-2xl p-5 m-auto relative ">
         <div className="border-b-2 mb-6 ">
-          <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+          <form>
+            <button
+              onClick={() => setModal(!modal)}
+              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            >
               ✕
             </button>
           </form>
@@ -61,59 +64,7 @@ export default function Modal() {
               <p className="absolute z-20 top-2 left-4 text-5">Amount</p>
             </div>
             <p className="mt-4">Category</p>
-            <div className="dropdown w-full mb-2">
-              <div
-                tabIndex={0}
-                role="button"
-                className=" flex  items-center justify-center w-full form-control outline-none bg-[#F3F4F6] h-12 text-[#94A3B8]  rounded-md border-solid border-2 border-[#D1D5DB] mb-1 mt-2 pr-5 pl-3"
-              >
-                <div className="flex justify-between w-full">
-                  <p>Find or choose category</p>
-                  <img src="/dropdown.svg" />
-                </div>
-              </div>
-              <ul
-                tabIndex={0}
-                className="dropdown-content  menu p-2 shadow  rounded-box w-full bg-white z-30"
-              >
-                <li>
-                  {" "}
-                  <div
-                    onClick={() =>
-                      document.getElementById("AddCatagory").showModal()
-                    }
-                    className="flex w-full items-center gap-4 border-b-2 pb-2 cursor-pointer hover:bg-gray-50 mb-2 "
-                  >
-                    <FaCirclePlus />
-                    <span>Add Category</span>
-                  </div>
-                  <div className="flex mb-1 w-full pt-2 items-center gap-4">
-                    <IoHomeSharp />
-                    <span>Home</span>
-                  </div>
-                  <div className="flex mb-1 w-full pt-2 items-center gap-4">
-                    <FaGift />
-                    <span>Gift</span>
-                  </div>
-                  <div className="flex mb-1 w-full pt-2 items-center gap-4">
-                    <IoFastFood />
-                    <span>Food</span>
-                  </div>
-                  <div className="flex mb-1 w-full pt-2 items-center gap-4">
-                    <BiSolidDrink />
-                    <span>Drink</span>
-                  </div>
-                  <div className="flex mb-1 w-full pt-2 items-center gap-4">
-                    <FaTaxi />
-                    <span>Drink</span>
-                  </div>
-                  <div className="flex mb-1 w-full pt-2 items-center gap-4">
-                    <FaCartShopping />
-                    <span>Drink</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
+            <Dropdown />
             <AddCatagory />
             <div className="flex justify-between">
               <input type="date" className="border-2 w-[168px] h-[68px] px-3" />

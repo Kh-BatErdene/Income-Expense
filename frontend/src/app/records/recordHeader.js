@@ -1,8 +1,10 @@
 "use client";
 
 import Modal from "../components/Modal";
+import { useAll } from "../layout";
 
 export default function Header() {
+  const { modal, setModal } = useAll();
   return (
     <div className="flex w-full max-w-[1200px] h-[72px] m-auto justify-between p-5 bg-white mb-8">
       <div className="flex gap-6 items-center">
@@ -19,7 +21,7 @@ export default function Header() {
       <div className="flex gap-6 items-center ">
         <button
           className="btn bg-[#0166FF] hover:bg-[#2f81fc] text-white h-8 rounded-3xl "
-          onClick={() => document.getElementById("my_modal_3").showModal()}
+          onClick={() => setModal(!modal)}
         >
           + Record
         </button>
