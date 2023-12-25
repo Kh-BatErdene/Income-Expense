@@ -1,10 +1,9 @@
 "use client";
 
-import { redirect } from "next/dist/server/api-utils";
-import { useAuth } from "../layout";
+import { useAll } from "../layout";
 
 export default function Currency() {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAll();
 
   return (
     <div className="p-10 w-[100%] ">

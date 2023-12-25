@@ -1,6 +1,6 @@
 "use client";
 
-import Modal from "../components/Modal";
+import Modal from "../../components/Modal";
 import { useAll } from "../layout";
 
 export default function Header() {
@@ -26,7 +26,13 @@ export default function Header() {
           + Record
         </button>
         <Modal />
-        <img src="/profile.svg" />
+        <a href="/profile">
+          <div className="avatar mt-1 ">
+            <div className="w-10 items-center rounded-full hover:border-2 ">
+              <img src="/profile.jpg" />
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   );

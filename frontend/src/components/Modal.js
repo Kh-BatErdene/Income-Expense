@@ -3,7 +3,7 @@
 import { useState } from "react";
 import AddCatagory from "./AddCatagory";
 import Dropdown from "./Dropdown";
-import { useAll } from "../layout";
+import { useAll } from "../app/layout";
 
 export default function Modal() {
   const { modal, setModal } = useAll();

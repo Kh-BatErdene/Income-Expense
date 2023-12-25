@@ -1,8 +1,8 @@
 "use client";
 
-import IncomeExpence1 from "@/app/components/IncomeExpense1";
-import IncomeExpence2 from "@/app/components/IncomeExpense2";
-import LastRecords from "@/app/components/LastRecords";
+import IncomeExpence1 from "@/components/IncomeExpense1";
+import IncomeExpence2 from "@/components/IncomeExpense2";
+import LastRecords from "@/components/LastRecords";
 
 export default function Main() {
   return (
