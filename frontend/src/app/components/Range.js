@@ -2,11 +2,13 @@
 import React, { useEffect, useState } from "react";
 
 const Range = () => {
-  const [rangeChange, setRangeChange] = useState();
+  const [rangeChange, setRangeChange] = useState(50);
   const [minRange, setMinRange] = useState(0);
   const [maxRange, setMaxRange] = useState(0);
 
-  useEffect(() => {}, [rangeChange]);
+  useEffect(() => {
+    setRangeChange(minRange, maxRange);
+  }, [rangeChange]);
   return (
     <div>
       <h1 className="font-semibold my-5">Amount Range</h1>
