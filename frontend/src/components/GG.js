@@ -1,6 +1,6 @@
 import { useAll } from "../app/layout";
 export default function GG() {
-  const { drop, select, handleCategory, data } = useAll();
+  const { drop, data, setTitle, setImg } = useAll();
 
   return (
     <ul
@@ -16,42 +16,22 @@ export default function GG() {
           <span>Add Category</span>
         </div>
         <hr className="hover:bg-white "></hr>
-        <button
-          id="1"
-          onClick={handleCategory}
-          className="flex mb-1 w-full pt-2 items-center gap-4 hover:bg-gray-50  "
-        >
-          {data.map((item, index) => (
-            <div
-              key={index}
-              className="flex mb-1 w-full pt-2 items-center gap-4  "
-            >
-              <img className="translate-x-0.5" src={item.img}></img>
-              <div>{item.title}</div>
+        {data.map((item, index) => (
+          <div
+            className="h-[56px] w-full p-[16px]"
+            key={index}
+            onClick={() => {
+              setImg(item.img);
+              setTitle(item.title);
+              console.log(setImg);
+            }}
+          >
+            <div className="flex flex-row w-full h-full items-center gap-[12px]">
+              <img src={item.img} className="w-[24px] h-[24px]"></img>
+              <p>{item.title}</p>
             </div>
-          ))}
-        </button>
-        <button className="flex mb-1 w-full pt-2 items-center gap-4 hover:bg-gray-50 ">
-          <img src="/Gift.svg"></img>
-          <span>Gift</span>
-        </button>
-        <div className="flex mb-1 w-full pt-2 items-center gap-4 hover:bg-gray-50 ">
-          <img src="/ForkKnife.svg"></img>
-
-          <span>Food</span>
-        </div>
-        <div className="flex mb-1 w-full pt-2 items-center gap-4 hover:bg-gray-50 ">
-          <img src="/Wine.svg"></img>
-          <span>Drink</span>
-        </div>
-        <div className="flex mb-1 w-full pt-2 items-center gap-4 hover:bg-gray-50 ">
-          <img src="/Taxi.svg"></img>
-          <span>Drink</span>
-        </div>
-        <div className="flex mb-1 w-full pt-2 items-center gap-4 hover:bg-gray-50 ">
-          <img src="TShirt.svg"></img>
-          <span>Drink</span>
-        </div>
+          </div>
+        ))}
       </li>
     </ul>
   );

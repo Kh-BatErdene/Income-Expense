@@ -1,10 +1,12 @@
 //Parsing
+"use client";
 import { useState } from "react";
 import { useAll } from "../app/layout";
 import GG from "../components/GG";
 
 export default function Dropdown() {
-  const { drop, setDrop, select, data } = useAll();
+  const { drop, setDrop, select, data, setSelect, categoryimg, categorytitle } =
+    useAll();
   const handleClick = () => {
     setDrop(!drop);
   };
@@ -19,16 +21,16 @@ export default function Dropdown() {
             {select === "" ? (
               "Find or choose category"
             ) : (
-              <>
+              <div>
                 {data.map((item, index) => {
                   return (
                     <div key={index} className="flex gap-2 items-center">
-                      <img src={item.img}></img>
-                      {item.title}
+                      <img src={item.categoryimg}></img>
+                      {categorytitle}
                     </div>
                   );
                 })}
-              </>
+              </div>
             )}
           </div>
           <img src="/dropdown.svg" />

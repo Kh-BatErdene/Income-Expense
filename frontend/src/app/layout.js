@@ -10,18 +10,21 @@ const AuthContext = createContext();
 export default function RootLayout({ children }) {
   const [drop, setDrop] = useState();
   const [modal, setModal] = useState(false);
+  const [categorytitle, setTitle] = useState("");
+  const [categoryimg, setImg] = useState("");
   //Add category
 
   const data = [
-    {
-      title: "Home",
-      img: "Vector.svg",
-    },
+    { img: "/home.svg", title: "Home" },
+    { img: "/gift.svg", title: "Gift" },
+    { img: "/food.svg", title: "Food" },
+    { img: "/Wine.svg", title: "Drink" },
+    { img: "/Taxi.svg", title: "Taxi" },
+    { img: "/TShirt.svg", title: "Shopping" },
   ];
+
   const [select, setSelect] = useState("");
-  function handleCategory(e) {
-    setSelect(e.title);
-  }
+
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -31,9 +34,12 @@ export default function RootLayout({ children }) {
             setDrop,
             modal,
             setModal,
-            handleCategory,
             select,
             data,
+            categorytitle,
+            setTitle,
+            categoryimg,
+            setImg,
           }}
         >
           {children}

@@ -63,7 +63,7 @@ export default function ProfilePage() {
               </div>
               <div className="w-[589px] h-[39px] flex gap-5 justify-center ">
                 <div className="mt-2">
-                  <p>Name</p>
+                  <p className="font-bold text-[#0166FF]">Name</p>
                   <input
                     placeholder="Your Name"
                     onChange={(e) => setName(e.target.value)}
@@ -72,7 +72,7 @@ export default function ProfilePage() {
                   ></input>
                 </div>
                 <div className="mt-2">
-                  <p className="pl-2">Bio</p>
+                  <p className="pl-2 font-bold text-[#0166FF]">Bio</p>
                   <input
                     onChange={(e) => setBio(e.target.value)}
                     value={bio}
@@ -83,7 +83,7 @@ export default function ProfilePage() {
               </div>
               <div className="flex my-2">
                 <div className="mr-5 mt-4">
-                  <p className="pl-2">Email</p>
+                  <p className="pl-2 font-bold text-[#0166FF]">Email</p>
                   <input
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
@@ -92,7 +92,7 @@ export default function ProfilePage() {
                   ></input>
                 </div>
                 <div className="mt-4">
-                  <p className="pl-2">Password</p>
+                  <p className="pl-2 font-bold text-[#0166FF]">Password</p>
                   <input
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
