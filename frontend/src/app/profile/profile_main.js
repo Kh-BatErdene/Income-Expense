@@ -14,15 +14,15 @@ export default function ProfilePage() {
   const [email, setEmail] = useState("admin");
   const [bio, setBio] = useState("Full stack developer");
   return (
-    <div className="bg-gray-200 py-2 w-full h-screen">
-      <div className="ml-20 py-5 mr-20">
+    <div className="bg-gray-200 py-2 w-full h-screen  ">
+      <div className="py-5 ">
         <div className="pt-5 pb-5">
           <h1 className=" text-3xl text-[#0166FF] text-center mb-4">
             User Profile
           </h1>
         </div>
-        <div className="flex w-[2900px]">
-          <div className="flex justify-center pl-[30px] pr-[20px] w-96 items-center rounded-2xl bg-[#F6F6F7]">
+        <div className="w-full h-full  m-auto ">
+          <div className=" justify-center pl-[30px] pr-[20px] w-96 items-center rounded-2xl bg-[#F6F6F7] m-auto p-5 mb-5">
             <div className="flex flex-col  gap-2">
               <div className="avatar m-auto">
                 <div className="w-24 items-center rounded-full ">
@@ -35,7 +35,7 @@ export default function ProfilePage() {
                   {bio}
                 </h1>
               </div>
-              <div className="flex gap-10 w-full">
+              <div className="flex gap-10 w-full justify-center">
                 <span>
                   <span className="font-bold text-[#0166FF]">Email: </span>
                   <span>{email}</span>
@@ -54,16 +54,16 @@ export default function ProfilePage() {
               </button>
             </div>
           </div>
-          <div className="flex ml-20 w-[700px] pt-[29px] pb-[26px] pl-[30px] pr-[35px] items-center rounded-2xl bg-[#F6F6F7]">
-            <div className="flex flex-col items-start gap-4">
+          <div className="flex m-auto">
+            <div className="flex flex-col w-[700px] bg-[#F6F6F7] items-start items-center p-5 rounded-2xl  gap-4 m-auto">
               <div className=" border-b-2 w-full">
                 <h1 className=" text-lg my-2 text-[#0166FF]">
                   Account Details
                 </h1>
               </div>
-              <div className="w-[589px] h-[39px] flex gap-5 flex-shrink-0">
+              <div className="w-[589px] h-[39px] flex gap-5 justify-center ">
                 <div className="mt-2">
-                  <p className="pl-2">Name</p>
+                  <p>Name</p>
                   <input
                     placeholder="Your Name"
                     onChange={(e) => setName(e.target.value)}

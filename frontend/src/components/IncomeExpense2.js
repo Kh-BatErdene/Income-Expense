@@ -32,8 +32,10 @@ export default function IncomeExpence2() {
       <div className="flex gap-10 ">
         <img src="diag.svg" />
         <div className="w-full">
-          {data.map((item) => {
-            return <Diagram2 title={item.title} color={item.color} />;
+          {data.map((item, index) => {
+            return (
+              <Diagram2 key={index} title={item.title} color={item.color} />
+            );
           })}
         </div>
       </div>

@@ -18,7 +18,7 @@ export default function Modal() {
 
   return (
     <dialog
-      className=" mt-[70%] rounded-2xl z-40 "
+      className=" mt-[50%] rounded-2xl z-40 "
       style={{ display: modal ? "flex" : "none" }}
     >
       <div className="w-[800px] h-[542px] bg-white  border-2 rounded-2xl p-5 m-auto relative ">
@@ -40,7 +40,7 @@ export default function Modal() {
               className="z-10 absolute left-0 px-5 py-2  text-black bg-[#F3F4F6] rounded-3xl w-[172px] h-10 "
               style={{
                 background: change2 ? "#0166FF" : false,
-                color: change2 ? "white" : "black",
+                color: change2 ? "white" : false,
               }}
             >
               Income
@@ -49,8 +49,8 @@ export default function Modal() {
               onClick={handleClick}
               className="absolute right-0 px-5 py-2  text-black bg-[#F3F4F6] rounded-3xl w-[172px] h-10"
               style={{
-                background: change1 ? "#16A34A" : "#F3F4F6",
-                color: change1 ? "white" : "black",
+                background: change1 ? "#16A34A" : false,
+                color: change1 ? "white" : false,
               }}
             >
               Expense

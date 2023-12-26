@@ -97,7 +97,7 @@ export default function Main() {
     // column-1
     <div className="w-full max-w-[1200px] h-[1148px] m-auto flex gap-6 ">
       <div
-        className="  bg-black opacity-30 z-30 w-screen h-full absolute top-0 left-0 "
+        className="  bg-black opacity-30 z-30 w-full h-full absolute top-0 left-0 "
         style={{ display: modal ? "flex" : "none" }}
       ></div>
       <div className="w-[282px] h-[1080px] bg-white p-4 mb-6">
@@ -134,8 +134,8 @@ export default function Main() {
         </div>
 
         <div>
-          {data.map((items) => {
-            return <Category title={items.title} />;
+          {data.map((items, index) => {
+            return <Category key={index} title={items.title} />;
           })}
           <button className="mt-1">+ Add Category</button>
         </div>
@@ -171,10 +171,10 @@ export default function Main() {
 
         <div>
           <h3 className="mb-3 mt-6">Today</h3>
-          {Today.map((item) => {
+          {Today.map((item, index) => {
             return (
               <Cards
-                key={item}
+                key={index}
                 name={item.name}
                 date={item.date}
                 img={item.img}
@@ -184,9 +184,10 @@ export default function Main() {
             );
           })}
           <h3 className="mb-3">Yesterday</h3>
-          {Yesterday.map((item) => {
+          {Yesterday.map((item, index) => {
             return (
               <Cards
+                key={index}
                 name={item.name}
                 date={item.date}
                 img={item.img}
