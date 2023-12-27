@@ -1,15 +1,17 @@
 import { useAll } from "../app/layout";
-export default function GG() {
-  const { drop, data, setTitle, setImg } = useAll();
+
+//
+export default function CategoryInner() {
+  const { drop, data, setTitle, setImg, setModal2, modal2 } = useAll();
 
   return (
     <ul
       style={{ display: drop ? "flex" : "none" }}
-      className=" menu p-2 shadow  rounded-box w-full bg-white z-30 absolute"
+      className=" menu p-2 shadow  rounded-box w-full bg-white z-30 absolute "
     >
       <li>
         <div
-          onClick={() => document.getElementById("AddCatagory").showModal()}
+          onClick={() => setModal2(!modal2)}
           className="flex w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mb-2 "
         >
           <img src="/PlusCircle.svg"></img>

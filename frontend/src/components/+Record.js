@@ -1,16 +1,18 @@
 "use client";
 
+//+Record btn дээр дарахад гарах модал
+
 import { useState } from "react";
-import AddCatagory from "./AddCatagory";
-import Dropdown from "./Dropdown";
+import Modal2 from "./AddRecord";
 import { useAll } from "../app/layout";
 
 export default function Modal() {
-  const { modal, setModal } = useAll();
-
+  //State-үүд
+  const { modal, setModal, modal2 } = useAll();
   const [change1, setChange1] = useState("");
   const [change2, setChange2] = useState("#F3F4F6");
 
+  //Функцууд
   const handleClick = () => {
     setChange1(!change1);
     setChange2(!change2);
@@ -18,8 +20,11 @@ export default function Modal() {
 
   return (
     <dialog
-      className=" mt-[50%] rounded-2xl z-40 "
-      style={{ display: modal ? "flex" : "none" }}
+      className="absolute top-[50%] left-[50%] rounded-2xl z-20 m-0"
+      style={{
+        display: modal ? "flex" : "none",
+        transform: "translate(-50%, -50%)",
+      }}
     >
       <div className="w-[800px] h-[542px] bg-white  border-2 rounded-2xl p-5 m-auto relative ">
         <div className="border-b-2 mb-6 ">
@@ -35,6 +40,7 @@ export default function Modal() {
         </div>
         <div className="flex justify-between">
           <div className="max-w-[348px] w-full h-10 relative bg-[#F3F4F6]  rounded-3xl">
+            {/* Өнгө нь солигдож буй Btn */}
             <button
               onClick={handleClick}
               className="z-10 absolute left-0 px-5 py-2  text-black bg-[#F3F4F6] rounded-3xl w-[172px] h-10 "
@@ -45,6 +51,7 @@ export default function Modal() {
             >
               Income
             </button>
+            {/* Өнгө нь солигдож буй Btn */}
             <button
               onClick={handleClick}
               className="absolute right-0 px-5 py-2  text-black bg-[#F3F4F6] rounded-3xl w-[172px] h-10"
@@ -55,6 +62,7 @@ export default function Modal() {
             >
               Expense
             </button>
+            {/* blabloblo */}
             <div className="relative w-full background mt-16">
               <input
                 type="text"
@@ -64,8 +72,7 @@ export default function Modal() {
               <p className="absolute z-20 top-2 left-4 text-5">Amount</p>
             </div>
             <p className="mt-4">Category</p>
-            <Dropdown />
-            <AddCatagory />
+            <Modal2 />
             <div className="flex justify-between">
               <input type="date" className="border-2 w-[168px] h-[68px] px-3" />
               <input type="date" className="border-2 w-[168px] h-[68px] px-3" />
@@ -80,7 +87,7 @@ export default function Modal() {
             </button>
           </div>
 
-          {/* //column2 */}
+          {/* Хоёр дахь мөр */}
 
           <div className="w-1/2">
             <p>Payee</p>

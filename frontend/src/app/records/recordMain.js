@@ -1,9 +1,10 @@
 "use client";
-
 import Range from "../../components/Range";
 import { useAll } from "../layout";
 import Cards from "./cards";
 import Category from "./category";
+import AddCategory from "@/components/AddCategory";
+import ChangeColor from "@/components/ChangeColor";
 
 export default function Main() {
   const data = [
@@ -92,18 +93,22 @@ export default function Main() {
   ];
   const Today = Array.from(data).slice(5);
   const Yesterday = Array.from(data).slice(4);
-  const { setModal, modal } = useAll();
+  const { setModal, modal, setModal2, modal2 } = useAll();
   return (
     // column-1
     <div className="w-full max-w-[1200px] h-[1148px] m-auto flex gap-6 ">
       <div
-        className="  bg-black opacity-30 z-30 w-full h-full absolute top-0 left-0 "
+        className="  bg-black opacity-30 z-10 w-full h-screen absolute top-0 left-0 "
         style={{ display: modal ? "flex" : "none" }}
+      ></div>
+      <div
+        className="  bg-black opacity-30 z-30 w-full h-screen absolute top-0 left-0  "
+        style={{ display: modal2 ? "flex" : "none" }}
       ></div>
       <div className="w-[282px] h-[1080px] bg-white p-4 mb-6">
         <h1 className="font-black text-[24px] mb-6">Records</h1>
         <button
-          onClick={() => setModal(!modal)}
+          onClick={() => setModal2(!modal2)}
           className="btn bg-[#0166FF] hover:bg-[#2f81fc] text-white h-8 rounded-3xl w-full mb-6"
         >
           + Add
@@ -198,6 +203,7 @@ export default function Main() {
           })}
         </div>
       </div>
+      <AddCategory />
     </div>
   );
 }

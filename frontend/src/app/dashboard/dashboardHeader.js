@@ -1,6 +1,6 @@
 "use client";
 
-import Modal from "../../components/Modal";
+import Modal from "../../components/+Record";
 import { useAll } from "../layout";
 
 export default function Header() {
