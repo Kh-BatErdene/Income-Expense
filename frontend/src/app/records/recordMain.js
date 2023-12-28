@@ -4,7 +4,6 @@ import { useAll } from "../layout";
 import Cards from "./cards";
 import Category from "./category";
 import AddCategory from "@/components/AddCategory";
-import ChangeColor from "@/components/ChangeColor";
 
 export default function Main() {
   const data = [
@@ -93,7 +92,7 @@ export default function Main() {
   ];
   const Today = Array.from(data).slice(5);
   const Yesterday = Array.from(data).slice(4);
-  const { setModal, modal, setModal2, modal2 } = useAll();
+  const { setModal, modal, setModal2, modal2, setModal3, modal3 } = useAll();
   return (
     // column-1
     <div className="w-full max-w-[1200px] h-[1148px] m-auto flex gap-6 ">
@@ -104,6 +103,7 @@ export default function Main() {
       <div
         className="  bg-black opacity-30 z-30 w-full h-screen absolute top-0 left-0  "
         style={{ display: modal2 ? "flex" : "none" }}
+        onClick={() => setModal3(!modal3)}
       ></div>
       <div className="w-[282px] h-[1080px] bg-white p-4 mb-6">
         <h1 className="font-black text-[24px] mb-6">Records</h1>

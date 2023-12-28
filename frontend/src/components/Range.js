@@ -17,13 +17,13 @@ const Range = () => {
           <input
             type="number"
             onChange={(e) => setMinRange(e.target.value)}
-            value={minRange}
+            value="0"
             className="bg-[#F3F4F6] w-[114.5px] h-[48px] p-3 outline-none border-2 rounded-md"
             step="1"
           />
           <input
             onChange={(e) => setMaxRange(e.target.value)}
-            value={maxRange}
+            value="0"
             className="bg-[#F3F4F6] w-[114.5px] h-[48px] p-3 outline-none border-2 rounded-md"
             type="number"
             step="1"
@@ -33,9 +33,9 @@ const Range = () => {
       <input
         className="w-full"
         type="range"
-        max={maxRange}
-        min={minRange}
-        value={rangeChange}
+        // max={maxRange}
+        // min={minRange}
+        value="0"
         step="10"
       />
       <div className="w-full flex justify-between text-lg px-2">

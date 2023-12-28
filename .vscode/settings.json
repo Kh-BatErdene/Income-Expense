@@ -18,7 +18,11 @@
     "frontend/.eslintrc.json": true,
     "frontend/next.config.js": true,
     "frontend/postcss.config.js": true,
-    "frontend/tailwind.config.js": true
+    "frontend/tailwind.config.js": true,
+    "frontend/src/components/Diagram.js": true,
+    "frontend/src/components/Diagram2.js": true,
+    "frontend/src/components/IncomeExpense1.js": true,
+    "frontend/src/components/IncomeExpense2.js": true
   },
   "hide-files.files": [
     "README.md",
@@ -32,6 +36,10 @@
     "frontend/.eslintrc.json",
     "frontend/next.config.js",
     "frontend/postcss.config.js",
-    "frontend/tailwind.config.js"
+    "frontend/tailwind.config.js",
+    "frontend/src/components/Diagram.js",
+    "frontend/src/components/Diagram2.js",
+    "frontend/src/components/IncomeExpense1.js",
+    "frontend/src/components/IncomeExpense2.js"
   ]
 }

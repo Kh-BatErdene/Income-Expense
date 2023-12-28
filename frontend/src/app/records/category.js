@@ -1,3 +1,4 @@
+"use client";
 export default function Category(props) {
   return (
     <div className="w-250px h-8  flex items-center justify-between my-2 cursor-pointer">

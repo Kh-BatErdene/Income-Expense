@@ -1,3 +1,4 @@
+"use client";
 import Header from "./recordHeader";
 import Main from "./recordMain";
 

@@ -1,3 +1,4 @@
+"use client";
 export default function Cards(props) {
   return (
     <div className="flex justify-between items-center px-6 bg-white py-3 border-2 rounded-md mb-3">
