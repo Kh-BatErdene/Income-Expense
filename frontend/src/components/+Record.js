@@ -4,7 +4,7 @@
 
 import { useState } from "react";
 import Modal2 from "./AddRecord";
-import { useAll } from "../app/layout";
+import { useAll } from "@/components/providers/AuthProvider";
 
 export default function Modal() {
   //State-үүд

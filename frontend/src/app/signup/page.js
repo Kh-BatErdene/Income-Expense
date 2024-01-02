@@ -1,8 +1,12 @@
+"use client";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../layout";
+import { useAll } from "@/components/providers/AuthProvider";
+import { useState } from "react";
 
 export default function Home() {
-  const { setIsLoggedIn } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { setIsLoggedIn, signup } = useAll();
   const router = useRouter();
   return (
     <div className="w-full m-auto h-[1024px]">
@@ -16,33 +20,31 @@ export default function Home() {
             <p className="text-center mb-10 mt-2">
               Sign up below to create your Wallet account
             </p>
-            <input
+            {/* <input
               className="w-full h-12 text-[#D1D5DB] bg-[#F3F4F6] pl-4 py-3 rounded-md border-solid border-2 border-[#D1D5DB] mb-4"
               type="text"
               placeholder="Name"
-            />
+            /> */}
             <input
-              className="w-full h-12 text-[#D1D5DB] bg-[#F3F4F6] pl-4 py-3 rounded-md border-solid border-2 border-[#D1D5DB] mb-4"
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full h-12  bg-[#F3F4F6] pl-4 py-3 rounded-md border-solid border-2 border-[#D1D5DB] mb-4"
               type="text"
               placeholder="Email"
             />
-
             <input
-              className="w-full h-12 text-[#D1D5DB] bg-[#F3F4F6] pl-4 py-3 rounded-md border-solid border-2 border-[#D1D5DB] mb-4"
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full h-12  bg-[#F3F4F6] pl-4 py-3 rounded-md border-solid border-2 border-[#D1D5DB]"
               type="password"
               placeholder="Password"
             />
-            <input
+            {/* <input
               className="w-full h-12 text-[#D1D5DB] bg-[#F3F4F6] pl-4 py-3 rounded-md border-solid border-2 border-[#D1D5DB]"
               type="password"
               placeholder="Re-Password"
-            />
+            /> */}
             <div className="flex justify-center ">
               <button
-                onClick={() => {
-                  setIsLoggedIn(true);
-                  router.push("/step1");
-                }}
+                onClick={() => signup(email, password)}
                 className="rounded-3xl w-full max-w-[384px] text-white mt-4  mb-11 h-[48px] bg-[#0166FF]"
               >
                 Sign up

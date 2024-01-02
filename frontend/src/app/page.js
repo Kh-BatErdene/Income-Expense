@@ -1,36 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import axios from "axios";
+import { useAll } from "@/components/providers/AuthProvider";
 
 export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const login = async (email, password) => {
-    try {
-      const { data } = await axios.post(
-        "http://localhost:3001/login",
-        {
-          email,
-          password,
-        },
-        {
-          headers: {
-            Authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluIiwiaWF0IjoxNzAzNDcyODM0LCJleHAiOjE3MDM0NzY0MzR9.6w0czKT2Jcl8yFITpJE1SRr1YGqoyIFWry8huatdbzI",
-          },
-        }
-      );
-
-      const { token } = data;
-
-      console.log(token);
-    } catch (err) {
-      console.log("Error", err);
-    }
-  };
-  console.log(password, email);
+  const { login } = useAll();
+  // console.log(password, email);
 
   return (
     <div className="max-w-full m-auto h-[1024px]">

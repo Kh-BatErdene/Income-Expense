@@ -92,7 +92,7 @@ export default function Main() {
   ];
   const Today = Array.from(data).slice(5);
   const Yesterday = Array.from(data).slice(4);
-  const { setModal, modal, setModal2, modal2, setModal3, modal3 } = useAll();
+  const { modal, setModal2, modal2, setModal3, modal3 } = useAll();
   return (
     // column-1
     <div className="w-full max-w-[1200px] h-[1148px] m-auto flex gap-6 ">

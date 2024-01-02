@@ -1,6 +1,6 @@
 "use client";
 
-import { useAll } from "../layout";
+import { useAll } from "@/components/providers/AuthProvider";
 
 export default function Currency() {
   const { isLoggedIn } = useAll();

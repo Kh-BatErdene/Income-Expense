@@ -13,7 +13,7 @@ const colorData = [
 ];
 
 export default function ChangeColor() {
-  const { setCategoryAdd, setColorgg, modal3 } = useAll();
+  const { setCategoryAdd, setColorgg, modal3, setModal3 } = useAll();
 
   const { data } = useIcon();
 
@@ -22,7 +22,7 @@ export default function ChangeColor() {
       className="w-full absolute top-[97px] left-5"
       style={{ display: modal3 ? "flex" : "none" }}
     >
-      <div className=" w-full h-[336px]  ">
+      <div>
         <form>
           <button className="modal backdrop">✕</button>
         </form>
@@ -35,6 +35,7 @@ export default function ChangeColor() {
                 className=" cursor-pointer"
                 onClick={() => {
                   setCategoryAdd(icon);
+                  setModal3(false);
                 }}
               >
                 {icon}

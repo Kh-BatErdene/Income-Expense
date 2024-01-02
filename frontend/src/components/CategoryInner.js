@@ -1,8 +1,14 @@
-import { useAll } from "../app/layout";
+import { useAll } from "@/components/providers/AuthProvider";
 
 //
 export default function CategoryInner() {
-  const { drop, data, setTitle, setImg, setModal2, modal2 } = useAll();
+  const { drop, data, setTitle, setImg, setModal2, modal2, setModal } =
+    useAll();
+
+  const handleClick = () => {
+    setModal(false);
+    setModal2(!modal2);
+  };
 
   return (
     <ul
@@ -11,7 +17,7 @@ export default function CategoryInner() {
     >
       <li>
         <div
-          onClick={() => setModal2(!modal2)}
+          onClick={handleClick}
           className="flex w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mb-2 "
         >
           <img src="/PlusCircle.svg"></img>
@@ -25,7 +31,6 @@ export default function CategoryInner() {
             onClick={() => {
               setImg(item.img);
               setTitle(item.title);
-              console.log(setImg);
             }}
           >
             <div className="flex flex-row w-full h-full items-center gap-[12px]">

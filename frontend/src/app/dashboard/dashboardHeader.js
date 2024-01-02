@@ -1,7 +1,7 @@
 "use client";
 
 import Modal from "../../components/+Record";
-import { useAll } from "../layout";
+import { useAll } from "@/components/providers/AuthProvider";
 
 export default function Header() {
   const { modal, setModal } = useAll();
@@ -12,7 +12,7 @@ export default function Header() {
         style={{ display: modal ? "flex" : "none" }}
       ></div>
       <div className="flex gap-6 items-center">
-        <a href="/dashboard">
+        <a href="/">
           <img src="/dash.svg" />
         </a>
 

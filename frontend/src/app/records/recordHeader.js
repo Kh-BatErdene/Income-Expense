@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <div className="flex w-full max-w-[1200px] h-[72px] m-auto justify-between p-5 bg-white mb-8">
       <div className="flex gap-6 items-center">
-        <a href="/dashboard">
+        <a href="/">
           <img src="/dash.svg" />
         </a>
 

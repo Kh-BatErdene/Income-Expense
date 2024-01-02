@@ -1,6 +1,6 @@
 //Parsing
 "use client";
-import { useAll } from "../app/layout";
+import { useAll } from "@/components/providers/AuthProvider";
 import CategoryInner from "./CategoryInner";
 
 export default function AddRecord() {
