@@ -1,7 +1,8 @@
 "use client";
 
+import Profile from "@/components/Profile";
 import Modal from "../../components/+Record";
-import { useAll } from "../layout";
+import { useAll } from "@/components/providers/AuthProvider";
 
 export default function Header() {
   const { modal, setModal } = useAll();
@@ -26,13 +27,7 @@ export default function Header() {
           + Record
         </button>
         <Modal />
-        <a href="/profile">
-          <div className="avatar mt-1 ">
-            <div className="w-10 items-center rounded-full hover:border-2 ">
-              <img src="/profile.jpg" />
-            </div>
-          </div>
-        </a>
+        <Profile />
       </div>
     </div>
   );

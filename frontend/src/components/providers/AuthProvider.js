@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState, useContext } from "react";
-import { api } from "../../app/common";
+import { api } from "../../common";
 import { toast } from "react-toastify";
 
 const AuthContext = createContext();
@@ -14,6 +14,42 @@ export const AuthProvider = ({ children }) => {
   const router = useRouter();
 
   const signup = async (email, password) => {
+    setIsLoading(true);
+
+    try {
+      const { data } = await api.post("/signup", {
+        email,
+        password,
+      });
+      const { token } = data;
+      localStorage.setItem("token", token);
+      setIsLoggedIn(true);
+      router.push("/dashboard");
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error(error.message);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  //get Token
+  useEffect(() => {
+    setIsReady(false);
+
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      setIsLoggedIn(true);
+    }
+
+    setIsReady(true);
+  });
+
+  const login = async (email, password) => {
     setIsLoading(true);
 
     try {
@@ -36,27 +72,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    setIsReady(false);
-
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      setIsLoggedIn(true);
-    }
-
-    setIsReady(true);
-  });
-
-  const login = async (email, password) => {
-    setIsLoading(true);
-    try {
-      {
-        lo;
-      }
-    } catch (error) {}
-  };
-
   //Modal states
 
   const [drop, setDrop] = useState();
@@ -71,6 +86,7 @@ export const AuthProvider = ({ children }) => {
   const [colorgg, setColorgg] = useState("");
   const [color, setColor] = useState("");
   const [CategoryAdd, setCategoryAdd] = useState("");
+  const [select, setSelect] = useState("");
 
   //Category data
 
@@ -82,8 +98,6 @@ export const AuthProvider = ({ children }) => {
     { img: "/Taxi.svg", title: "Taxi" },
     { img: "/TShirt.svg", title: "Shopping" },
   ];
-
-  const [select, setSelect] = useState("");
 
   return (
     <AuthContext.Provider
@@ -115,7 +129,13 @@ export const AuthProvider = ({ children }) => {
     >
       {isReady && children}
       {!isReady && (
-        <span className="loading loading-spinner loading-lg absolute top-1/2 left-1/2"></span>
+        <div className="flex justify-center items-center w-full h-screen">
+          <div className="flex flex-col justify-center items-center gap-7">
+            <img className="w-40 mb-10" src="/logo.svg" />
+            <div class="loading loading-spinner loading-lg "></div>
+            <p>Түр хүлээнэ үү...</p>
+          </div>
+        </div>
       )}
     </AuthContext.Provider>
   );

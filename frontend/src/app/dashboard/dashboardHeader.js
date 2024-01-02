@@ -2,9 +2,11 @@
 
 import Modal from "../../components/+Record";
 import { useAll } from "@/components/providers/AuthProvider";
+import Profile from "@/components/Profile";
 
 export default function Header() {
-  const { modal, setModal } = useAll();
+  const { modal, setModal } = useAll(false);
+
   return (
     <div className="flex w-full max-w-[1200px] h-[72px] m-auto justify-between p-5 bg-white mb-8">
       <div
@@ -30,13 +32,7 @@ export default function Header() {
           + Record
         </button>
         <Modal />
-        <a href="/profile">
-          <div className="avatar mt-1 ">
-            <div className="w-10 items-center rounded-full hover:border-2 ">
-              <img src="/profile.jpg" />
-            </div>
-          </div>
-        </a>
+        <Profile />
       </div>
     </div>
   );

@@ -1,4 +1,15 @@
+"use client";
+import { useAll } from "@/components/providers/AuthProvider";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 export default function Balance() {
+  const { isLoggedIn } = useAll();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoggedIn) router.push("/");
+  });
   return (
     <div className="p-10 w-[100%]">
       <div className=" w-[260px] m-auto   ">

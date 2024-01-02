@@ -1,4 +1,4 @@
-import { useAll } from "@/app/layout";
+import { useAll } from "@/components/providers/AuthProvider";
 
 import { useIcon } from "./AddCategory";
 

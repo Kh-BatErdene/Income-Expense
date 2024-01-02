@@ -1,9 +1,16 @@
 "use client";
 
 import { useAll } from "@/components/providers/AuthProvider";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Currency() {
   const { isLoggedIn } = useAll();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoggedIn) router.push("/");
+  }, [isLoggedIn]);
 
   return (
     <div className="p-10 w-[100%] ">

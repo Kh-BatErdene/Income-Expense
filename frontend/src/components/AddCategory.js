@@ -1,5 +1,5 @@
 "use client";
-import { useAll } from "@/app/layout";
+import { useAll } from "@/components/providers/AuthProvider";
 import React from "react";
 const ChangeIcon = createContext();
 
@@ -38,7 +38,8 @@ import { FaPencilAlt } from "react-icons/fa";
 import ChangeColor from "./ChangeColor";
 
 function AddCategory() {
-  const { modal2, setModal3, modal3, colorgg, CategoryAdd } = useAll();
+  const { modal2, setModal3, modal3, colorgg, CategoryAdd, setModal2 } =
+    useAll();
 
   // console.log(CategoryAdd);
 
@@ -87,11 +88,13 @@ function AddCategory() {
       >
         <div className="w-[494px] h-[236px] bg-white  border-2 rounded-2xl p-5 m-auto relative ">
           <div className="border-b-2 mb-6 ">
-            <form>
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                ✕
-              </button>
-            </form>
+            <button
+              onClick={() => setModal2(false)}
+              className="btn btn-sm btn-circle  absolute right-2 top-2"
+            >
+              ✕
+            </button>
+
             <h3 className="font-semibold text-[20px] mb-5">Add Category</h3>
           </div>
           <div>

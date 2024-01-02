@@ -1,6 +1,6 @@
 "use client";
 import Range from "../../components/Range";
-import { useAll } from "../layout";
+import { useAll } from "@/components/providers/AuthProvider";
 import Cards from "./cards";
 import Category from "./category";
 import AddCategory from "@/components/AddCategory";
@@ -97,7 +97,7 @@ export default function Main() {
     // column-1
     <div className="w-full max-w-[1200px] h-[1148px] m-auto flex gap-6 ">
       <div
-        className="  bg-black opacity-30 z-10 w-full h-screen absolute top-0 left-0 "
+        className="bg-black opacity-30 z-10 w-full h-screen absolute top-0 left-0 "
         style={{ display: modal ? "flex" : "none" }}
       ></div>
       <div
