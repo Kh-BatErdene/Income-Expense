@@ -24,6 +24,7 @@ export const AuthProvider = ({ children }) => {
       const { token } = data;
       localStorage.setItem("token", token);
       setIsLoggedIn(true);
+
       router.push("/dashboard");
     } catch (error) {
       if (error.response) {

@@ -65,13 +65,7 @@ app.post("/signup", async (req, res) => {
 
   //String data-г Json болгож бн
   const users = JSON.parse(usersRaw);
-
-  //Email-ийг давхцаж бну, шалгаж бн
   const user = users.find((user) => user.email === email);
-
-  if (!user) {
-    return res.status(401).json({ message: "Хоосон байна, Бөглөнө үү !" });
-  }
 
   //Алдаа заалгаж бн
   if (user) {
@@ -79,6 +73,17 @@ app.post("/signup", async (req, res) => {
       message: "Хэрэглэгч давхцаж байна",
     });
   }
+  const overlap = users.find(
+    (item) => item.email === "" && item.password === ""
+  );
+  if (overlap) {
+    return res.status(401).json({
+      message: "Хоосон байна",
+    });
+  }
+
+  //Email-ийг давхцаж бну, шалгаж бн
+
   const id = uuidv4();
   //Давхцаагүй бол push-лж бн
   users.push({ email, password, id });
