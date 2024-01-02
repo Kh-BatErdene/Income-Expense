@@ -7,7 +7,6 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "**/node_modules": true,
-    "README.md": true,
     "frontend/.gitignore": true,
     "frontend/jsconfig.json": true,
     "frontend/package-lock.json": true,
@@ -28,7 +27,6 @@
     "backend/package.json": true
   },
   "hide-files.files": [
-    "README.md",
     "frontend/.gitignore",
     "frontend/jsconfig.json",
     "frontend/package-lock.json",
