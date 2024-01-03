@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     setIsReady(true);
-  });
+  }, []);
 
   const login = async (email, password) => {
     setIsLoading(true);
@@ -133,7 +133,7 @@ export const AuthProvider = ({ children }) => {
         <div className="flex justify-center items-center w-full h-screen">
           <div className="flex flex-col justify-center items-center gap-7">
             <img className="w-40 mb-10" src="/logo.svg" />
-            <div class="loading loading-spinner loading-lg "></div>
+            <div className="loading loading-spinner loading-lg "></div>
             <p>Түр хүлээнэ үү...</p>
           </div>
         </div>

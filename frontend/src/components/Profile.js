@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function Profile(props) {
   const [isProfile, setIsProfile] = useState(false);
+
   return (
     <div>
       <div className="dropdown dropdown-end">
@@ -20,7 +21,7 @@ export default function Profile(props) {
           className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-40"
         >
           <li>
-            <a href="/profile">View Profile</a>
+            <a href="/profile">Your Profile</a>
           </li>
           <li>
             <a href="/">Sign Out</a>

@@ -114,7 +114,18 @@ function AddCategory() {
                   <option className="font-semibold" selected>
                     Name
                   </option>
-                  <option className="font-semibold">Home...</option>
+                  <option className="font-semibold">Food & Drinks</option>
+                  <option className="font-semibold">Shopping</option>
+                  <option className="font-semibold">Housing</option>
+                  <option className="font-semibold">Transportation</option>
+                  <option className="font-semibold">Vehicle</option>
+                  <option className="font-semibold">
+                    Life & Entertainment
+                  </option>
+                  <option className="font-semibold">Financial expenses</option>
+                  <option className="font-semibold">Investments</option>
+                  <option className="font-semibold">Income</option>
+                  <option className="font-semibold">Others</option>
                 </select>
               </label>
             </div>
