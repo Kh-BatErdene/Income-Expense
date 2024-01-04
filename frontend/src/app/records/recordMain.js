@@ -80,7 +80,7 @@ export default function Main() {
   ];
   const Today = Array.from(data).slice(5);
   const Yesterday = Array.from(data).slice(4);
-  const { modal, setModal2, modal2, cateUser } = useAll();
+  const { modal, setModal2, modal2, categoryData, isReady2 } = useAll();
   return (
     // column-1
     <div className="w-full max-w-[1200px] h-[1148px] m-auto flex gap-6 ">
@@ -124,7 +124,14 @@ export default function Main() {
           <h2>Category</h2>
           <span className="text-[#E5E7EB]">Clear</span>
         </div>
-        <div>{cateUser && cateUser.value}</div>
+        {isReady2 &&
+          categoryData.map((card, index) => (
+            <div className="h-[56px] w-full p-[16px]" key={index}>
+              <div className="flex flex-row w-full h-full items-center gap-[12px]">
+                <p>{card.addCategory}</p>
+              </div>
+            </div>
+          ))}
         <div>
           <button
             onClick={() => setModal2(!modal2)}

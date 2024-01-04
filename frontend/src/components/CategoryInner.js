@@ -2,7 +2,7 @@ import { useAll } from "@/components/providers/AuthProvider";
 
 //
 export default function CategoryInner() {
-  const { drop, data, setTitle, setImg, setModal2, modal2, setModal } =
+  const { drop, setModal2, modal2, setModal, categoryData, isReady2 } =
     useAll();
 
   const handleClick = () => {
@@ -24,21 +24,14 @@ export default function CategoryInner() {
           <span>Add Category</span>
         </div>
         <hr className="hover:bg-white "></hr>
-        {data.map((item, index) => (
-          <div
-            className="h-[56px] w-full p-[16px]"
-            key={index}
-            onClick={() => {
-              setImg(item.img);
-              setTitle(item.title);
-            }}
-          >
-            <div className="flex flex-row w-full h-full items-center gap-[12px]">
-              <img src={item.img} className="w-[24px] h-[24px]"></img>
-              <p>{item.title}</p>
+        {isReady2 &&
+          categoryData.map((card, index) => (
+            <div className="h-[56px] w-full p-[16px]" key={index}>
+              <div className="flex flex-row w-full h-full items-center gap-[12px]">
+                <p>{card.addCategory}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </li>
     </ul>
   );

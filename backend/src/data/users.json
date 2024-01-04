@@ -1,8 +1,1 @@
-[
-  { "email": "BatErdene", "password": "1234" },
-  {
-    "email": "Boloroo",
-    "password": "1234",
-    "id": "3878534b-8df2-41e6-9022-ed5d04b568fe"
-  }
-]
+[{"email":"BatErdene","password":"1234"},{"email":"a","password":"a","id":"f299df82-df0f-4410-8cad-bddc81e4ede9"}]

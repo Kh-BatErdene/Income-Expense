@@ -17,14 +17,11 @@ function AddCategory() {
     colorgg,
     CategoryAdd,
     setModal2,
-    AddCategory,
+    getCategoryData,
+    handleCategory,
+    addCategory,
+    setAddCategory,
   } = useAll();
-
-  const [value, setValue] = useState("");
-  const options = [
-    { label: "Food & Drinks", value: "Food & Drinks" },
-    { label: "Shopping", value: "Shopping" },
-  ];
 
   const style = { color: colorgg };
   const data = [
@@ -60,6 +57,11 @@ function AddCategory() {
     <FaIcons.FaPencilAlt {...{ style }} />,
   ];
 
+  const Fuck = () => {
+    handleCategory(addCategory);
+    getCategoryData();
+  };
+
   return (
     <ChangeIcon.Provider value={{ data, style }}>
       <div
@@ -93,38 +95,18 @@ function AddCategory() {
                 </div>
               </label>
               <label className="form-control bg-[#F3F4F6] pr-3 rounded-md border-solid border-2 border-[#D1D5DB] mb-4 w-[360px] h-12  cursor-pointer">
-                <select
-                  className="outline-none bg-[#F3F4F6] w-[350px] h-12 text-[#A3A3A3] px-4 py-2 cursor-pointer"
-                  onChange={(e) => setValue(e.target.value)}
-                >
-                  {" "}
-                  <option selected disabled className="font-semibold">
-                    Choose your title
-                  </option>
-                  {options.map((option, index) => (
-                    <option key={index} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                  <option className="font-semibold">Food & Drinks</option>
-                  <option className="font-semibold">Shopping</option>
-                  <option className="font-semibold">Housing</option>
-                  <option className="font-semibold">Transportation</option>
-                  <option className="font-semibold">Vehicle</option>
-                  <option className="font-semibold">
-                    Life & Entertainment
-                  </option>
-                  <option className="font-semibold">Financial expenses</option>
-                  <option className="font-semibold">Investments</option>
-                  <option className="font-semibold">Income</option>
-                  <option className="font-semibold">Others</option>
-                </select>
+                <input
+                  className="outline-none bg-[#F3F4F6] pr-3 rounded-md  mb-4 w-[340px] h-full   pl-5 py-3"
+                  onChange={(e) => setAddCategory(e.target.value)}
+                  type="text"
+                  placeholder="Write here"
+                ></input>
               </label>
             </div>
 
             <button
               className=" px-5 py-2 text-white  bg-[#0166FF] rounded-3xl w-full h-10 mt-5 "
-              onClick={() => AddCategory(value)}
+              onClick={() => Fuck(addCategory)}
             >
               Add Category
             </button>

@@ -10,8 +10,25 @@ export const AuthProvider = ({ children }) => {
   const [isReady, setIsReady] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [cateUser, setCateUser] = useState("");
+  const [isReady2, setIsReady2] = useState(false);
   const router = useRouter();
+
+  //Modal states
+
+  const [drop, setDrop] = useState();
+  const [modal, setModal] = useState(false);
+  const [modal2, setModal2] = useState(false);
+  const [modal3, setModal3] = useState(false);
+
+  //Add Category
+
+  const [colorgg, setColorgg] = useState("");
+  const [color, setColor] = useState("");
+  const [CategoryAdd, setCategoryAdd] = useState("");
+  const [select, setSelect] = useState("");
+  const [cateUser, setCateUser] = useState("");
+  const [categoryData, setCategoryData] = useState();
+  const [addCategory, setAddCategory] = useState("");
 
   const signup = async (email, password) => {
     setIsLoading(true);
@@ -35,43 +52,6 @@ export const AuthProvider = ({ children }) => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const AddCategory = async (value) => {
-    setModal2(!modal2);
-    setIsLoading(true);
-
-    try {
-      const { data } = await api.post("/addcategory", {
-        value,
-      });
-      const { token } = data;
-      localStorage.setItem("token", token);
-    } catch (error) {
-      if (error.response) {
-        toast.error(error.response.data.message);
-      } else {
-        toast.error(error.message);
-      }
-    } finally {
-      setIsLoading(false);
-    }
-
-    // try {
-    //   const token = localStorage.getItem("token");
-    //   const { data } = await api.get("/addcategory", {
-    //     headers: {
-    //       authorization: token,
-    //     },
-    //   });
-
-    //   console.log("GGG", data, typeof data);
-    //   const { CategoryUser } = data;
-    //   setCateUser(CategoryUser[0]);
-    //   console.log(CategoryUser[0]);
-    // } catch (error) {
-    //   console.log("---boldgve duraka", error);
-    // }
   };
 
   //get Token
@@ -115,33 +95,41 @@ export const AuthProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
+  const handleCategory = async () => {
+    setModal2(false);
 
-  //Modal states
-
-  const [drop, setDrop] = useState();
-  const [modal, setModal] = useState(false);
-  const [modal2, setModal2] = useState(false);
-  const [modal3, setModal3] = useState(false);
-
-  //Add Category
-
-  const [categorytitle, setTitle] = useState("");
-  const [categoryimg, setImg] = useState("");
-  const [colorgg, setColorgg] = useState("");
-  const [color, setColor] = useState("");
-  const [CategoryAdd, setCategoryAdd] = useState("");
-  const [select, setSelect] = useState("");
-
-  //Category data
-
-  const data = [
-    { img: "/home.svg", title: "Home" },
-    { img: "/gift.svg", title: "Gift" },
-    { img: "/food.svg", title: "Food" },
-    { img: "/Wine.svg", title: "Drink" },
-    { img: "/Taxi.svg", title: "Taxi" },
-    { img: "/TShirt.svg", title: "Shopping" },
-  ];
+    try {
+      const token = localStorage.getItem("token");
+      await api.post(
+        "/addcategory",
+        { addCategory },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getCategoryData = async () => {
+    setIsReady2(false);
+    try {
+      const token = localStorage.getItem("token");
+      const { data } = await api.get("/addcategory", {
+        headers: {
+          Authorization: token,
+        },
+      });
+      const { userCategory } = data;
+      setCategoryData(userCategory);
+      console.log(userCategory);
+      setIsReady2(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <AuthContext.Provider
@@ -151,11 +139,6 @@ export const AuthProvider = ({ children }) => {
         modal,
         setModal,
         select,
-        data,
-        categorytitle,
-        setTitle,
-        categoryimg,
-        setImg,
         colorgg,
         setColorgg,
         CategoryAdd,
@@ -169,9 +152,14 @@ export const AuthProvider = ({ children }) => {
         signup,
         login,
         isLoggedIn,
-        AddCategory,
         SignOut,
         cateUser,
+        getCategoryData,
+        categoryData,
+        handleCategory,
+        addCategory,
+        setAddCategory,
+        isReady2,
       }}
     >
       {isReady && children}

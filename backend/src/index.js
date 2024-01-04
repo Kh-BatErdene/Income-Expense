@@ -116,60 +116,138 @@ app.post("/signup", async (req, res) => {
 });
 
 //Add Category
+
 app.post("/addcategory", async (req, res) => {
   const { authorization } = req.headers;
   if (!authorization) {
     return res.status(401).json({
-      message: "Unauthorization",
+      message: "error",
     });
   }
-  const verify = jwt.verify(authorization, "secret-token");
+  try {
+    const verify = jwt.verify(authorization, "secret-key");
+    const { email } = verify;
+    const { addCategory } = req.body;
+    const filePath = "src/data/category.json";
+    const rawFile = await fs.readFile(filePath, "utf8");
 
-  const { email } = verify;
+    const file = JSON.parse(rawFile);
 
-  const { value } = req.body;
+    file.push({
+      addCategory,
+      userEmail: email,
+    });
 
-  const filePath = "src/data/category.json";
-
-  const usersRaw = await fs.readFile(filePath, "utf-8");
-
-  const category = JSON.parse(usersRaw);
-
-  category.push({ value, Email: email });
-
-  await fs.writeFile(filePath, JSON.stringify(category));
-  const CategoryUser = file.filter((user) => user.userEmail === email);
-  res.json({
-    CategoryUser,
-    message: "Successful",
-    token,
-  });
+    await fs.writeFile(filePath, JSON.stringify(file));
+    res.json({
+      message: "Successful",
+    });
+  } catch (error) {
+    return res.status(401).json({
+      message: "Unauthorized",
+    });
+  }
 });
-// app.get("/addcategory", async (req, res) => {
+
+app.get("/addcategory", async (req, res) => {
+  const { authorization } = req.headers;
+  if (!authorization) {
+    return res.status(401).json({
+      message: "error",
+    });
+  }
+  try {
+    const verify = jwt.verify(authorization, "secret-key");
+
+    const { email } = verify;
+
+    const filePath = "src/data/category.json";
+
+    const rawFile = await fs.readFile(filePath, "utf-8");
+
+    const file = JSON.parse(rawFile);
+
+    const userCategory = file.filter((user) => user.userEmail === email);
+
+    res.json({
+      userCategory,
+    });
+  } catch (err) {
+    res.status(401).json({
+      message: "error2",
+    });
+  }
+});
+
+// app.post("/records", async (req, res) => {
 //   const { authorization } = req.headers;
+
 //   if (!authorization) {
 //     return res.status(401).json({
-//       message: "Unauthorization",
+//       message: "Unauthorized",
 //     });
 //   }
+
 //   try {
-//     const verify = jwt.verify(authorization, "secret-token");
+//     const payload = jwt.verify(authorization, "secret-key");
 
-//     const { email } = verify;
+//     const { email } = payload;
 
-//     const filePath = "src/data/category.json";
+//     const { category, amount, type } = req.body;
 
-//     const rawFile = await fs.readFile(filePath, "utf-8");
+//     const filePath = "src/data/records.json";
 
-//     const file = JSON.parse(rawFile);
+//     const recordsRaw = await fs.readFile(filePath, "utf8");
 
-//     const CategoryUser = file.filter((user) => user.userEmail === email);
-//     res.json({
-//       CategoryUser,
+//     const records = JSON.parse(recordsRaw);
+
+//     records.push({
+//       type,
+//       category,
+//       amount,
+//       userEmail: email,
 //     });
-//   } catch (err) {
-//     res.status(401).json({
-//       message: "errorUser",
+
+//     await fs.writeFile(filePath, JSON.stringify(records));
+
+//     res.json({
+//       message: "Record created",
+//     });
+//   } catch (error) {
+//     return res.status(401).json({
+//       message: "Unauthorized",
+//     });
+//   }
+// });
+
+// app.get("/records", async (req, res) => {
+//   const { authorization } = req.headers;
+
+//   if (!authorization) {
+//     return res.status(401).json({
+//       message: "Unauthorized",
+//     });
+//   }
+
+//   try {
+//     const payload = jwt.verify(authorization, "secret-key");
+
+//     const { email } = payload;
+
+//     const filePath = "src/data/records.json";
+
+//     const recordsRaw = await fs.readFile(filePath, "utf8");
+
+//     const records = JSON.parse(recordsRaw);
+
+//     const usersRecords = records.filter((record) => record.userEmail === email);
+
+//     res.json({
+//       records: usersRecords,
+//     });
+//   } catch (error) {
+//     return res.status(401).json({
+//       message: "Unauthorized",
 //     });
 //   }
 // });

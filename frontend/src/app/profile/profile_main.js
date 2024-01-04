@@ -8,16 +8,11 @@ export default function ProfilePage() {
   const handlerDashboard = () => {
     router.push("/dashboard");
   };
-  const Update = () => {
-    setName(name);
-  };
   const [name, setName] = useState("");
   const [email, setEmail] = useState("admin");
   const [bio, setBio] = useState("Full stack developer");
   const { info, setInfo } = usePro();
-  const ChangeInfo = () => {
-    setEmail(setInfo.email);
-  };
+
   return (
     <div className="bg-gray-200 py-2 w-full h-screen  ">
       <div className="py-5 ">

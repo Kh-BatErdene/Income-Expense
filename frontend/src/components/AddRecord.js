@@ -4,10 +4,11 @@ import { useAll } from "@/components/providers/AuthProvider";
 import CategoryInner from "./CategoryInner";
 
 export default function AddRecord() {
-  const { drop, setDrop, select, data, categoryimg, categorytitle } = useAll();
+  const { drop, setDrop, select } = useAll();
   const handleClick = () => {
     setDrop(!drop);
   };
+
   return (
     <div className=" w-full mb-2">
       <div
@@ -22,10 +23,7 @@ export default function AddRecord() {
               <div>
                 {data.map((item, index) => {
                   return (
-                    <div key={index} className="flex gap-2 items-center">
-                      <img src={categoryimg}></img>
-                      {categorytitle}
-                    </div>
+                    <div key={index} className="flex gap-2 items-center"></div>
                   );
                 })}
               </div>
