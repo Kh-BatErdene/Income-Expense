@@ -8,7 +8,6 @@ import AddCategory from "@/components/AddCategory";
 export default function Main() {
   const data = [
     {
-      title: "Food & Drinks",
       name: "Food & Drinks",
       img: "food.svg",
       date: "14:00",
@@ -16,7 +15,6 @@ export default function Main() {
       cash: "- 1,000₮",
     },
     {
-      title: "Shopping",
       name: "Food & Drinks",
       img: "food.svg",
       date: "14:00",
@@ -24,7 +22,6 @@ export default function Main() {
       cash: "- 1,000₮",
     },
     {
-      title: "Housing",
       name: "Food & Drinks",
       img: "food.svg",
       date: "14:00",
@@ -32,7 +29,6 @@ export default function Main() {
       color: "#EAB308",
     },
     {
-      title: "Transportation",
       name: "Food & Drinks",
       img: "food.svg",
       date: "14:00",
@@ -40,7 +36,6 @@ export default function Main() {
       cash: "- 1,000₮",
     },
     {
-      title: "Vehicle",
       name: "Food & Drinks",
       img: "food.svg",
       date: "14:00",
@@ -48,8 +43,6 @@ export default function Main() {
       cash: "- 1,000₮",
     },
     {
-      title: "Life & Entertainment",
-
       name: "Lending & Renting",
       img: "house.svg",
       date: "14:00",
@@ -57,8 +50,6 @@ export default function Main() {
       color: "#23E01F",
     },
     {
-      title: "Financial expenses",
-
       name: "Food & Drinks",
       img: "food.svg",
       date: "14:00",
@@ -66,7 +57,6 @@ export default function Main() {
       color: "#F54949",
     },
     {
-      title: "Investments",
       name: "Food & Drinks",
       img: "food.svg",
       date: "14:00",
@@ -74,7 +64,6 @@ export default function Main() {
       color: "#EAB308",
     },
     {
-      title: "Income",
       name: "Food & Drinks",
       img: "food.svg",
       date: "14:00",
@@ -82,7 +71,6 @@ export default function Main() {
       color: "#EAB308",
     },
     {
-      title: "Others",
       name: "Food & Drinks",
       img: "food.svg",
       date: "14:00",
@@ -92,7 +80,7 @@ export default function Main() {
   ];
   const Today = Array.from(data).slice(5);
   const Yesterday = Array.from(data).slice(4);
-  const { modal, setModal2, modal2, setModal3, modal3 } = useAll();
+  const { modal, setModal2, modal2, cateUser } = useAll();
   return (
     // column-1
     <div className="w-full max-w-[1200px] h-[1148px] m-auto flex gap-6 ">
@@ -103,9 +91,8 @@ export default function Main() {
       <div
         className="  bg-black opacity-30 z-30 w-full h-screen absolute top-0 left-0  "
         style={{ display: modal2 ? "flex" : "none" }}
-        onClick={() => setModal3(!modal3)}
       ></div>
-      <div className="w-[282px] h-[1080px] bg-white p-4 mb-6">
+      <div className="w-[282px] h-[1080px] bg-white p-4 mb-6 relative">
         <h1 className="font-black text-[24px] mb-6">Records</h1>
         <button
           onClick={() => setModal2(!modal2)}
@@ -137,17 +124,19 @@ export default function Main() {
           <h2>Category</h2>
           <span className="text-[#E5E7EB]">Clear</span>
         </div>
-
+        <div>{cateUser && cateUser.value}</div>
         <div>
-          {data.map((items, index) => {
-            return <Category key={index} title={items.title} />;
-          })}
-          <button className="mt-1">+ Add Category</button>
+          <button
+            onClick={() => setModal2(!modal2)}
+            className="mt-1 hover:bg-gray-100 w-full p-1 rounded-md  "
+          >
+            + Add Category
+          </button>
         </div>
-        <p className="mb-4 mt-6">Amount Range</p>
 
         <Range />
       </div>
+
       {/* column-2 */}
       <div className="w-full">
         <div className="flex justify-between w-full">

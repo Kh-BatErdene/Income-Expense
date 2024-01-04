@@ -27,7 +27,7 @@ export default function ChangeColor() {
           <button className="modal backdrop">✕</button>
         </form>
         <div className="w-[312px] h-[336px] bg-white flex flex-col p-[24px] absolute top-[48px] left-[0px] border-[2px] rounded-lg border-black">
-          <div className="grid grid-row-5 grid-cols-6 h-[264px] w-full">
+          <div className="grid grid-row-5 grid-cols-6 h-[264px] w-full ml-3">
             {/* Icon-oо сольж буй хэсэг */}
             {data.map((icon, index) => (
               <div

@@ -7,7 +7,6 @@ const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 
 const app = express();
-
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -17,10 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/profile", async (req, res) => {
-  console.log("x");
-  //headers-ийн authorization-ийг авах хүсэлт
   const { authorization } = req.headers;
-  //authorization ирэхгүй бол
   if (!authorization) {
     return res.status(401).json({
       message: "Couldn't get authorization",
@@ -35,8 +31,6 @@ app.get("/profile", async (req, res) => {
     const users = JSON.parse(usersRaw);
 
     const profile = users.filter((user) => user.email === email);
-
-    console.log(profile);
 
     res.json({
       profile,
@@ -65,7 +59,7 @@ app.post("/login", async (req, res) => {
 
   if (!user) {
     return res.status(401).json({
-      message: "E-mail эсвэл нууц үг буруу байна. ",
+      message: "E-mail буруу байна ",
     });
   }
   if (user.password !== password) {
@@ -121,11 +115,64 @@ app.post("/signup", async (req, res) => {
   });
 });
 
-//
-
 //Add Category
+app.post("/addcategory", async (req, res) => {
+  const { authorization } = req.headers;
+  if (!authorization) {
+    return res.status(401).json({
+      message: "Unauthorization",
+    });
+  }
+  const verify = jwt.verify(authorization, "secret-token");
 
-//
+  const { email } = verify;
+
+  const { value } = req.body;
+
+  const filePath = "src/data/category.json";
+
+  const usersRaw = await fs.readFile(filePath, "utf-8");
+
+  const category = JSON.parse(usersRaw);
+
+  category.push({ value, Email: email });
+
+  await fs.writeFile(filePath, JSON.stringify(category));
+  const CategoryUser = file.filter((user) => user.userEmail === email);
+  res.json({
+    CategoryUser,
+    message: "Successful",
+    token,
+  });
+});
+// app.get("/addcategory", async (req, res) => {
+//   const { authorization } = req.headers;
+//   if (!authorization) {
+//     return res.status(401).json({
+//       message: "Unauthorization",
+//     });
+//   }
+//   try {
+//     const verify = jwt.verify(authorization, "secret-token");
+
+//     const { email } = verify;
+
+//     const filePath = "src/data/category.json";
+
+//     const rawFile = await fs.readFile(filePath, "utf-8");
+
+//     const file = JSON.parse(rawFile);
+
+//     const CategoryUser = file.filter((user) => user.userEmail === email);
+//     res.json({
+//       CategoryUser,
+//     });
+//   } catch (err) {
+//     res.status(401).json({
+//       message: "errorUser",
+//     });
+//   }
+// });
 
 const port = 3001;
 

@@ -1,13 +1,12 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { useAll } from "@/components/providers/AuthProvider";
 import { useState } from "react";
 
 export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsLoggedIn, signup } = useAll();
-  const router = useRouter();
+  const { signup } = useAll();
+
   return (
     <div className="w-full m-auto h-[1024px]">
       <div className="h-screen flex items-center ">

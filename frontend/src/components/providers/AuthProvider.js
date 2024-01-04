@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [isReady, setIsReady] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [cateUser, setCateUser] = useState("");
   const router = useRouter();
 
   const signup = async (email, password) => {
@@ -37,6 +37,43 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const AddCategory = async (value) => {
+    setModal2(!modal2);
+    setIsLoading(true);
+
+    try {
+      const { data } = await api.post("/addcategory", {
+        value,
+      });
+      const { token } = data;
+      localStorage.setItem("token", token);
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error(error.message);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+
+    // try {
+    //   const token = localStorage.getItem("token");
+    //   const { data } = await api.get("/addcategory", {
+    //     headers: {
+    //       authorization: token,
+    //     },
+    //   });
+
+    //   console.log("GGG", data, typeof data);
+    //   const { CategoryUser } = data;
+    //   setCateUser(CategoryUser[0]);
+    //   console.log(CategoryUser[0]);
+    // } catch (error) {
+    //   console.log("---boldgve duraka", error);
+    // }
+  };
+
   //get Token
   useEffect(() => {
     setIsReady(false);
@@ -49,6 +86,12 @@ export const AuthProvider = ({ children }) => {
 
     setIsReady(true);
   }, []);
+
+  const SignOut = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    router.push("/");
+  };
 
   const login = async (email, password) => {
     setIsLoading(true);
@@ -126,6 +169,9 @@ export const AuthProvider = ({ children }) => {
         signup,
         login,
         isLoggedIn,
+        AddCategory,
+        SignOut,
+        cateUser,
       }}
     >
       {isReady && children}

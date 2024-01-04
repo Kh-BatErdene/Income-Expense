@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useAll } from "./providers/AuthProvider";
 
 export default function Profile(props) {
   const [isProfile, setIsProfile] = useState(false);
+  const { SignOut } = useAll();
 
   return (
     <div>
@@ -24,7 +26,7 @@ export default function Profile(props) {
             <a href="/profile">Your Profile</a>
           </li>
           <li>
-            <a href="/">Sign Out</a>
+            <a onClick={SignOut}>Sign Out</a>
           </li>
         </ul>
       </div>

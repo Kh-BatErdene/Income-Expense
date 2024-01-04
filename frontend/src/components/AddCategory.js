@@ -1,80 +1,63 @@
 "use client";
 import { useAll } from "@/components/providers/AuthProvider";
-import React from "react";
+import React, { useState } from "react";
 const ChangeIcon = createContext();
-
-import { createContext, useContext, useState } from "react";
-import { IoMdHome } from "react-icons/io";
-import { MdHomeFilled } from "react-icons/md";
-import { TiHome } from "react-icons/ti";
-import { RiContactsBook2Fill } from "react-icons/ri";
-import { MdContactMail } from "react-icons/md";
-import { PiLadderFill } from "react-icons/pi";
-import { PiIntersectSquareFill } from "react-icons/pi";
-import { FaImage } from "react-icons/fa6";
-import { FaMagnifyingGlassPlus } from "react-icons/fa6";
-import { FaMicrophone } from "react-icons/fa6";
-import { SiMicrosoftexcel } from "react-icons/si";
-import { PiNotepadFill } from "react-icons/pi";
-import { ImMenu } from "react-icons/im";
-import { PiLeafFill } from "react-icons/pi";
-import { PiNumberFiveFill } from "react-icons/pi";
-import { PiNumberCircleSevenFill } from "react-icons/pi";
-import { PiRoadHorizonFill } from "react-icons/pi";
-import { GiSandsOfTime } from "react-icons/gi";
-import { PiAnchorSimpleBold } from "react-icons/pi";
-import { PiTriangleFill } from "react-icons/pi";
-import { PiIntersectBold } from "react-icons/pi";
-import { BiLogoFlickrSquare } from "react-icons/bi";
-import { FaBaseballBall } from "react-icons/fa";
-import { AiFillQuestionCircle } from "react-icons/ai";
-import { TbSquareRoundedLetterA } from "react-icons/tb";
-import { BsWatch } from "react-icons/bs";
-import { PiGlobeSimpleFill } from "react-icons/pi";
-import { TbLemon } from "react-icons/tb";
-import { FaPeace } from "react-icons/fa";
-import { PiToiletPaperFill } from "react-icons/pi";
-import { FaPencilAlt } from "react-icons/fa";
 import ChangeColor from "./ChangeColor";
+import { createContext, useContext } from "react";
+import * as FaIcons from "react-icons/fa";
+import * as PiIcons from "react-icons/pi";
+import * as SiIcons from "react-icons/si";
+import * as BiIcons from "react-icons/bi";
 
 function AddCategory() {
-  const { modal2, setModal3, modal3, colorgg, CategoryAdd, setModal2 } =
-    useAll();
+  const {
+    modal2,
+    setModal3,
+    modal3,
+    colorgg,
+    CategoryAdd,
+    setModal2,
+    AddCategory,
+  } = useAll();
 
-  // console.log(CategoryAdd);
+  const [value, setValue] = useState("");
+  const options = [
+    { label: "Food & Drinks", value: "Food & Drinks" },
+    { label: "Shopping", value: "Shopping" },
+  ];
 
   const style = { color: colorgg };
   const data = [
-    <TiHome {...{ style }} />,
-    <MdHomeFilled {...{ style }} />,
-    <RiContactsBook2Fill {...{ style }} />,
-    <MdContactMail {...{ style }} />,
-    <PiLadderFill {...{ style }} />,
-    <PiIntersectSquareFill {...{ style }} />,
-    <FaImage {...{ style }} />,
-    <FaMagnifyingGlassPlus {...{ style }} />,
-    <FaMicrophone {...{ style }} />,
-    <SiMicrosoftexcel {...{ style }} />,
-    <PiNotepadFill {...{ style }} />,
-    <ImMenu {...{ style }} />,
-    <PiLeafFill {...{ style }} />,
-    <PiNumberFiveFill {...{ style }} />,
-    <PiNumberCircleSevenFill {...{ style }} />,
-    <PiRoadHorizonFill {...{ style }} />,
-    <GiSandsOfTime {...{ style }} />,
-    <PiAnchorSimpleBold {...{ style }} />,
-    <PiTriangleFill {...{ style }} />,
-    <PiIntersectBold {...{ style }} />,
-    <BiLogoFlickrSquare {...{ style }} />,
-    <FaBaseballBall {...{ style }} />,
-    <AiFillQuestionCircle {...{ style }} />,
-    <TbSquareRoundedLetterA {...{ style }} />,
-    <BsWatch {...{ style }} />,
-    <PiGlobeSimpleFill {...{ style }} />,
-    <TbLemon {...{ style }} />,
-    <FaPeace {...{ style }} />,
-    <PiToiletPaperFill {...{ style }} />,
-    <FaPencilAlt {...{ style }} />,
+    <FaIcons.FaHome {...{ style }} />,
+    <FaIcons.FaHouseUser {...{ style }} />,
+    <FaIcons.FaIdBadge {...{ style }} />,
+    <FaIcons.FaIdCard {...{ style }} />,
+    <PiIcons.PiLadder {...{ style }} />,
+    <PiIcons.PiExcludeSquareDuotone {...{ style }} />,
+    <FaIcons.FaImage {...{ style }} />,
+    <PiIcons.PiMagnifyingGlassPlusFill {...{ style }} />,
+    <FaIcons.FaMicrophone {...{ style }} />,
+    <SiIcons.SiMicrosoftexcel {...{ style }} />,
+    <PiIcons.PiNotepadFill {...{ style }} />,
+    <BiIcons.BiMenu {...{ style }} />,
+    <PiIcons.PiLeafFill {...{ style }} />,
+    <PiIcons.PiNumberFiveFill {...{ style }} />,
+    <PiIcons.PiNumberCircleSevenFill {...{ style }} />,
+    <PiIcons.PiRoadHorizonFill {...{ style }} />,
+    <PiIcons.PiHourglassMediumFill {...{ style }} />,
+    <PiIcons.PiAnchorSimpleBold {...{ style }} />,
+    <PiIcons.PiTriangleFill {...{ style }} />,
+    <PiIcons.PiIntersectBold {...{ style }} />,
+    <BiIcons.BiLogoFlickrSquare {...{ style }} />,
+    <FaIcons.FaBaseballBall {...{ style }} />,
+    <PiIcons.PiQuestionFill {...{ style }} />,
+    <PiIcons.PiNewspaperClipping {...{ style }} />,
+    <PiIcons.PiWatchFill {...{ style }} />,
+    <PiIcons.PiGlobeSimpleFill {...{ style }} />,
+    <FaIcons.FaLemon {...{ style }} />,
+    <FaIcons.FaPeace {...{ style }} />,
+    <PiIcons.PiToiletPaperFill {...{ style }} />,
+    <FaIcons.FaPencilAlt {...{ style }} />,
   ];
 
   return (
@@ -109,11 +92,20 @@ function AddCategory() {
                   <img src="/dropdown.svg" />
                 </div>
               </label>
-              <label className="form-control">
-                <select className="outline-none bg-[#F3F4F6] w-[350px] h-12 text-[#A3A3A3] px-4 py-2 rounded-md border-solid border-2 border-[#D1D5DB] mb-4 ">
-                  <option className="font-semibold" selected>
-                    Name
+              <label className="form-control bg-[#F3F4F6] pr-3 rounded-md border-solid border-2 border-[#D1D5DB] mb-4 w-[360px] h-12  cursor-pointer">
+                <select
+                  className="outline-none bg-[#F3F4F6] w-[350px] h-12 text-[#A3A3A3] px-4 py-2 cursor-pointer"
+                  onChange={(e) => setValue(e.target.value)}
+                >
+                  {" "}
+                  <option selected disabled className="font-semibold">
+                    Choose your title
                   </option>
+                  {options.map((option, index) => (
+                    <option key={index} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
                   <option className="font-semibold">Food & Drinks</option>
                   <option className="font-semibold">Shopping</option>
                   <option className="font-semibold">Housing</option>
@@ -130,8 +122,11 @@ function AddCategory() {
               </label>
             </div>
 
-            <button className=" px-5 py-2 text-white  bg-[#0166FF] rounded-3xl w-full h-10 mt-5 ">
-              Add Record
+            <button
+              className=" px-5 py-2 text-white  bg-[#0166FF] rounded-3xl w-full h-10 mt-5 "
+              onClick={() => AddCategory(value)}
+            >
+              Add Category
             </button>
           </div>
         </div>
