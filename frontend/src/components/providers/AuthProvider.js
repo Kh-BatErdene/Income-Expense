@@ -3,6 +3,12 @@ import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState, useContext } from "react";
 import { api } from "../../common";
 import { toast } from "react-toastify";
+import { FaHome } from "react-icons/fa";
+import * as FaIcons from "react-icons/fa";
+import * as PiIcons from "react-icons/pi";
+import * as SiIcons from "react-icons/si";
+import * as BiIcons from "react-icons/bi";
+import { headers } from "../../../next.config";
 
 const AuthContext = createContext();
 
@@ -24,11 +30,13 @@ export const AuthProvider = ({ children }) => {
 
   const [colorgg, setColorgg] = useState("");
   const [color, setColor] = useState("");
-  const [CategoryAdd, setCategoryAdd] = useState("");
+  const [CategoryAdd, setCategoryAdd] = useState(<FaHome />);
   const [select, setSelect] = useState("");
   const [cateUser, setCateUser] = useState("");
   const [categoryData, setCategoryData] = useState();
   const [addCategory, setAddCategory] = useState("");
+  const [iconId, setIconId] = useState(0);
+  const [chooseIcon, setChooseIcon] = useState("");
 
   const signup = async (email, password) => {
     setIsLoading(true);
@@ -77,10 +85,11 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      const { data } = await api.post("/login", {
-        email,
-        password,
-      });
+      const { data } = await api.post(
+        "/login",
+        { email, password },
+        { headers: { Authorization: token } }
+      );
       const { token } = data;
       localStorage.setItem("token", token);
       setIsLoggedIn(true);
@@ -152,6 +161,7 @@ export const AuthProvider = ({ children }) => {
         signup,
         login,
         isLoggedIn,
+        setIsLoggedIn,
         SignOut,
         cateUser,
         getCategoryData,
@@ -159,6 +169,8 @@ export const AuthProvider = ({ children }) => {
         handleCategory,
         addCategory,
         setAddCategory,
+        iconId,
+        setIconId,
         isReady2,
       }}
     >

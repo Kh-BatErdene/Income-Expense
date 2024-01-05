@@ -120,28 +120,30 @@ export default function Main() {
           <input type="checkbox" className="checkbox checkbox-md" />
           <span>Expense</span>
         </div>
-        <div className="flex justify-between mt-7">
+        <div className="flex justify-between mt-7 mb-5">
           <h2>Category</h2>
           <span className="text-[#E5E7EB]">Clear</span>
         </div>
         {isReady2 &&
           categoryData.map((card, index) => (
-            <div className="h-[56px] w-full p-[16px]" key={index}>
-              <div className="flex flex-row w-full h-full items-center gap-[12px]">
+            <div className=" w-full  mb-2" key={index}>
+              <div className="cursor-pointer hover:bg-gray-100 px-5 py-1 rounded-md flex flex-row w-full h-full items-center gap-[12px]">
+                <img src="/eye.svg" />
                 <p>{card.addCategory}</p>
               </div>
             </div>
           ))}
-        <div>
+        <hr></hr>
+        <div className="mt-2">
           <button
             onClick={() => setModal2(!modal2)}
-            className="mt-1 hover:bg-gray-100 w-full p-1 rounded-md  "
+            className="mt-1 hover:bg-gray-100 bg-gray-50 w-full p-1 rounded-md  "
           >
             + Add Category
           </button>
         </div>
 
-        <Range />
+        {/* <Range /> */}
       </div>
 
       {/* column-2 */}

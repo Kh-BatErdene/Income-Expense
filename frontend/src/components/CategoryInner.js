@@ -26,7 +26,10 @@ export default function CategoryInner() {
         <hr className="hover:bg-white "></hr>
         {isReady2 &&
           categoryData.map((card, index) => (
-            <div className="h-[56px] w-full p-[16px]" key={index}>
+            <div
+              className="flex w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mb-2 "
+              key={index}
+            >
               <div className="flex flex-row w-full h-full items-center gap-[12px]">
                 <p>{card.addCategory}</p>
               </div>

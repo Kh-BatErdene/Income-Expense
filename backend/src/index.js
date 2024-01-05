@@ -135,6 +135,7 @@ app.post("/addcategory", async (req, res) => {
 
     file.push({
       addCategory,
+
       userEmail: email,
     });
 
@@ -144,7 +145,7 @@ app.post("/addcategory", async (req, res) => {
     });
   } catch (error) {
     return res.status(401).json({
-      message: "Unauthorized",
+      message: "Unauthorized-6",
     });
   }
 });
@@ -153,7 +154,7 @@ app.get("/addcategory", async (req, res) => {
   const { authorization } = req.headers;
   if (!authorization) {
     return res.status(401).json({
-      message: "error",
+      message: "Unauthorized",
     });
   }
   try {
@@ -174,7 +175,7 @@ app.get("/addcategory", async (req, res) => {
     });
   } catch (err) {
     res.status(401).json({
-      message: "error2",
+      message: "Unauthorized-2",
     });
   }
 });
