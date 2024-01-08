@@ -2,8 +2,15 @@ import { useAll } from "@/components/providers/AuthProvider";
 
 //
 export default function CategoryInner() {
-  const { drop, setModal2, modal2, setModal, categoryData, isReady2 } =
-    useAll();
+  const {
+    drop,
+    setModal2,
+    modal2,
+    setModal,
+    categoryData,
+    isReady2,
+    chooseIcon,
+  } = useAll();
 
   const handleClick = () => {
     setModal(false);
@@ -32,6 +39,7 @@ export default function CategoryInner() {
             >
               <div className="flex flex-row w-full h-full items-center gap-[12px]">
                 <p>{card.addCategory}</p>
+                <span>{card.chooseIcon}</span>
               </div>
             </div>
           ))}

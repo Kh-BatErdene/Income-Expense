@@ -1,1 +1,8 @@
-[{"addCategory":"dsfa","userEmail":"BatErdene"},{"addCategory":"fjsadl","userEmail":"BatErdene"}]
+[
+  {
+    "userEmail": "a",
+    "addCategory": "Lemon",
+    "colorgg": "#F9D100",
+    "chooseIcon": "FaLemon"
+  }
+]

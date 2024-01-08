@@ -127,17 +127,13 @@ app.post("/addcategory", async (req, res) => {
   try {
     const verify = jwt.verify(authorization, "secret-key");
     const { email } = verify;
-    const { addCategory } = req.body;
+    const { addCategory, colorgg, chooseIcon } = req.body;
     const filePath = "src/data/category.json";
     const rawFile = await fs.readFile(filePath, "utf8");
 
     const file = JSON.parse(rawFile);
 
-    file.push({
-      addCategory,
-
-      userEmail: email,
-    });
+    file.push({ userEmail: email, addCategory, colorgg, chooseIcon });
 
     await fs.writeFile(filePath, JSON.stringify(file));
     res.json({
@@ -172,6 +168,7 @@ app.get("/addcategory", async (req, res) => {
 
     res.json({
       userCategory,
+      chooseIcon,
     });
   } catch (err) {
     res.status(401).json({

@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }) => {
   const [addCategory, setAddCategory] = useState("");
   const [iconId, setIconId] = useState(0);
   const [chooseIcon, setChooseIcon] = useState("");
+  const [upIcon, setUpIcon] = useState();
 
   const signup = async (email, password) => {
     setIsLoading(true);
@@ -111,7 +112,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem("token");
       await api.post(
         "/addcategory",
-        { addCategory },
+        { addCategory, colorgg, chooseIcon },
         {
           headers: {
             Authorization: token,
@@ -131,9 +132,8 @@ export const AuthProvider = ({ children }) => {
           Authorization: token,
         },
       });
-      const { userCategory } = data;
-      setCategoryData(userCategory);
-      console.log(userCategory);
+      const { userCategory, chooseIcon } = data;
+      setCategoryData(userCategory, chooseIcon);
       setIsReady2(true);
     } catch (err) {
       console.log(err);
@@ -172,6 +172,9 @@ export const AuthProvider = ({ children }) => {
         iconId,
         setIconId,
         isReady2,
+        setChooseIcon,
+        chooseIcon,
+        setUpIcon,
       }}
     >
       {isReady && children}
