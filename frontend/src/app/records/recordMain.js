@@ -78,9 +78,10 @@ export default function Main() {
       color: "#EAB308",
     },
   ];
-  const Today = Array.from(data).slice(5);
+  // const Today = Array.from(data).slice(5);
   const Yesterday = Array.from(data).slice(4);
-  const { modal, setModal2, modal2, categoryData, isReady2 } = useAll();
+  const { modal, setModal2, modal2, categoryData, isReady2, recordData } =
+    useAll();
   return (
     // column-1
     <div className="w-full max-w-[1200px] h-[1148px] m-auto flex gap-6 ">
@@ -174,18 +175,23 @@ export default function Main() {
 
         <div>
           <h3 className="mb-3 mt-6">Today</h3>
-          {Today.map((item, index) => {
-            return (
-              <Cards
-                key={index}
-                name={item.name}
-                date={item.date}
-                img={item.img}
-                color={item.color}
-                cash={item.cash}
-              />
-            );
-          })}
+          {isReady2 &&
+            recordData.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex justify-between items-center px-6 bg-white py-3 border-2 rounded-md mb-3"
+                >
+                  <div className="flex items-center gap-4">
+                    <input type="checkbox" className="checkbox rounded-sm" />
+                    <div>
+                      <p className="text-xs text-[#6B7280]">{item.date}</p>
+                    </div>
+                  </div>
+                  <p>{item.amount}</p>
+                </div>
+              );
+            })}
           <h3 className="mb-3">Yesterday</h3>
           {Yesterday.map((item, index) => {
             return (

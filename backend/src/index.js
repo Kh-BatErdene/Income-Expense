@@ -194,7 +194,7 @@ app.post("/records", async (req, res) => {
 
     const { email } = payload;
 
-    const { category, amount, type } = req.body;
+    const { category_name, amount, time, date } = req.body;
 
     const filePath = "src/data/records.json";
 
@@ -202,12 +202,7 @@ app.post("/records", async (req, res) => {
 
     const records = JSON.parse(recordsRaw);
 
-    records.push({
-      type,
-      category,
-      amount,
-      userEmail: email,
-    });
+    records.push({ userEmail: email, category_name, amount, time, date });
 
     await fs.writeFile(filePath, JSON.stringify(records));
 
@@ -221,37 +216,37 @@ app.post("/records", async (req, res) => {
   }
 });
 
-// app.get("/records", async (req, res) => {
-//   const { authorization } = req.headers;
+app.get("/records", async (req, res) => {
+  const { authorization } = req.headers;
 
-//   if (!authorization) {
-//     return res.status(401).json({
-//       message: "Unauthorized",
-//     });
-//   }
+  if (!authorization) {
+    return res.status(401).json({
+      message: "Unauthorized",
+    });
+  }
 
-//   try {
-//     const payload = jwt.verify(authorization, "secret-key");
+  try {
+    const payload = jwt.verify(authorization, "secret-key");
 
-//     const { email } = payload;
+    const { email } = payload;
 
-//     const filePath = "src/data/records.json";
+    const filePath = "src/data/records.json";
 
-//     const recordsRaw = await fs.readFile(filePath, "utf8");
+    const recordsRaw = await fs.readFile(filePath, "utf8");
 
-//     const records = JSON.parse(recordsRaw);
+    const records = JSON.parse(recordsRaw);
 
-//     const usersRecords = records.filter((record) => record.userEmail === email);
+    const usersRecords = records.filter((record) => record.userEmail === email);
 
-//     res.json({
-//       records: usersRecords,
-//     });
-//   } catch (error) {
-//     return res.status(401).json({
-//       message: "Unauthorized",
-//     });
-//   }
-// });
+    res.json({
+      records: usersRecords,
+    });
+  } catch (error) {
+    return res.status(401).json({
+      message: "Unauthorized",
+    });
+  }
+});
 
 const port = 3001;
 

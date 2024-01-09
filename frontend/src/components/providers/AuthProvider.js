@@ -87,11 +87,7 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      const { data } = await api.post(
-        "/login",
-        { email, password },
-        { headers: { Authorization: token } }
-      );
+      const { data } = await api.post("/login", { email, password });
       const { token } = data;
       localStorage.setItem("token", token);
       setIsLoggedIn(true);
@@ -142,9 +138,60 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const [itIsExpense] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [amount, setAmount] = useState("");
+
+  //Функцууд
+  const AddRecordCard = async () => {
+    try {
+      setIsReady(false);
+      setIsReady(false);
+      const token = localStorage.getItem("token");
+      const { data } = await api.post(
+        "/records",
+        { date, amount, time },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      setIsReady(true);
+      setModal(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const [recordData, setRecordData] = useState();
+  const GetRecordCard = async () => {
+    setIsReady(false);
+    try {
+      const token = localStorage.getItem("token");
+      const { data } = await api.get("/records", {
+        headers: {
+          Authorization: token,
+        },
+      });
+      const { amount, time, date } = data;
+      setRecordData(amount, time, date);
+      //eniig
+      setIsReady(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <AuthContext.Provider
       value={{
+        AddRecordCard,
+        GetRecordCard,
+        recordData,
+        setAmount,
+        setTime,
+        setDate,
         drop,
         setDrop,
         modal,

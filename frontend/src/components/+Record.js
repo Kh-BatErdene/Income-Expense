@@ -8,7 +8,18 @@ import { useAll } from "@/components/providers/AuthProvider";
 
 export default function Modal() {
   //State-үүд
-  const { modal, setModal, setIsReady } = useAll();
+  const {
+    modal,
+    setModal,
+    setAmount,
+    setTime,
+    setDate,
+    time,
+    date,
+    amount,
+    AddRecordCard,
+    GetRecordCard,
+  } = useAll();
   const [isExpense, setIsExpense] = useState("#F3F4F6");
   const [isIncome, setIsIncome] = useState("");
 
@@ -17,33 +28,11 @@ export default function Modal() {
     setIsExpense(!isExpense);
     setIsIncome(!isIncome);
   };
-
-  const turnOn = async () => {
-    try {
-      setIsReady(false);
-      const token = localStorage.getItem("token");
-      const isExpense_ = isExpense ? "expense" : "income";
-      const { data } = await api.post(
-        "/records",
-        {
-          amount,
-          iconID,
-          date,
-          isExpense_,
-          time,
-          category_name,
-        },
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
-      showOn();
-    } catch (err) {
-      console.log(err);
-    }
+  const Record = async () => {
+    await AddRecordCard(time, date, amount);
+    await GetRecordCard();
   };
+
   return (
     <dialog
       className="absolute top-[50%] left-[50%] rounded-2xl z-40 m-0"
@@ -90,6 +79,9 @@ export default function Modal() {
             {/* blabloblo */}
             <div className="relative w-full background mt-16">
               <input
+                onChange={(e) => {
+                  setAmount(e.target.value);
+                }}
                 type="text"
                 placeholder="₮ 000.00"
                 className="input input-bordered rounded-md w-full h-[76px] bg-[#F3F4F6] pt-5"
@@ -99,14 +91,27 @@ export default function Modal() {
             <p className="mt-4">Category</p>
             <Modal2 />
             <div className="flex justify-between">
-              <input type="date" className="border-2 w-[168px] h-[68px] px-3" />
-              <input type="date" className="border-2 w-[168px] h-[68px] px-3" />
+              <input
+                onChange={(e) => {
+                  setDate(e.target.value);
+                }}
+                type="date"
+                className="border-2 w-[168px] h-[68px] px-3"
+              />
+              <input
+                onChange={(e) => {
+                  setTime(e.target.value);
+                }}
+                type="date"
+                className="border-2 w-[168px] h-[68px] px-3"
+              />
             </div>
             <button
               className="absolute right-0 px-5 py-2 text-white  bg-[#F3F4F6] rounded-3xl w-full h-10 mt-8 mb-6 "
               style={{
                 background: isIncome ? "#16A34A" : "#0166FF",
               }}
+              onClick={Record}
             >
               Add Record
             </button>
