@@ -13,7 +13,8 @@ const colorData = [
 ];
 
 export default function ChangeColor() {
-  const { setCategoryAdd, setColorgg, modal3, setModal3 } = useAll();
+  const { setCategoryAdd, setColorgg, modal3, setModal3, setIcon, setIconId } =
+    useAll();
 
   const { data } = useIcon();
 
@@ -29,16 +30,18 @@ export default function ChangeColor() {
         <div className="w-[312px] h-[336px] bg-white flex flex-col p-[24px] absolute top-[48px] left-[0px] border-[2px] rounded-lg border-black">
           <div className="grid grid-row-5 grid-cols-6 h-[264px] w-full ml-3">
             {/* Icon-oо сольж буй хэсэг */}
-            {data.map((icon, index) => (
+            {data.map((icons, index) => (
               <div
                 key={index}
                 className=" cursor-pointer"
                 onClick={() => {
-                  setCategoryAdd(icon);
+                  setCategoryAdd(icons.icon);
+                  setIcon(icons.icon.type.name);
+                  setIconId(icons.id);
                   setModal3(false);
                 }}
               >
-                {icon}
+                {icons.icon}
               </div>
             ))}
           </div>

@@ -8,16 +8,42 @@ import { useAll } from "@/components/providers/AuthProvider";
 
 export default function Modal() {
   //State-үүд
-  const { modal, setModal, modal2 } = useAll();
-  const [change1, setChange1] = useState("");
-  const [change2, setChange2] = useState("#F3F4F6");
+  const { modal, setModal, setIsReady } = useAll();
+  const [isExpense, setIsExpense] = useState("#F3F4F6");
+  const [isIncome, setIsIncome] = useState("");
 
   //Функцууд
   const handleClick = () => {
-    setChange1(!change1);
-    setChange2(!change2);
+    setIsExpense(!isExpense);
+    setIsIncome(!isIncome);
   };
 
+  const turnOn = async () => {
+    try {
+      setIsReady(false);
+      const token = localStorage.getItem("token");
+      const isExpense_ = isExpense ? "expense" : "income";
+      const { data } = await api.post(
+        "/records",
+        {
+          amount,
+          iconID,
+          date,
+          isExpense_,
+          time,
+          category_name,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      showOn();
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <dialog
       className="absolute top-[50%] left-[50%] rounded-2xl z-40 m-0"
@@ -44,8 +70,8 @@ export default function Modal() {
               onClick={handleClick}
               className="z-10 absolute left-0 px-5 py-2  text-black bg-[#F3F4F6] rounded-3xl w-[172px] h-10 "
               style={{
-                background: change2 ? "#0166FF" : false,
-                color: change2 ? "white" : false,
+                background: isExpense ? "#0166FF" : false,
+                color: isExpense ? "white" : false,
               }}
             >
               Income
@@ -55,8 +81,8 @@ export default function Modal() {
               onClick={handleClick}
               className="absolute right-0 px-5 py-2  text-black bg-[#F3F4F6] rounded-3xl w-[172px] h-10"
               style={{
-                background: change1 ? "#16A34A" : false,
-                color: change1 ? "white" : false,
+                background: isIncome ? "#16A34A" : false,
+                color: isIncome ? "white" : false,
               }}
             >
               Expense
@@ -79,7 +105,7 @@ export default function Modal() {
             <button
               className="absolute right-0 px-5 py-2 text-white  bg-[#F3F4F6] rounded-3xl w-full h-10 mt-8 mb-6 "
               style={{
-                background: change1 ? "#16A34A" : "#0166FF",
+                background: isIncome ? "#16A34A" : "#0166FF",
               }}
             >
               Add Record

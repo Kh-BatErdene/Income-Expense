@@ -19,9 +19,7 @@ function AddCategory() {
     setModal2,
     getCategoryData,
     handleCategory,
-    addCategory,
-    setAddCategory,
-    chooseIcon,
+    setCategory_name,
   } = useAll();
 
   const style = { color: colorgg };
@@ -58,11 +56,10 @@ function AddCategory() {
     { icon: <FaIcons.FaPencilAlt {...{ style }} />, id: 29 },
   ];
 
-  const Fuck = () => {
-    handleCategory(addCategory, chooseIcon);
-    getCategoryData();
+  const GetSetData = async () => {
+    await handleCategory();
+    await getCategoryData();
   };
-
   return (
     <ChangeIcon.Provider value={{ data, style }}>
       <div
@@ -86,19 +83,23 @@ function AddCategory() {
           <div>
             <div className="flex">
               <label
-                onClick={() => setModal3(!modal3)}
+                onClick={() => {
+                  setModal3(!modal3);
+                }}
                 className="form-control w-full flex cursor-pointer "
               >
                 <div className="flex justify-evenly bg-[#F3F4F6] w-[84px] h-[48px]  text-[#A3A3A3] px-2 py-1 rounded-md border-solid border-2 border-[#D1D5DB] mb-4">
                   {/* Icon-oо сольж буй хэсэг */}
-                  <div className=" p-3 ">{CategoryAdd}</div>
+                  <div className=" p-3 flex gap-3">
+                    <p> {CategoryAdd}</p>
+                  </div>
                   <img src="/dropdown.svg" />
                 </div>
               </label>
               <label className="form-control bg-[#F3F4F6] pr-3 rounded-md border-solid border-2 border-[#D1D5DB] mb-4 w-[360px] h-12  cursor-pointer">
                 <input
                   className="outline-none bg-[#F3F4F6] pr-3 rounded-md  mb-4 w-[340px] h-full   pl-5 py-3"
-                  onChange={(e) => setAddCategory(e.target.value)}
+                  onChange={(e) => setCategory_name(e.target.value)}
                   type="text"
                   placeholder="Write here"
                 ></input>
@@ -107,7 +108,7 @@ function AddCategory() {
 
             <button
               className=" px-5 py-2 text-white  bg-[#0166FF] rounded-3xl w-full h-10 mt-5 "
-              onClick={() => Fuck(addCategory)}
+              onClick={GetSetData}
             >
               Add Category
             </button>

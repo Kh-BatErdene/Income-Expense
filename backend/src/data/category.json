@@ -1,8 +1,8 @@
 [
   {
-    "userEmail": "a",
-    "addCategory": "Lemon",
-    "colorgg": "#F9D100",
-    "chooseIcon": "FaLemon"
+    "userEmail": "gg",
+    "Category_name": "Lemon",
+    "Icon": "FaLemon",
+    "iconId": 26
   }
 ]

@@ -127,13 +127,13 @@ app.post("/addcategory", async (req, res) => {
   try {
     const verify = jwt.verify(authorization, "secret-key");
     const { email } = verify;
-    const { addCategory, colorgg, chooseIcon } = req.body;
+    const { Category_name, Icon, iconId } = req.body;
     const filePath = "src/data/category.json";
     const rawFile = await fs.readFile(filePath, "utf8");
 
     const file = JSON.parse(rawFile);
 
-    file.push({ userEmail: email, addCategory, colorgg, chooseIcon });
+    file.push({ userEmail: email, Category_name, Icon, iconId });
 
     await fs.writeFile(filePath, JSON.stringify(file));
     res.json({
@@ -164,11 +164,14 @@ app.get("/addcategory", async (req, res) => {
 
     const file = JSON.parse(rawFile);
 
-    const userCategory = file.filter((user) => user.userEmail === email);
+    const Category_name = file.filter((user) => user.userEmail === email);
+    const Icon = file.filter((user) => user.userEmail === email);
+    const iconId = file.filter((user) => user.userEmail === email);
 
     res.json({
-      userCategory,
-      chooseIcon,
+      Category_name,
+      Icon,
+      iconId,
     });
   } catch (err) {
     res.status(401).json({
@@ -177,46 +180,46 @@ app.get("/addcategory", async (req, res) => {
   }
 });
 
-// app.post("/records", async (req, res) => {
-//   const { authorization } = req.headers;
+app.post("/records", async (req, res) => {
+  const { authorization } = req.headers;
 
-//   if (!authorization) {
-//     return res.status(401).json({
-//       message: "Unauthorized",
-//     });
-//   }
+  if (!authorization) {
+    return res.status(401).json({
+      message: "Unauthorized-1",
+    });
+  }
 
-//   try {
-//     const payload = jwt.verify(authorization, "secret-key");
+  try {
+    const payload = jwt.verify(authorization, "secret-key");
 
-//     const { email } = payload;
+    const { email } = payload;
 
-//     const { category, amount, type } = req.body;
+    const { category, amount, type } = req.body;
 
-//     const filePath = "src/data/records.json";
+    const filePath = "src/data/records.json";
 
-//     const recordsRaw = await fs.readFile(filePath, "utf8");
+    const recordsRaw = await fs.readFile(filePath, "utf8");
 
-//     const records = JSON.parse(recordsRaw);
+    const records = JSON.parse(recordsRaw);
 
-//     records.push({
-//       type,
-//       category,
-//       amount,
-//       userEmail: email,
-//     });
+    records.push({
+      type,
+      category,
+      amount,
+      userEmail: email,
+    });
 
-//     await fs.writeFile(filePath, JSON.stringify(records));
+    await fs.writeFile(filePath, JSON.stringify(records));
 
-//     res.json({
-//       message: "Record created",
-//     });
-//   } catch (error) {
-//     return res.status(401).json({
-//       message: "Unauthorized",
-//     });
-//   }
-// });
+    res.json({
+      message: "Record created",
+    });
+  } catch (error) {
+    return res.status(401).json({
+      message: "Unauthorized-2",
+    });
+  }
+});
 
 // app.get("/records", async (req, res) => {
 //   const { authorization } = req.headers;

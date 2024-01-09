@@ -129,7 +129,7 @@ export default function Main() {
             <div className=" w-full  mb-2" key={index}>
               <div className="cursor-pointer hover:bg-gray-100 px-5 py-1 rounded-md flex flex-row w-full h-full items-center gap-[12px]">
                 <img src="/eye.svg" />
-                <p>{card.addCategory}</p>
+                <p>{card.Category_name}</p>
               </div>
             </div>
           ))}

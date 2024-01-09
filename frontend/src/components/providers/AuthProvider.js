@@ -27,16 +27,17 @@ export const AuthProvider = ({ children }) => {
   const [modal3, setModal3] = useState(false);
 
   //Add Category
-
+  const [inputIcon, setInputIcon] = useState("");
+  const [inputText, setInputText] = useState("");
   const [colorgg, setColorgg] = useState("");
   const [color, setColor] = useState("");
   const [CategoryAdd, setCategoryAdd] = useState(<FaHome />);
   const [select, setSelect] = useState("");
   const [cateUser, setCateUser] = useState("");
-  const [categoryData, setCategoryData] = useState();
-  const [addCategory, setAddCategory] = useState("");
-  const [iconId, setIconId] = useState(0);
-  const [chooseIcon, setChooseIcon] = useState("");
+  const [categoryData, setCategoryData] = useState("");
+  const [Category_name, setCategory_name] = useState("");
+  const [iconId, setIconId] = useState();
+  const [Icon, setIcon] = useState("");
   const [upIcon, setUpIcon] = useState();
 
   const signup = async (email, password) => {
@@ -105,6 +106,7 @@ export const AuthProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
+
   const handleCategory = async () => {
     setModal2(false);
 
@@ -112,7 +114,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem("token");
       await api.post(
         "/addcategory",
-        { addCategory, colorgg, chooseIcon },
+        { Category_name, colorgg, iconId, Icon },
         {
           headers: {
             Authorization: token,
@@ -132,8 +134,8 @@ export const AuthProvider = ({ children }) => {
           Authorization: token,
         },
       });
-      const { userCategory, chooseIcon } = data;
-      setCategoryData(userCategory, chooseIcon);
+      const { Category_name, Icon, iconId } = data;
+      setCategoryData(Category_name, Icon);
       setIsReady2(true);
     } catch (err) {
       console.log(err);
@@ -167,14 +169,20 @@ export const AuthProvider = ({ children }) => {
         getCategoryData,
         categoryData,
         handleCategory,
-        addCategory,
-        setAddCategory,
+        Category_name,
+        setCategory_name,
+        setCategoryData,
         iconId,
         setIconId,
         isReady2,
-        setChooseIcon,
-        chooseIcon,
+        setIcon,
+        Icon,
         setUpIcon,
+        upIcon,
+        inputIcon,
+        setInputIcon,
+        inputText,
+        setInputText,
       }}
     >
       {isReady && children}
