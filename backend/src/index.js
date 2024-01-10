@@ -5,8 +5,11 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
+const { connectDatabase } = require("./database");
+const { User } = require("./model/user.model");
 
 const app = express();
+connectDatabase();
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -80,39 +83,38 @@ app.post("/login", async (req, res) => {
 app.post("/signup", async (req, res) => {
   const { email, password } = req.body;
 
-  //Json дататайгаа холбож бн (зам)
-  const filePath = "src/data/users.json";
+  try {
+    const user = User.find({ users: email });
 
-  //FilePath file-ийг utf-8 форматаар уншиж бн
-  const usersRaw = await fs.readFile(filePath, "utf-8");
+    if (user.length) {
+      return res.status(409).json({
+        message: "Хэрэглэгч давхцаж байна",
+      });
+    }
 
-  //String data-г Json болгож бн
-  const users = JSON.parse(usersRaw);
-  const user = users.find((user) => user.email === email);
-
-  //Алдаа заалгаж бн
-  if (user) {
-    return res.status(409).json({
-      message: "Хэрэглэгч давхцаж байна",
+    await User.create({
+      name: "Hello",
+      email,
+      password,
+      createdAt: new Date(),
     });
+    console.log(User);
+    const token = jwt.sign({ email }, "secret-token");
+  } catch (err) {
+    console.log(err);
   }
-
-  //Email-ийг давхцаж бну, шалгаж бн
-
-  const id = uuidv4();
-  //Давхцаагүй бол push-лж бн
-  users.push({ email, password, id });
-
-  //Бичиж бн
-  await fs.writeFile(filePath, JSON.stringify(users));
-
-  //localstorage-д response хариу илгээж бн
-
-  const token = jwt.sign({ email }, "secret-key");
 
   res.json({
     token,
+    message: "User created",
   });
+});
+
+app.get("/users", async (req, res) => {
+  //database-ээс find хийж бн
+  const users = await User.find({ name: "Hello" });
+
+  res.json(users);
 });
 
 //Add Category

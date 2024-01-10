@@ -138,7 +138,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const [itIsExpense] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [amount, setAmount] = useState("");
