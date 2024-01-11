@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose");
 
 const User = mongoose.model("users", {
-  name: String,
+  // user: mongoose.Schema.Types.ObjectId,
   email: String,
   password: String,
   createdAt: Date,

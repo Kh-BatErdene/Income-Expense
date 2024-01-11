@@ -1,9 +1,10 @@
-const { mongoose } = require("mongoose");
+const { default: mongoose } = require("mongoose");
 
 const Category = mongoose.model("Category", {
-  user: mongoose.Schema.Types.ObjectId,
-  name: String,
-  createdAt: Date,
+  userEmail: String,
+  Category_name: String,
+  iconId: Number,
+  Icon: String,
 });
 module.exports = {
   Category,

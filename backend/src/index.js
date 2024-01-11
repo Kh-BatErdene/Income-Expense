@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 const { connectDatabase } = require("./database");
 const { User } = require("./model/user.model");
+const { Category } = require("./model/category.model");
 
 const app = express();
 connectDatabase();
@@ -48,34 +49,25 @@ app.get("/profile", async (req, res) => {
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
-  //Json дататайгаа холбож бн (зам)
-  const filePath = "src/data/users.json";
+  try {
+    const user = await User.find({ email: email });
 
-  //FilePath file-ийг utf-8 форматаар уншиж бн
-  const usersRaw = await fs.readFile(filePath, "utf-8");
-
-  //String data-г Json болгож бн
-  const users = JSON.parse(usersRaw);
-
-  //Email-ийг давхцаж бну, шалгаж бн
-  const user = users.find((user) => user.email === email);
-
-  if (!user) {
-    return res.status(401).json({
-      message: "E-mail буруу байна ",
-    });
+    if (!user.length) {
+      return res.status(401).json({
+        message: "E-mail буруу байна",
+      });
+    }
+    const userpass = await User.find({ password: password });
+    if (!userpass.length) {
+      return res.status(401).json({
+        message: "Нууц үг буруу байна",
+      });
+    }
+    const token = jwt.sign({ email }, "secret-key");
+    res.json({ token });
+  } catch (err) {
+    console.log(err);
   }
-  if (user.password !== password) {
-    return res.status(401).json({
-      message: "Нууц үг буруу байна",
-    });
-  }
-
-  const token = jwt.sign({ email }, "secret-key");
-
-  res.json({
-    token,
-  });
 });
 
 //SignUp
@@ -84,66 +76,64 @@ app.post("/signup", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = User.find({ users: email });
+    const user = await User.find({ email: email });
 
     if (user.length) {
       return res.status(409).json({
         message: "Хэрэглэгч давхцаж байна",
       });
     }
-
+    // return;
     await User.create({
       name: "Hello",
       email,
       password,
       createdAt: new Date(),
     });
+
     console.log(User);
-    const token = jwt.sign({ email }, "secret-token");
+    const token = jwt.sign({ email }, "secret-key");
+    res.json({
+      token,
+      message: "User created",
+    });
   } catch (err) {
     console.log(err);
   }
-
-  res.json({
-    token,
-    message: "User created",
-  });
 });
 
 app.get("/users", async (req, res) => {
   //database-ээс find хийж бн
   const users = await User.find({ name: "Hello" });
-
   res.json(users);
 });
 
 //Add Category
-
 app.post("/addcategory", async (req, res) => {
   const { authorization } = req.headers;
   if (!authorization) {
     return res.status(401).json({
-      message: "error",
+      message: "Category unauthorized",
     });
   }
   try {
     const verify = jwt.verify(authorization, "secret-key");
     const { email } = verify;
     const { Category_name, Icon, iconId } = req.body;
-    const filePath = "src/data/category.json";
-    const rawFile = await fs.readFile(filePath, "utf8");
 
-    const file = JSON.parse(rawFile);
+    await Category.create({
+      userEmail: email,
+      Category_name,
+      iconId,
+      Icon,
+    });
 
-    file.push({ userEmail: email, Category_name, Icon, iconId });
-
-    await fs.writeFile(filePath, JSON.stringify(file));
     res.json({
-      message: "Successful",
+      message: "Successfuly",
     });
   } catch (error) {
     return res.status(401).json({
-      message: "Unauthorized-6",
+      message: "Category unauthorized",
     });
   }
 });
@@ -152,21 +142,15 @@ app.get("/addcategory", async (req, res) => {
   const { authorization } = req.headers;
   if (!authorization) {
     return res.status(401).json({
-      message: "Unauthorized",
+      message: "AddCategory Unauthorized",
     });
   }
+  return res.json({ authorization });
   try {
     const verify = jwt.verify(authorization, "secret-key");
-
     const { email } = verify;
 
-    const filePath = "src/data/category.json";
-
-    const rawFile = await fs.readFile(filePath, "utf-8");
-
-    const file = JSON.parse(rawFile);
-
-    const Category_name = file.filter((user) => user.userEmail === email);
+    const Category_name = User.filter((user) => user.userEmail === email);
     const Icon = file.filter((user) => user.userEmail === email);
     const iconId = file.filter((user) => user.userEmail === email);
 

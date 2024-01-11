@@ -20,11 +20,6 @@ export default function Home() {
             <p className="text-center mb-10 mt-2">
               Sign up below to create your Wallet account
             </p>
-            {/* <input
-              className="w-full h-12 text-[#D1D5DB] bg-[#F3F4F6] pl-4 py-3 rounded-md border-solid border-2 border-[#D1D5DB] mb-4"
-              type="text"
-              placeholder="Name"
-            /> */}
             <input
               onChange={(e) => setEmail(e.target.value)}
               className="w-full h-12  bg-[#F3F4F6] pl-4 py-3 rounded-md border-solid border-2 border-[#D1D5DB] mb-4"
@@ -37,11 +32,6 @@ export default function Home() {
               type="password"
               placeholder="Password"
             />
-            {/* <input
-              className="w-full h-12 text-[#D1D5DB] bg-[#F3F4F6] pl-4 py-3 rounded-md border-solid border-2 border-[#D1D5DB]"
-              type="password"
-              placeholder="Re-Password"
-            /> */}
             <div className="flex justify-center ">
               <button
                 onClick={() => signup(email, password)}

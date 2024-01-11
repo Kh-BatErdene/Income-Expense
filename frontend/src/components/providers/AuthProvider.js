@@ -110,7 +110,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem("token");
       await api.post(
         "/addcategory",
-        { Category_name, colorgg, iconId, Icon },
+        { Category_name, iconId, Icon },
         {
           headers: {
             Authorization: token,
