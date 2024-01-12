@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
-    "axios": "^1.6.2",
+    "axios": "^1.6.5",
     "chunk": "^0.0.3",
     "next": "^14.0.4",
     "parsing": "^2.3.0",

@@ -4,6 +4,7 @@ import { useAll } from "@/components/providers/AuthProvider";
 import CategoryInner from "./CategoryInner";
 
 export default function AddRecord() {
+  
   const { drop, setDrop, inputIcon, inputText } = useAll();
   const handleClick = () => {
     setDrop(!drop);

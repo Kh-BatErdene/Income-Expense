@@ -125,15 +125,14 @@ export default function Main() {
           <h2>Category</h2>
           <span className="text-[#E5E7EB]">Clear</span>
         </div>
-        {isReady2 &&
-          categoryData.map((card, index) => (
-            <div className=" w-full  mb-2" key={index}>
-              <div className="cursor-pointer hover:bg-gray-100 px-5 py-1 rounded-md flex flex-row w-full h-full items-center gap-[12px]">
-                <img src="/eye.svg" />
-                <p>{card.Category_name}</p>
-              </div>
+        {categoryData.map((card, index) => (
+          <div className=" w-full  mb-2" key={index}>
+            <div className="cursor-pointer hover:bg-gray-100 px-5 py-1 rounded-md flex flex-row w-full h-full items-center gap-[12px]">
+              <img src="/eye.svg" />
+              <p>{card.Category_name}</p>
             </div>
-          ))}
+          </div>
+        ))}
         <hr></hr>
         <div className="mt-2">
           <button
@@ -175,23 +174,7 @@ export default function Main() {
 
         <div>
           <h3 className="mb-3 mt-6">Today</h3>
-          {isReady2 &&
-            recordData.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  className="flex justify-between items-center px-6 bg-white py-3 border-2 rounded-md mb-3"
-                >
-                  <div className="flex items-center gap-4">
-                    <input type="checkbox" className="checkbox rounded-sm" />
-                    <div>
-                      <p className="text-xs text-[#6B7280]">{item.date}</p>
-                    </div>
-                  </div>
-                  <p>{item.amount}</p>
-                </div>
-              );
-            })}
+
           <h3 className="mb-3">Yesterday</h3>
           {Yesterday.map((item, index) => {
             return (

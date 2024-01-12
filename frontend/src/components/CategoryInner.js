@@ -1,6 +1,5 @@
 import { useAll } from "@/components/providers/AuthProvider";
-import { FaHome } from "react-icons/fa";
-import * as FaIcons from "react-icons/fa";
+import * as icons from "./Icons";
 
 export default function CategoryInner() {
   const {
@@ -9,7 +8,6 @@ export default function CategoryInner() {
     modal2,
     setModal,
     categoryData,
-    isReady2,
     setInputIcon,
     setInputText,
     setDrop,
@@ -34,23 +32,25 @@ export default function CategoryInner() {
           <span>Add Category</span>
         </div>
         <hr className="hover:bg-white "></hr>
-        {isReady2 &&
-          categoryData.map((card, index) => (
+        {categoryData.map((card, index) => {
+          const Icon = icons[card.Icon];
+          return (
             <div
               className="flex w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mb-2  "
               key={index}
               onClick={() => {
-                setInputIcon(card.Icon),
+                setInputIcon(<Icon />),
                   setInputText(card.Category_name),
                   setDrop(false);
               }}
             >
               <div className="flex flex-row w-full h-full items-center gap-[12px]">
-                {card.Icon}
+                <Icon fill={card.colorgg} />
                 <p> {card.Category_name}</p>
               </div>
             </div>
-          ))}
+          );
+        })}
       </li>
     </ul>
   );

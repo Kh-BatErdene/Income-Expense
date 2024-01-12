@@ -4,11 +4,11 @@ import { createContext, useEffect, useState, useContext } from "react";
 import { api } from "../../common";
 import { toast } from "react-toastify";
 import { FaHome } from "react-icons/fa";
-import * as FaIcons from "react-icons/fa";
-import * as PiIcons from "react-icons/pi";
-import * as SiIcons from "react-icons/si";
-import * as BiIcons from "react-icons/bi";
-import { headers } from "../../../next.config";
+// import * as FaIcons from "react-icons/fa";
+// import * as PiIcons from "react-icons/pi";
+// import * as SiIcons from "react-icons/si";
+// import * as BiIcons from "react-icons/bi";
+// import { headers } from "../../../next.config";
 
 const AuthContext = createContext();
 
@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
   const [CategoryAdd, setCategoryAdd] = useState(<FaHome />);
   const [select, setSelect] = useState("");
   const [cateUser, setCateUser] = useState("");
-  const [categoryData, setCategoryData] = useState("");
+  const [categoryData, setCategoryData] = useState([]);
   const [Category_name, setCategory_name] = useState("");
   const [iconId, setIconId] = useState();
   const [Icon, setIcon] = useState("");
@@ -110,7 +110,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem("token");
       await api.post(
         "/addcategory",
-        { Category_name, iconId, Icon },
+        { Category_name, iconId, Icon, colorgg },
         {
           headers: {
             Authorization: token,
@@ -130,8 +130,9 @@ export const AuthProvider = ({ children }) => {
           Authorization: token,
         },
       });
-      const { Category_name, Icon, iconId } = data;
-      setCategoryData(Category_name, Icon);
+      console.log("GGG", data, typeof data);
+
+      setCategoryData(data);
       setIsReady2(true);
     } catch (err) {
       console.log(err);
@@ -142,7 +143,7 @@ export const AuthProvider = ({ children }) => {
   const [time, setTime] = useState("");
   const [amount, setAmount] = useState("");
 
-  //Функцууд
+  //Record
   const AddRecordCard = async () => {
     try {
       setIsReady(false);

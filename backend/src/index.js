@@ -4,7 +4,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
-const { v4: uuidv4 } = require("uuid");
 const { connectDatabase } = require("./database");
 const { User } = require("./model/user.model");
 const { Category } = require("./model/category.model");
@@ -21,6 +20,7 @@ app.get("/", (req, res) => {
 
 app.get("/profile", async (req, res) => {
   const { authorization } = req.headers;
+
   if (!authorization) {
     return res.status(401).json({
       message: "Couldn't get authorization",
@@ -28,19 +28,16 @@ app.get("/profile", async (req, res) => {
   }
 
   try {
-    const read = jwt.verify(authorization, "secret-key");
-    const { email } = read;
-    const filePath = "src/data/users.json";
-    const usersRaw = await fs.readFile(filePath, "utf-8");
-    const users = JSON.parse(usersRaw);
+    const verify = jwt.verify(authorization, "secret-key");
+    const { email } = verify;
 
-    const profile = users.filter((user) => user.email === email);
+    const profile = await User.find({ email: email });
 
     res.json({
       profile,
     });
   } catch (error) {
-    return res.status(409).json({ message: "Couldn't get authorization-6" });
+    return res.status(409).json({ message: "Profile unauthorization" });
   }
 });
 
@@ -50,15 +47,15 @@ app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.find({ email: email });
+    const user = await User.findOne({ email: email });
 
-    if (!user.length) {
+    if (!user) {
       return res.status(401).json({
         message: "E-mail буруу байна",
       });
     }
-    const userpass = await User.find({ password: password });
-    if (!userpass.length) {
+    const userpass = await User.findOne({ password: password });
+    if (!userpass) {
       return res.status(401).json({
         message: "Нууц үг буруу байна",
       });
@@ -76,9 +73,9 @@ app.post("/signup", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.find({ email: email });
+    const user = await User.findOne({ email: email });
 
-    if (user.length) {
+    if (user) {
       return res.status(409).json({
         message: "Хэрэглэгч давхцаж байна",
       });
@@ -91,7 +88,6 @@ app.post("/signup", async (req, res) => {
       createdAt: new Date(),
     });
 
-    console.log(User);
     const token = jwt.sign({ email }, "secret-key");
     res.json({
       token,
@@ -119,12 +115,13 @@ app.post("/addcategory", async (req, res) => {
   try {
     const verify = jwt.verify(authorization, "secret-key");
     const { email } = verify;
-    const { Category_name, Icon, iconId } = req.body;
+    const { Category_name, Icon, iconId, colorgg } = req.body;
 
     await Category.create({
       userEmail: email,
       Category_name,
       iconId,
+      colorgg,
       Icon,
     });
 
@@ -145,20 +142,14 @@ app.get("/addcategory", async (req, res) => {
       message: "AddCategory Unauthorized",
     });
   }
-  return res.json({ authorization });
+  // return res.json( authorization );
   try {
     const verify = jwt.verify(authorization, "secret-key");
     const { email } = verify;
 
-    const Category_name = User.filter((user) => user.userEmail === email);
-    const Icon = file.filter((user) => user.userEmail === email);
-    const iconId = file.filter((user) => user.userEmail === email);
+    const categories = await Category.find({ userEmail: email });
 
-    res.json({
-      Category_name,
-      Icon,
-      iconId,
-    });
+    res.json(categories);
   } catch (err) {
     res.status(401).json({
       message: "Unauthorized-2",
