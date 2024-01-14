@@ -110,7 +110,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem("token");
       await api.post(
         "/addcategory",
-        { Category_name, iconId, Icon, colorgg },
+        { Category_name, iconId, Icon, color },
         {
           headers: {
             Authorization: token,
@@ -147,11 +147,10 @@ export const AuthProvider = ({ children }) => {
   const AddRecordCard = async () => {
     try {
       setIsReady(false);
-      setIsReady(false);
       const token = localStorage.getItem("token");
       const { data } = await api.post(
         "/records",
-        { date, amount, time },
+        { date, amount, time, inputIcon, inputText },
         {
           headers: {
             Authorization: token,
@@ -164,8 +163,8 @@ export const AuthProvider = ({ children }) => {
       console.log(err);
     }
   };
+  const [recordData, setRecordData] = useState([]);
 
-  const [recordData, setRecordData] = useState();
   const GetRecordCard = async () => {
     setIsReady(false);
     try {
@@ -175,20 +174,23 @@ export const AuthProvider = ({ children }) => {
           Authorization: token,
         },
       });
-      const { amount, time, date } = data;
-      setRecordData(amount, time, date);
-      //eniig
+      console.log("Record", data, typeof data);
+      setRecordData(data);
+      console.log(recordData);
       setIsReady(true);
     } catch (err) {
       console.log(err);
     }
   };
+
+  const ClicktoRecord = () => {};
   return (
     <AuthContext.Provider
       value={{
+        recordData,
+        ClicktoRecord,
         AddRecordCard,
         GetRecordCard,
-        recordData,
         setAmount,
         setTime,
         setDate,

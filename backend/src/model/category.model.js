@@ -5,6 +5,10 @@ const Category = mongoose.model("Category", {
   Category_name: String,
   iconId: Number,
   Icon: String,
+  color: String,
+  amount: Number,
+  time: String,
+  data: String,
 });
 module.exports = {
   Category,

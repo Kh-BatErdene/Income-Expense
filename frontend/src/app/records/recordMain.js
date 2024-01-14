@@ -1,9 +1,8 @@
 "use client";
-import Range from "../../components/Range";
 import { useAll } from "@/components/providers/AuthProvider";
 import Cards from "./cards";
-import Category from "./category";
 import AddCategory from "@/components/AddCategory";
+// import * as icons from "../../components/ReactIcons";
 
 export default function Main() {
   const data = [
@@ -80,20 +79,19 @@ export default function Main() {
   ];
   // const Today = Array.from(data).slice(5);
   const Yesterday = Array.from(data).slice(4);
-  const { modal, setModal2, modal2, categoryData, isReady2, recordData } =
-    useAll();
+  const { modal, setModal2, modal2, categoryData, recordData } = useAll();
   return (
     // column-1
-    <div className="w-full max-w-[1200px] h-[1148px] m-auto flex gap-6 ">
+    <div className="w-full max-w-[1200px] h-full m-auto flex gap-6 ">
       <div
-        className="bg-black opacity-30 z-10 w-full h-screen absolute top-0 left-0 "
+        className="bg-black opacity-30 z-10 w-full h-full absolute top-0 left-0 overflow-hidden"
         style={{ display: modal ? "flex" : "none" }}
       ></div>
       <div
         className="  bg-black opacity-30 z-30 w-full h-screen absolute top-0 left-0  "
         style={{ display: modal2 ? "flex" : "none" }}
       ></div>
-      <div className="w-[282px] h-[1080px] bg-white p-4 mb-6 relative">
+      <div className="w-[282px] max-h-[1080px] h-full bg-white p-4 mb-6 relative">
         <h1 className="font-black text-[24px] mb-6">Records</h1>
         <button
           onClick={() => setModal2(!modal2)}
@@ -126,11 +124,12 @@ export default function Main() {
           <span className="text-[#E5E7EB]">Clear</span>
         </div>
         {categoryData.map((card, index) => (
-          <div className=" w-full  mb-2" key={index}>
+          <div className=" w-full  mb-2 flex justify-between" key={index}>
             <div className="cursor-pointer hover:bg-gray-100 px-5 py-1 rounded-md flex flex-row w-full h-full items-center gap-[12px]">
               <img src="/eye.svg" />
               <p>{card.Category_name}</p>
             </div>
+            <img src="/dropdown.svg" />
           </div>
         ))}
         <hr></hr>
@@ -147,7 +146,7 @@ export default function Main() {
       </div>
 
       {/* column-2 */}
-      <div className="w-full">
+      <div className="w-full h-full">
         <div className="flex justify-between w-full">
           <div className="flex items-center gap-2">
             <img src="arrow.svg"></img>
@@ -174,9 +173,25 @@ export default function Main() {
 
         <div>
           <h3 className="mb-3 mt-6">Today</h3>
-
+          {/* {recordData.map((card, index) => {
+            const Icon = icons[card.Icon];
+            return (
+              <div
+                className="flex w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mt-2"
+                key={index}
+              >
+                <div className="flex items-center h-full ml-5">
+                  <div className="flex items-center gap-3 pt-2">
+                    {<Icon size="30px" fill={card.color} />}
+                    <p> {card.Category_name}</p>
+                    <p> {records.card.amount}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })} */}
           <h3 className="mb-3">Yesterday</h3>
-          {Yesterday.map((item, index) => {
+          {/* {Yesterday.map((item, index) => {
             return (
               <Cards
                 key={index}
@@ -187,7 +202,7 @@ export default function Main() {
                 cash={item.cash}
               />
             );
-          })}
+          })} */}
         </div>
       </div>
       <AddCategory />

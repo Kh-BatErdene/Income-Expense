@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const { connectDatabase } = require("./database");
 const { User } = require("./model/user.model");
 const { Category } = require("./model/category.model");
+const { Records } = require("./model/records.model");
 
 const app = express();
 connectDatabase();
@@ -115,13 +116,13 @@ app.post("/addcategory", async (req, res) => {
   try {
     const verify = jwt.verify(authorization, "secret-key");
     const { email } = verify;
-    const { Category_name, Icon, iconId, colorgg } = req.body;
+    const { Category_name, Icon, iconId, color } = req.body;
 
     await Category.create({
       userEmail: email,
       Category_name,
       iconId,
-      colorgg,
+      color,
       Icon,
     });
 
@@ -168,21 +169,17 @@ app.post("/records", async (req, res) => {
 
   try {
     const payload = jwt.verify(authorization, "secret-key");
-
     const { email } = payload;
+    const { amount, time, date, inputIcon, inputText } = req.body;
 
-    const { category_name, amount, time, date } = req.body;
-
-    const filePath = "src/data/records.json";
-
-    const recordsRaw = await fs.readFile(filePath, "utf8");
-
-    const records = JSON.parse(recordsRaw);
-
-    records.push({ userEmail: email, category_name, amount, time, date });
-
-    await fs.writeFile(filePath, JSON.stringify(records));
-
+    await Records.create({
+      userEmail: email,
+      inputIcon,
+      inputText,
+      amount,
+      time,
+      date,
+    });
     res.json({
       message: "Record created",
     });
@@ -207,20 +204,13 @@ app.get("/records", async (req, res) => {
 
     const { email } = payload;
 
-    const filePath = "src/data/records.json";
-
-    const recordsRaw = await fs.readFile(filePath, "utf8");
-
-    const records = JSON.parse(recordsRaw);
-
-    const usersRecords = records.filter((record) => record.userEmail === email);
-
+    const records = await Records.find({ userEmail: email });
     res.json({
-      records: usersRecords,
+      records,
     });
   } catch (error) {
     return res.status(401).json({
-      message: "Unauthorized",
+      message: "Record Unauthorized",
     });
   }
 });

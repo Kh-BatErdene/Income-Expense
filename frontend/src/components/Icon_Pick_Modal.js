@@ -13,8 +13,16 @@ const colorData = [
 ];
 
 export default function ChangeColor() {
-  const { setCategoryAdd, setColorgg, modal3, setModal3, setIcon, setIconId } =
-    useAll();
+  const {
+    setCategoryAdd,
+    setColorgg,
+    colorgg,
+    modal3,
+    setModal3,
+    setIcon,
+    setIconId,
+    setColor,
+  } = useAll();
 
   const { data } = useIcon();
 
@@ -38,6 +46,7 @@ export default function ChangeColor() {
                   setCategoryAdd(icons.icon);
                   setIcon(icons.icon.type.name);
                   setIconId(icons.id);
+                  setColor(icons.icon.props.style.color);
                   setModal3(false);
                 }}
               >

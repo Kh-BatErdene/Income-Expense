@@ -2,7 +2,7 @@
 import { useAll } from "@/components/providers/AuthProvider";
 import React, { useState } from "react";
 const ChangeIcon = createContext();
-import ChangeColor from "./ChangeColor";
+import ChangeColor from "./Icon_Pick_Modal";
 import { createContext, useContext } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as PiIcons from "react-icons/pi";

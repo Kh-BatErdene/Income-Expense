@@ -3,7 +3,7 @@
 //+Record btn дээр дарахад гарах модал
 
 import { useState } from "react";
-import Modal2 from "./AddRecord";
+import Category_Input from "./Category_Input";
 import { useAll } from "@/components/providers/AuthProvider";
 
 export default function Modal() {
@@ -89,7 +89,7 @@ export default function Modal() {
               <p className="absolute z-20 top-2 left-4 text-5">Amount</p>
             </div>
             <p className="mt-4">Category</p>
-            <Modal2 />
+            <Category_Input />
             <div className="flex justify-between">
               <input
                 onChange={(e) => {

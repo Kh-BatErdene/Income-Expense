@@ -6,7 +6,7 @@ import LastRecords from "@/components/LastRecords";
 
 export default function Main() {
   return (
-    <div className="w-full max-w-[1200px] h-[1148px] m-auto ">
+    <div className="w-full max-w-[1200px] max-h-[1080px] h-full m-auto ">
       <div className="flex gap-6 mb-6 flex-wrap justify-center">
         <img src="card.svg" />
         {/* +12m */}
@@ -60,9 +60,6 @@ export default function Main() {
             <span>Last Records</span>
           </div>
           <div className="px-6">
-            <LastRecords />
-            <LastRecords />
-            <LastRecords />
             <LastRecords />
             <LastRecords />
           </div>
