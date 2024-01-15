@@ -2,7 +2,6 @@
 import * as icons from "@/components/ReactIcons";
 import IncomeExpence1 from "@/components/IncomeExpense1";
 import IncomeExpence2 from "@/components/IncomeExpense2";
-import LastRecords from "@/components/LastRecords";
 import { useAll } from "@/components/providers/AuthProvider";
 
 export default function Main() {
@@ -57,31 +56,40 @@ export default function Main() {
         <IncomeExpence2 />
       </div>
       <div>
-        <div className="w-full h-full rounded-xl bg-white ">
+        <div className="w-full h-full rounded-xl bg-white">
           <div className="flex items-center gap-2 w-full h-[56px] border-b-1 border-b font-semibold p-6">
             <span>Last Records</span>
           </div>
+        </div>
 
-          {recordData.map((card, index) => {
-            const Icon = icons[card.recordIcon];
-            return (
-              <div
-                className="flex bg-white border-2 border-gray-200 rounded-md w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mt-2 relative"
-                key={index}
-              >
-                <div className="flex items-center h-full ml-5 ">
-                  <div className=" flex h-10 items-center gap-3 pt-2 w-full">
-                    <div className="flex gap-4">
-                      <Icon size="25px" fill={card.color}></Icon>
-                      <p>{card.inputText}</p>
+        {recordData.map((card, index) => {
+          const Icon = icons[card.recordIcon];
+          return (
+            <div
+              className="flex bg-white border-2 border-gray-200 rounded-md w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mt-2 relative"
+              key={index}
+            >
+              <div className="flex items-center h-full ml-5 ">
+                <div className=" flex h-10 items-center gap-3 pt-2 w-full">
+                  <div className="flex gap-4">
+                    <div
+                      className="w-10 h-10 rounded-full relative"
+                      style={{
+                        background: card.color === "" ? "#000" : card.cateColor,
+                      }}
+                    ></div>
+                    <div className="m-auto absolute z-20 translate-x-[50%] translate-y-[50%] top-0 left-4">
+                      <Icon size="25px " fill="white"></Icon>
                     </div>
-                    <p className="absolute right-4"> {card.amount}₮</p>
+
+                    <p>{card.inputText}</p>
                   </div>
+                  <p className="absolute right-4"> {card.amount}₮</p>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

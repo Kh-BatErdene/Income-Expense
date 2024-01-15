@@ -9,6 +9,7 @@ export default function Icons() {
     ClicktoRecord,
     setDrop,
     setRecordIcon,
+    setCateColor,
   } = useAll();
   return (
     <button onClick={ClicktoRecord}>
@@ -20,6 +21,7 @@ export default function Icons() {
             key={index}
             onClick={() => {
               setInputIcon(Icon), setRecordIcon(card.Icon);
+              setCateColor(card.color);
               setInputText(card.Category_name), setDrop(false);
             }}
           >

@@ -3,12 +3,6 @@ import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState, useContext } from "react";
 import { api } from "../../common";
 import { toast } from "react-toastify";
-import { FaHome } from "react-icons/fa";
-// import * as FaIcons from "react-icons/fa";
-// import * as PiIcons from "react-icons/pi";
-// import * as SiIcons from "react-icons/si";
-// import * as BiIcons from "react-icons/bi";
-// import { headers } from "../../../next.config";
 
 const AuthContext = createContext();
 
@@ -40,7 +34,9 @@ export const AuthProvider = ({ children }) => {
   const [iconId, setIconId] = useState();
   const [Icon, setIcon] = useState();
   const [upIcon, setUpIcon] = useState();
-  const [selectCategory, setSelectCategory] = useState();
+  const [cateColor, setCateColor] = useState("");
+  const [isExpense, setIsExpense] = useState(true);
+  const [isType, setIsType] = useState(false);
 
   const signup = async (email, password) => {
     setIsLoading(true);
@@ -111,14 +107,6 @@ export const AuthProvider = ({ children }) => {
     try {
       const token = localStorage.getItem("token");
 
-      // (Category_name) => {
-      //   try {
-      //     window.localStorage.setItem(key, JSON.stringify(Category_name));
-      //   } catch (error) {
-      //     console.log(error);
-      //   }
-      // };
-
       await api.post(
         "/addcategory",
         { Category_name, iconId, Icon, color },
@@ -141,7 +129,6 @@ export const AuthProvider = ({ children }) => {
           Authorization: token,
         },
       });
-      console.log("GGG", data, typeof data);
 
       setCategoryData(data);
       setIsReady2(true);
@@ -150,8 +137,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
   const [amount, setAmount] = useState("");
 
   //Record
@@ -161,7 +146,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem("token");
       const { data } = await api.post(
         "/records",
-        { amount, inputText, recordIcon, color },
+        { amount, inputText, recordIcon, cateColor, isExpense },
         {
           headers: {
             Authorization: token,
@@ -185,7 +170,6 @@ export const AuthProvider = ({ children }) => {
           Authorization: token,
         },
       });
-      console.log("get", data);
       setRecordData(data);
       setIsReady2(true);
     } catch (err) {
@@ -197,19 +181,21 @@ export const AuthProvider = ({ children }) => {
     getCategoryData();
   }, []);
 
-  const ClicktoRecord = () => {};
   return (
     <AuthContext.Provider
       value={{
+        isType,
+        setIsType,
+        isExpense,
+        setIsExpense,
         recordIcon,
+        cateColor,
+        setCateColor,
         setRecordIcon,
         recordData,
-        ClicktoRecord,
         AddRecordCard,
         GetRecordCard,
         setAmount,
-        setTime,
-        setDate,
         drop,
         setDrop,
         modal,

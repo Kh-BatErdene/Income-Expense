@@ -12,20 +12,13 @@ export default function Modal() {
     modal,
     setModal,
     setAmount,
-    setTime,
-    setDate,
     amount,
     AddRecordCard,
     GetRecordCard,
+    isExpense,
+    setIsExpense,
   } = useAll();
-  const [isExpense, setIsExpense] = useState("#F3F4F6");
-  const [isIncome, setIsIncome] = useState("");
 
-  //Функцууд
-  const handleClick = () => {
-    setIsExpense(!isExpense);
-    setIsIncome(!isIncome);
-  };
   const Record = async () => {
     await AddRecordCard(amount);
     await GetRecordCard();
@@ -53,28 +46,33 @@ export default function Modal() {
         <div className="flex justify-between">
           <div className="max-w-[348px] w-full h-10 relative bg-[#F3F4F6]  rounded-3xl">
             {/* Өнгө нь солигдож буй Btn */}
-            <button
-              onClick={handleClick}
-              className="z-10 absolute left-0 px-5 py-2  text-black bg-[#F3F4F6] rounded-3xl w-[172px] h-10 "
-              style={{
-                background: isExpense ? "#0166FF" : false,
-                color: isExpense ? "white" : false,
-              }}
-            >
-              Income
-            </button>
-            {/* Өнгө нь солигдож буй Btn */}
-            <button
-              onClick={handleClick}
-              className="absolute right-0 px-5 py-2  text-black bg-[#F3F4F6] rounded-3xl w-[172px] h-10"
-              style={{
-                background: isIncome ? "#16A34A" : false,
-                color: isIncome ? "white" : false,
-              }}
-            >
-              Expense
-            </button>
-            {/* blabloblo */}
+            <div className="flex items-center">
+              <button
+                className="w-full h-10 rounded-[20px]"
+                style={{
+                  background: isExpense ? "#0166FF" : "#F3F4F6",
+                  color: isExpense ? "#fff" : "#000",
+                }}
+                onClick={() => {
+                  !isExpense ? setIsExpense(true) : "";
+                }}
+              >
+                Expense
+              </button>
+              <button
+                className="w-full h-10 rounded-[20px]"
+                style={{
+                  background: !isExpense ? "#16A34A" : "#F3F4F6",
+                  color: !isExpense ? "#fff" : "#000",
+                }}
+                onClick={() => {
+                  isExpense ? setIsExpense(false) : "";
+                }}
+              >
+                Income
+              </button>
+            </div>
+
             <div className="relative w-full background mt-16">
               <input
                 onChange={(e) => {
@@ -88,26 +86,11 @@ export default function Modal() {
             </div>
             <p className="mt-4">Category</p>
             <Category_Input />
-            <div className="flex justify-between">
-              <input
-                onChange={(e) => {
-                  setDate(e.target.value);
-                }}
-                type="date"
-                className="border-2 w-[168px] h-[68px] px-3"
-              />
-              <input
-                onChange={(e) => {
-                  setTime(e.target.value);
-                }}
-                type="date"
-                className="border-2 w-[168px] h-[68px] px-3"
-              />
-            </div>
+            <div className="flex justify-between"></div>
             <button
               className="absolute right-0 px-5 py-2 text-white  bg-[#F3F4F6] rounded-3xl w-full h-10 mt-8 mb-6 "
               style={{
-                background: isIncome ? "#16A34A" : "#0166FF",
+                background: !isExpense ? "#16A34A" : "#0166FF",
               }}
               onClick={Record}
             >

@@ -4,10 +4,7 @@ import React, { useState } from "react";
 const ChangeIcon = createContext();
 import ChangeColor from "./Icon_Pick_Modal";
 import { createContext, useContext } from "react";
-import * as FaIcons from "react-icons/fa";
-import * as PiIcons from "react-icons/pi";
-import * as SiIcons from "react-icons/si";
-import * as BiIcons from "react-icons/bi";
+import * as icons from "./ReactIcons";
 
 function AddCategory() {
   const {
@@ -24,36 +21,36 @@ function AddCategory() {
 
   const style = { color: colorgg };
   const data = [
-    { icon: <FaIcons.FaHome {...{ style }} />, id: 0 },
-    { icon: <FaIcons.FaHouseUser {...{ style }} />, id: 1 },
-    { icon: <FaIcons.FaIdBadge {...{ style }} />, id: 2 },
-    { icon: <FaIcons.FaIdCard {...{ style }} />, id: 3 },
-    { icon: <PiIcons.PiLadder {...{ style }} />, id: 4 },
-    { icon: <PiIcons.PiExcludeSquareDuotone {...{ style }} />, id: 5 },
-    { icon: <FaIcons.FaImage {...{ style }} />, id: 6 },
-    { icon: <PiIcons.PiMagnifyingGlassPlusFill {...{ style }} />, id: 7 },
-    { icon: <FaIcons.FaMicrophone {...{ style }} />, id: 8 },
-    { icon: <SiIcons.SiMicrosoftexcel {...{ style }} />, id: 9 },
-    { icon: <PiIcons.PiNotepadFill {...{ style }} />, id: 10 },
-    { icon: <BiIcons.BiMenu {...{ style }} />, id: 11 },
-    { icon: <PiIcons.PiLeafFill {...{ style }} />, id: 12 },
-    { icon: <PiIcons.PiNumberFiveFill {...{ style }} />, id: 13 },
-    { icon: <PiIcons.PiNumberCircleSevenFill {...{ style }} />, id: 14 },
-    { icon: <PiIcons.PiRoadHorizonFill {...{ style }} />, id: 15 },
-    { icon: <PiIcons.PiHourglassMediumFill {...{ style }} />, id: 16 },
-    { icon: <PiIcons.PiAnchorSimpleBold {...{ style }} />, id: 17 },
-    { icon: <PiIcons.PiTriangleFill {...{ style }} />, id: 18 },
-    { icon: <PiIcons.PiIntersectBold {...{ style }} />, id: 19 },
-    { icon: <BiIcons.BiLogoFlickrSquare {...{ style }} />, id: 20 },
-    { icon: <FaIcons.FaBaseballBall {...{ style }} />, id: 21 },
-    { icon: <PiIcons.PiQuestionFill {...{ style }} />, id: 22 },
-    { icon: <PiIcons.PiNewspaperClipping {...{ style }} />, id: 23 },
-    { icon: <PiIcons.PiWatchFill {...{ style }} />, id: 24 },
-    { icon: <PiIcons.PiGlobeSimpleFill {...{ style }} />, id: 25 },
-    { icon: <FaIcons.FaLemon {...{ style }} />, id: 26 },
-    { icon: <FaIcons.FaPeace {...{ style }} />, id: 27 },
-    { icon: <PiIcons.PiToiletPaperFill {...{ style }} />, id: 28 },
-    { icon: <FaIcons.FaPencilAlt {...{ style }} />, id: 29 },
+    { icon: <icons.FaHome {...{ style }} />, id: 0 },
+    { icon: <icons.IoFastFoodSharp {...{ style }} />, id: 1 },
+    { icon: <icons.FaShoppingBasket {...{ style }} />, id: 2 },
+    { icon: <icons.FaIdCard {...{ style }} />, id: 3 },
+    { icon: <icons.IoCut {...{ style }} />, id: 4 },
+    { icon: <icons.FaComputer {...{ style }} />, id: 5 },
+    { icon: <icons.FaImage {...{ style }} />, id: 6 },
+    { icon: <icons.PiMagnifyingGlassPlusFill {...{ style }} />, id: 7 },
+    { icon: <icons.FaMicrophone {...{ style }} />, id: 8 },
+    { icon: <icons.SiMicrosoftexcel {...{ style }} />, id: 9 },
+    { icon: <icons.PiNotepadFill {...{ style }} />, id: 10 },
+    { icon: <icons.BiMenu {...{ style }} />, id: 11 },
+    { icon: <icons.PiLeafFill {...{ style }} />, id: 12 },
+    { icon: <icons.PiNumberFiveFill {...{ style }} />, id: 13 },
+    { icon: <icons.IoFitness {...{ style }} />, id: 14 },
+    { icon: <icons.PiRoadHorizonFill {...{ style }} />, id: 15 },
+    { icon: <icons.PiHourglassMediumFill {...{ style }} />, id: 16 },
+    { icon: <icons.FaCog {...{ style }} />, id: 17 },
+    { icon: <icons.PiTriangleFill {...{ style }} />, id: 18 },
+    { icon: <icons.PiIntersectBold {...{ style }} />, id: 19 },
+    { icon: <icons.FaCarSide {...{ style }} />, id: 20 },
+    { icon: <icons.FaBaseballBall {...{ style }} />, id: 21 },
+    { icon: <icons.PiQuestionFill {...{ style }} />, id: 22 },
+    { icon: <icons.FaBook {...{ style }} />, id: 23 },
+    { icon: <icons.PiWatchFill {...{ style }} />, id: 24 },
+    { icon: <icons.IoShirt {...{ style }} />, id: 25 },
+    { icon: <icons.FaLemon {...{ style }} />, id: 26 },
+    { icon: <icons.IoGift {...{ style }} />, id: 27 },
+    { icon: <icons.PiToiletPaperFill {...{ style }} />, id: 28 },
+    { icon: <icons.FaPencilAlt {...{ style }} />, id: 29 },
   ];
 
   const GetSetData = async () => {
