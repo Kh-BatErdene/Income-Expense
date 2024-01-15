@@ -2,10 +2,11 @@ const { default: mongoose } = require("mongoose");
 
 const Records = mongoose.model("Records", {
   userEmail: String,
-  inputIcon: String,
+  recordIcon: String,
   inputText: String,
+  color: String,
   amount: Number,
-  time: String,
+  time: Date,
 });
 module.exports = {
   Records,

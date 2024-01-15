@@ -170,16 +170,17 @@ app.post("/records", async (req, res) => {
   try {
     const payload = jwt.verify(authorization, "secret-key");
     const { email } = payload;
-    const { amount, time, date, inputIcon, inputText } = req.body;
+    const { amount, inputText, recordIcon, color } = req.body;
 
     await Records.create({
       userEmail: email,
-      inputIcon,
-      inputText,
       amount,
-      time,
-      date,
+      inputText,
+      color,
+      recordIcon,
+      time: new Date(),
     });
+
     res.json({
       message: "Record created",
     });
@@ -205,9 +206,7 @@ app.get("/records", async (req, res) => {
     const { email } = payload;
 
     const records = await Records.find({ userEmail: email });
-    res.json({
-      records,
-    });
+    res.json(records);
   } catch (error) {
     return res.status(401).json({
       message: "Record Unauthorized",

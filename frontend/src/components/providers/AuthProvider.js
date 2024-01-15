@@ -27,18 +27,20 @@ export const AuthProvider = ({ children }) => {
   const [modal3, setModal3] = useState(false);
 
   //Add Category
+  const [recordIcon, setRecordIcon] = useState();
   const [inputIcon, setInputIcon] = useState("");
   const [inputText, setInputText] = useState("");
   const [colorgg, setColorgg] = useState("");
   const [color, setColor] = useState("");
-  const [CategoryAdd, setCategoryAdd] = useState(<FaHome />);
+  const [CategoryAdd, setCategoryAdd] = useState();
   const [select, setSelect] = useState("");
   const [cateUser, setCateUser] = useState("");
   const [categoryData, setCategoryData] = useState([]);
   const [Category_name, setCategory_name] = useState("");
   const [iconId, setIconId] = useState();
-  const [Icon, setIcon] = useState("");
+  const [Icon, setIcon] = useState();
   const [upIcon, setUpIcon] = useState();
+  const [selectCategory, setSelectCategory] = useState();
 
   const signup = async (email, password) => {
     setIsLoading(true);
@@ -108,6 +110,15 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const token = localStorage.getItem("token");
+
+      // (Category_name) => {
+      //   try {
+      //     window.localStorage.setItem(key, JSON.stringify(Category_name));
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      // };
+
       await api.post(
         "/addcategory",
         { Category_name, iconId, Icon, color },
@@ -150,7 +161,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem("token");
       const { data } = await api.post(
         "/records",
-        { date, amount, time, inputIcon, inputText },
+        { amount, inputText, recordIcon, color },
         {
           headers: {
             Authorization: token,
@@ -166,7 +177,7 @@ export const AuthProvider = ({ children }) => {
   const [recordData, setRecordData] = useState([]);
 
   const GetRecordCard = async () => {
-    setIsReady(false);
+    setIsReady2(false);
     try {
       const token = localStorage.getItem("token");
       const { data } = await api.get("/records", {
@@ -174,19 +185,24 @@ export const AuthProvider = ({ children }) => {
           Authorization: token,
         },
       });
-      console.log("Record", data, typeof data);
+      console.log("get", data);
       setRecordData(data);
-      console.log(recordData);
-      setIsReady(true);
+      setIsReady2(true);
     } catch (err) {
       console.log(err);
     }
   };
+  useEffect(() => {
+    GetRecordCard();
+    getCategoryData();
+  }, []);
 
   const ClicktoRecord = () => {};
   return (
     <AuthContext.Provider
       value={{
+        recordIcon,
+        setRecordIcon,
         recordData,
         ClicktoRecord,
         AddRecordCard,

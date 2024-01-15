@@ -1,10 +1,12 @@
 "use client";
-
+import * as icons from "@/components/ReactIcons";
 import IncomeExpence1 from "@/components/IncomeExpense1";
 import IncomeExpence2 from "@/components/IncomeExpense2";
 import LastRecords from "@/components/LastRecords";
+import { useAll } from "@/components/providers/AuthProvider";
 
 export default function Main() {
+  const { recordData } = useAll();
   return (
     <div className="w-full max-w-[1200px] max-h-[1080px] h-full m-auto ">
       <div className="flex gap-6 mb-6 flex-wrap justify-center">
@@ -59,10 +61,26 @@ export default function Main() {
           <div className="flex items-center gap-2 w-full h-[56px] border-b-1 border-b font-semibold p-6">
             <span>Last Records</span>
           </div>
-          <div className="px-6">
-            <LastRecords />
-            <LastRecords />
-          </div>
+
+          {recordData.map((card, index) => {
+            const Icon = icons[card.recordIcon];
+            return (
+              <div
+                className="flex bg-white border-2 border-gray-200 rounded-md w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mt-2 relative"
+                key={index}
+              >
+                <div className="flex items-center h-full ml-5 ">
+                  <div className=" flex h-10 items-center gap-3 pt-2 w-full">
+                    <div className="flex gap-4">
+                      <Icon size="25px" fill={card.color}></Icon>
+                      <p>{card.inputText}</p>
+                    </div>
+                    <p className="absolute right-4"> {card.amount}₮</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -14,8 +14,6 @@ export default function Modal() {
     setAmount,
     setTime,
     setDate,
-    time,
-    date,
     amount,
     AddRecordCard,
     GetRecordCard,
@@ -29,7 +27,7 @@ export default function Modal() {
     setIsIncome(!isIncome);
   };
   const Record = async () => {
-    await AddRecordCard(time, date, amount);
+    await AddRecordCard(amount);
     await GetRecordCard();
   };
 
@@ -82,7 +80,7 @@ export default function Modal() {
                 onChange={(e) => {
                   setAmount(e.target.value);
                 }}
-                type="text"
+                type="number"
                 placeholder="₮ 000.00"
                 className="input input-bordered rounded-md w-full h-[76px] bg-[#F3F4F6] pt-5"
               />

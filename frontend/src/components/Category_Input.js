@@ -2,7 +2,7 @@
 "use client";
 import { useAll } from "@/components/providers/AuthProvider";
 import CategoryInner from "./Category_Input_Inner";
-
+import * as icons from "@/components/ReactIcons";
 export default function AddRecord() {
   const { drop, setDrop, inputIcon, inputText } = useAll();
   const handleClick = () => {
@@ -17,7 +17,8 @@ export default function AddRecord() {
       >
         <div className="flex justify-between w-full ">
           <div className="flex gap-3 items-center">
-            {inputIcon} <p>{inputText}</p>
+            {inputIcon}
+            <p>{inputText}</p>
           </div>
 
           <img src="/dropdown.svg" />

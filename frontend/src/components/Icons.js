@@ -2,8 +2,14 @@ import * as icons from "./ReactIcons";
 import { useAll } from "./providers/AuthProvider";
 
 export default function Icons() {
-  const { categoryData, setInputText, setInputIcon, ClicktoRecord, setDrop } =
-    useAll();
+  const {
+    categoryData,
+    setInputText,
+    setInputIcon,
+    ClicktoRecord,
+    setDrop,
+    setRecordIcon,
+  } = useAll();
   return (
     <button onClick={ClicktoRecord}>
       {categoryData.map((card, index) => {
@@ -13,9 +19,8 @@ export default function Icons() {
             className="flex w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mt-2"
             key={index}
             onClick={() => {
-              setInputIcon(Icon),
-                setInputText(card.Category_name),
-                setDrop(false);
+              setInputIcon(Icon), setRecordIcon(card.Icon);
+              setInputText(card.Category_name), setDrop(false);
             }}
           >
             <div className="flex items-center h-full ml-5">

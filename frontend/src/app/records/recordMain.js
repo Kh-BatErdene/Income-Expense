@@ -1,84 +1,9 @@
 "use client";
 import { useAll } from "@/components/providers/AuthProvider";
-import Cards from "./cards";
 import AddCategory from "@/components/AddCategory";
-// import * as icons from "../../components/ReactIcons";
+import * as icons from "@/components/ReactIcons";
 
 export default function Main() {
-  const data = [
-    {
-      name: "Food & Drinks",
-      img: "food.svg",
-      date: "14:00",
-      color: "#EAB308",
-      cash: "- 1,000₮",
-    },
-    {
-      name: "Food & Drinks",
-      img: "food.svg",
-      date: "14:00",
-      color: "#EAB308",
-      cash: "- 1,000₮",
-    },
-    {
-      name: "Food & Drinks",
-      img: "food.svg",
-      date: "14:00",
-      cash: "- 1,000₮",
-      color: "#EAB308",
-    },
-    {
-      name: "Food & Drinks",
-      img: "food.svg",
-      date: "14:00",
-      color: "#EAB308",
-      cash: "- 1,000₮",
-    },
-    {
-      name: "Food & Drinks",
-      img: "food.svg",
-      date: "14:00",
-      color: "#EAB308",
-      cash: "- 1,000₮",
-    },
-    {
-      name: "Lending & Renting",
-      img: "house.svg",
-      date: "14:00",
-      cash: "- 1,000₮",
-      color: "#23E01F",
-    },
-    {
-      name: "Food & Drinks",
-      img: "food.svg",
-      date: "14:00",
-      cash: "- 1,000₮",
-      color: "#F54949",
-    },
-    {
-      name: "Food & Drinks",
-      img: "food.svg",
-      date: "14:00",
-      cash: "- 1,000₮",
-      color: "#EAB308",
-    },
-    {
-      name: "Food & Drinks",
-      img: "food.svg",
-      date: "14:00",
-      cash: "- 1,000₮",
-      color: "#EAB308",
-    },
-    {
-      name: "Food & Drinks",
-      img: "food.svg",
-      date: "14:00",
-      cash: "- 1,000₮",
-      color: "#EAB308",
-    },
-  ];
-  // const Today = Array.from(data).slice(5);
-  const Yesterday = Array.from(data).slice(4);
   const { modal, setModal2, modal2, categoryData, recordData } = useAll();
   return (
     // column-1
@@ -173,36 +98,35 @@ export default function Main() {
 
         <div>
           <h3 className="mb-3 mt-6">Today</h3>
-          {/* {recordData.map((card, index) => {
-            const Icon = icons[card.Icon];
+
+          {recordData.map((card, index) => {
+            const Icon = icons[card.recordIcon];
             return (
               <div
-                className="flex w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mt-2"
+                className="flex bg-white border-2 border-gray-200 rounded-md w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mt-2 relative"
                 key={index}
               >
-                <div className="flex items-center h-full ml-5">
-                  <div className="flex items-center gap-3 pt-2">
-                    {<Icon size="30px" fill={card.color} />}
-                    <p> {card.Category_name}</p>
-                    <p> {records.card.amount}</p>
+                <div className="flex items-center h-full ml-5 ">
+                  <div className=" flex h-10 items-center gap-3 pt-2 w-full">
+                    <div className="flex gap-4">
+                      <div
+                        className="w-10 h-10 rounded-full relative"
+                        style={{
+                          background: card.color === "" ? "#000" : card.color,
+                        }}
+                      ></div>
+                      <div className="m-auto absolute z-20 translate-x-[50%] translate-y-[50%]">
+                        <Icon size="25px " fill="white"></Icon>
+                      </div>
+
+                      <p>{card.inputText}</p>
+                    </div>
+                    <p className="absolute right-4"> {card.amount}₮</p>
                   </div>
                 </div>
               </div>
             );
-          })} */}
-          <h3 className="mb-3">Yesterday</h3>
-          {/* {Yesterday.map((item, index) => {
-            return (
-              <Cards
-                key={index}
-                name={item.name}
-                date={item.date}
-                img={item.img}
-                color={item.color}
-                cash={item.cash}
-              />
-            );
-          })} */}
+          })}
         </div>
       </div>
       <AddCategory />
