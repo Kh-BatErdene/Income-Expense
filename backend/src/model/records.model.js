@@ -7,7 +7,8 @@ const Records = mongoose.model("Records", {
   inputText: String,
   cateColor: String,
   amount: Number,
-  time: Date,
+  time: String,
+  date: Date,
 });
 module.exports = {
   Records,

@@ -170,7 +170,8 @@ app.post("/records", async (req, res) => {
   try {
     const payload = jwt.verify(authorization, "secret-key");
     const { email } = payload;
-    const { amount, inputText, recordIcon, cateColor, isExpense } = req.body;
+    const { amount, inputText, recordIcon, cateColor, isExpense, time, date } =
+      req.body;
 
     await Records.create({
       userEmail: email,
@@ -179,7 +180,8 @@ app.post("/records", async (req, res) => {
       cateColor,
       isExpense,
       recordIcon,
-      time: new Date(),
+      date,
+      time,
     });
 
     res.json({

@@ -146,7 +146,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem("token");
       const { data } = await api.post(
         "/records",
-        { amount, inputText, recordIcon, cateColor, isExpense },
+        { amount, inputText, recordIcon, cateColor, isExpense, time, date },
         {
           headers: {
             Authorization: token,
@@ -160,6 +160,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
   const [recordData, setRecordData] = useState([]);
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [days, setDays] = useState();
+  const [old, setOld] = useState();
 
   const GetRecordCard = async () => {
     setIsReady2(false);
@@ -169,6 +173,10 @@ export const AuthProvider = ({ children }) => {
         headers: {
           Authorization: token,
         },
+        // params: {
+        //   days: days,
+        //   old: old,
+        // },
       });
       setRecordData(data.reverse());
       setIsReady2(true);
@@ -184,6 +192,14 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
+        old,
+        setOld,
+        days,
+        setDays,
+        time,
+        setTime,
+        date,
+        setDate,
         isType,
         setIsType,
         isExpense,

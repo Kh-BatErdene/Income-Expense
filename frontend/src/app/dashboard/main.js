@@ -3,13 +3,14 @@ import * as icons from "@/components/ReactIcons";
 import IncomeExpence1 from "@/components/IncomeExpense1";
 import IncomeExpence2 from "@/components/IncomeExpense2";
 import { useAll } from "@/components/providers/AuthProvider";
+import Cash from "./cash";
 
 export default function Main() {
   const { recordData } = useAll();
   return (
     <div className="w-full max-w-[1200px] max-h-[1080px] h-full m-auto ">
       <div className="flex gap-6 mb-6 flex-wrap justify-center">
-        <img src="card.svg" />
+        <Cash />
         {/* +12m */}
         <div className="w-[384px] h-[216px] bg-white p-6 rounded-md">
           <div className="flex items-center gap-2 w-full h-[56px] border-b-1 border-b ">
@@ -17,7 +18,12 @@ export default function Main() {
             <span>Total Expenses</span>
           </div>
           <div>
-            <h2 className="text-[36px] font-bold">1,200,000₮</h2>
+            <h2 className="text-[36px] font-bold">
+              {recordData
+                .filter((record) => record.isExpense === true)
+                .reduce((a, b) => a + Number(b.amount), 0)}
+              ₮
+            </h2>
             <p className="text-[#64748B] text-lg -translate-y-2 mb-3">
               Your Income Amount
             </p>
@@ -36,7 +42,13 @@ export default function Main() {
             <span>Your Income</span>
           </div>
           <div>
-            <h2 className="text-[36px] font-bold">-1,200,000₮</h2>
+            <h2 className="text-[36px] font-bold">
+              {" "}
+              {recordData
+                .filter((record) => record.isExpense === false)
+                .reduce((a, b) => a + Number(b.amount), 0)}
+              ₮
+            </h2>
             <p className="text-[#64748B] text-lg -translate-y-2 mb-3">
               Your Income Amount
             </p>

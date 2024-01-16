@@ -88,11 +88,21 @@ export default function Main() {
 
           <div className="mt-4 flex justify-between items-center px-6 bg-white py-3 border-2 rounded-md mb-3">
             <div className="flex items-center gap-4">
-              <input type="checkbox" className="checkbox rounded-sm" />
+              <input
+                type="checkbox"
+                defaultChecked
+                className="checkbox rounded-sm"
+              />
               <span>Select all</span>
             </div>
 
-            <span>0₮</span>
+            <span>
+              {recordData.reduce(
+                (total, currentValue) => total + Number(currentValue.amount),
+                0
+              )}
+              ₮
+            </span>
           </div>
 
           <div>
@@ -108,7 +118,8 @@ export default function Main() {
               })
               .map((card, index) => {
                 const Icon = icons[card.recordIcon];
-                const number = new Intl.NumberFormat("en-IN", {}).format(
+
+                const number = new Intl.NumberFormat("en-US").format(
                   card.amount
                 );
                 return (
@@ -131,7 +142,8 @@ export default function Main() {
                           </div>
                           <div>
                             <p className="font-bold ">{card.inputText}</p>
-                            <p className="text-[12px] text-gray-500">
+                            <p className="text-[12px] text-gray-500 flex gap-3">
+                              <p> {card.date}</p>
                               {card.time}
                             </p>
                           </div>
@@ -139,10 +151,10 @@ export default function Main() {
                         <p
                           className="absolute right-4"
                           style={{
-                            color: card.isExpense ? "#23E01F" : "#F54949",
+                            color: card.isExpense ? "#F54949" : "#23E01F",
                           }}
                         >
-                          {card.isExpense ? "+ " : "- "}
+                          {card.isExpense ? "- " : "+ "}
                           {number}₮
                         </p>
                       </div>

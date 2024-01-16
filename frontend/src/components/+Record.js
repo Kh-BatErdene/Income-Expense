@@ -2,7 +2,6 @@
 
 //+Record btn дээр дарахад гарах модал
 
-import { useState } from "react";
 import Category_Input from "./Category_Input";
 import { useAll } from "@/components/providers/AuthProvider";
 
@@ -17,11 +16,14 @@ export default function Modal() {
     GetRecordCard,
     isExpense,
     setIsExpense,
-    inputText,
+    setDate,
+    setTime,
+    date,
+    time,
   } = useAll();
 
   const Record = async () => {
-    await AddRecordCard(amount);
+    await AddRecordCard(amount, date, time);
     await GetRecordCard();
   };
 
@@ -88,6 +90,13 @@ export default function Modal() {
             <p className="mt-4">Category</p>
             <Category_Input />
             <div className="flex justify-between"></div>
+            <input
+              type="date"
+              onChange={(e) => {
+                setDate(e.target.value);
+              }}
+            />
+            <input type="time" onChange={(e) => setTime(e.target.value)} />
             <button
               className="absolute right-0 px-5 py-2 text-white  bg-[#F3F4F6] rounded-3xl w-full h-10 mt-8 mb-6 "
               style={{
