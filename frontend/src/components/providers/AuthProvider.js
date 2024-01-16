@@ -130,7 +130,7 @@ export const AuthProvider = ({ children }) => {
         },
       });
 
-      setCategoryData(data);
+      setCategoryData(data.reverse());
       setIsReady2(true);
     } catch (err) {
       console.log(err);
@@ -170,7 +170,7 @@ export const AuthProvider = ({ children }) => {
           Authorization: token,
         },
       });
-      setRecordData(data);
+      setRecordData(data.reverse());
       setIsReady2(true);
     } catch (err) {
       console.log(err);

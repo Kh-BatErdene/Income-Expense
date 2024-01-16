@@ -6,15 +6,14 @@ import Type from "@/components/Type";
 import { createContext, useState } from "react";
 export const Record = createContext();
 export default function Main() {
-  const { modal, setModal2, modal2, categoryData, recordData } = useAll();
+  const { modal, setModal2, modal2, categoryData, recordData, inputText } =
+    useAll();
   const [selectedType, setSelectedType] = useState("All");
-  console.log(selectedType);
   return (
     <Record.Provider value={{ setSelectedType }}>
-      // column-1
       <div className="w-full max-w-[1200px] h-full m-auto flex gap-6 ">
         <div
-          className="bg-black opacity-30 z-10 w-full h-full absolute top-0 left-0 overflow-hidden"
+          className="bg-black opacity-30 z-20 w-full h-full absolute top-0 left-0 overflow-hidden"
           style={{ display: modal ? "flex" : "none" }}
         ></div>
         <div
@@ -32,6 +31,9 @@ export default function Main() {
           <div className="mb-6">
             <input
               type="search"
+              onChange={(e) => {
+                e.target.value;
+              }}
               placeholder="Search"
               className="w-full py-1 px-3 rounded-md border-2"
             />
@@ -118,10 +120,10 @@ export default function Main() {
                             className="w-10 h-10 rounded-full relative"
                             style={{
                               background:
-                                card.color === "" ? "#000" : card.cateColor,
+                                card.cateColor === "" ? "#000" : card.cateColor,
                             }}
                           ></div>
-                          <div className="m-auto absolute z-20 translate-x-[50%] translate-y-[50%] top-0 left-3.5">
+                          <div className="m-auto absolute z-10 translate-x-[55%] translate-y-[45%] top-0 left-3.5">
                             <Icon size="25px " fill="white"></Icon>
                           </div>
                           <div>
@@ -137,6 +139,7 @@ export default function Main() {
                             color: card.isExpense ? "#23E01F" : "#F54949",
                           }}
                         >
+                          {card.isExpense ? "+ " : "- "}
                           {card.amount}₮
                         </p>
                       </div>

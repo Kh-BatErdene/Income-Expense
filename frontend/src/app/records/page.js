@@ -13,7 +13,7 @@ export default function Home() {
     if (!isLoggedIn) router.push("/");
   }, [isLoggedIn, router]);
   return (
-    <div className="bg-[#F3F4F6] px-5">
+    <div className=" px-5">
       <Header />
       <Main />
     </div>

@@ -8,7 +8,7 @@ const colorData = [
   "#AE01FF",
   "#FF0101",
   "#FF7B01",
-  "#01B3FF",
+  "gray",
   "#41CC00",
 ];
 

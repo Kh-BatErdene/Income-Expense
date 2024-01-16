@@ -64,6 +64,7 @@ export default function Main() {
 
         {recordData.map((card, index) => {
           const Icon = icons[card.recordIcon];
+
           return (
             <div
               className="flex bg-white border-2 border-gray-200 rounded-md w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mt-2 relative"
@@ -71,20 +72,30 @@ export default function Main() {
             >
               <div className="flex items-center h-full ml-5 ">
                 <div className=" flex h-10 items-center gap-3 pt-2 w-full">
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 items-center">
                     <div
                       className="w-10 h-10 rounded-full relative"
                       style={{
-                        background: card.color === "" ? "#000" : card.cateColor,
+                        background:
+                          card.cateColor === "" ? "#000" : card.cateColor,
                       }}
                     ></div>
-                    <div className="m-auto absolute z-20 translate-x-[50%] translate-y-[50%] top-0 left-4">
+                    <div className="m-auto absolute z-20 translate-x-[55%] translate-y-[45%] top-0 left-3.5">
                       <Icon size="25px " fill="white"></Icon>
                     </div>
-
-                    <p>{card.inputText}</p>
+                    <div>
+                      <p className="font-bold ">{card.inputText}</p>
+                      <p className="text-[12px] text-gray-500">{card.time}</p>
+                    </div>
                   </div>
-                  <p className="absolute right-4"> {card.amount}₮</p>
+                  <p
+                    className="absolute right-4"
+                    style={{
+                      color: card.isExpense ? "#23E01F" : "#F54949",
+                    }}
+                  >
+                    {card.amount}₮
+                  </p>
                 </div>
               </div>
             </div>

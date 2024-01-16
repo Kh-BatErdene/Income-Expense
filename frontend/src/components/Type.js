@@ -10,8 +10,9 @@ export default function Type() {
         <div className="flex flex-row gap-[8px]">
           <input
             type="radio"
+            defaultChecked
             name="type"
-            className="w-[16px]"
+            className="w-[16px] cursor-pointer"
             onClick={() => {
               setSelectedType("All");
             }}
@@ -22,7 +23,7 @@ export default function Type() {
           <input
             type="radio"
             name="type"
-            className="w-[16px]"
+            className="w-[16px] cursor-pointer"
             onClick={() => {
               setSelectedType("Income");
             }}
@@ -33,7 +34,7 @@ export default function Type() {
           <input
             type="radio"
             name="type"
-            className="w-[16px]"
+            className="w-[16px] cursor-pointer"
             onClick={() => {
               setSelectedType("Expense");
             }}
