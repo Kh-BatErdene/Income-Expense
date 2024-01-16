@@ -9,6 +9,7 @@ export default function Main() {
   const { modal, setModal2, modal2, categoryData, recordData, inputText } =
     useAll();
   const [selectedType, setSelectedType] = useState("All");
+
   return (
     <Record.Provider value={{ setSelectedType }}>
       <div className="w-full max-w-[1200px] h-full m-auto flex gap-6 ">
@@ -107,7 +108,9 @@ export default function Main() {
               })
               .map((card, index) => {
                 const Icon = icons[card.recordIcon];
-
+                const number = new Intl.NumberFormat("en-IN", {}).format(
+                  card.amount
+                );
                 return (
                   <div
                     className="flex bg-white border-2 border-gray-200 rounded-md w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mt-2 relative"
@@ -140,7 +143,7 @@ export default function Main() {
                           }}
                         >
                           {card.isExpense ? "+ " : "- "}
-                          {card.amount}₮
+                          {number}₮
                         </p>
                       </div>
                     </div>
