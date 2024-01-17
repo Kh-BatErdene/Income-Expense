@@ -196,6 +196,7 @@ app.post("/records", async (req, res) => {
 
 app.get("/records", async (req, res) => {
   const { authorization } = req.headers;
+  const { days, old } = req.query;
 
   if (!authorization) {
     return res.status(401).json({
@@ -207,8 +208,19 @@ app.get("/records", async (req, res) => {
     const payload = jwt.verify(authorization, "secret-key");
 
     const { email } = payload;
+    const filterDate = new Date(Date.now() - 3600 * 1000 * 24 * days);
+    console.log(days);
+    const verifyRecord = await Records.find({ userEmail: email });
+    const filterRecords = verifyRecord.filter((item) => item.date > filterDate);
 
-    const records = await Records.find({ userEmail: email });
+    const records = filterRecords.sort((a, b) => {
+      if (old === "true") {
+        return a.date - b.date;
+      } else {
+        return b.date - a.date;
+      }
+    });
+
     res.json(records);
   } catch (error) {
     return res.status(401).json({

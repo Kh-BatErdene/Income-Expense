@@ -4,10 +4,21 @@ import AddCategory from "@/components/AddCategory";
 import * as icons from "@/components/ReactIcons";
 import Type from "@/components/Type";
 import { createContext, useState } from "react";
+import { format } from "date-fns";
 export const Record = createContext();
 export default function Main() {
-  const { modal, setModal2, modal2, categoryData, recordData, inputText } =
-    useAll();
+  const {
+    modal,
+    setModal2,
+    modal2,
+    categoryData,
+    recordData,
+    days,
+    old,
+    setDays,
+    setOld,
+    changeDays,
+  } = useAll();
   const [selectedType, setSelectedType] = useState("All");
 
   return (
@@ -73,15 +84,33 @@ export default function Main() {
         <div className="w-full h-full">
           <div className="flex justify-between w-full">
             <div className="flex items-center gap-2">
-              <img src="arrow.svg"></img>
-              <p className="w-[92p]">Last 30 Days</p>
-              <img className="rotate-180" src="arrow.svg"></img>
+              <img src="arrow.svg" onClick={changeDays}></img>
+              <p className="w-[92p]">Last {days} Days</p>
+              <img
+                className="rotate-180"
+                src="arrow.svg"
+                onClick={changeDays}
+              ></img>
             </div>
 
             <div className=" pr-2 bg-white border-2 rounded-md">
               <select className="py-3 px-4 pr-8  rounded-md">
-                <option className="text-base">Newest first</option>
-                <option className="text-base">Yesterday</option>
+                <option
+                  className="text-base"
+                  onClick={() => {
+                    setOld(false);
+                  }}
+                >
+                  Newest first
+                </option>
+                <option
+                  className="text-base"
+                  onClick={() => {
+                    setOld(true);
+                  }}
+                >
+                  Oldest first
+                </option>
               </select>
             </div>
           </div>
@@ -122,6 +151,8 @@ export default function Main() {
                 const number = new Intl.NumberFormat("en-US").format(
                   card.amount
                 );
+
+                const date = format(new Date(card.date), "yyy-MM-dd");
                 return (
                   <div
                     className="flex bg-white border-2 border-gray-200 rounded-md w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mt-2 relative"
@@ -143,7 +174,7 @@ export default function Main() {
                           <div>
                             <p className="font-bold ">{card.inputText}</p>
                             <p className="text-[12px] text-gray-500 flex gap-3">
-                              <p> {card.date}</p>
+                              <p> {date}</p>
                               {card.time}
                             </p>
                           </div>

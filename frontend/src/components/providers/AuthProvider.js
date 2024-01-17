@@ -162,8 +162,29 @@ export const AuthProvider = ({ children }) => {
   const [recordData, setRecordData] = useState([]);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const [days, setDays] = useState();
-  const [old, setOld] = useState();
+  const [days, setDays] = useState(30);
+  const [refresh, setRefresh] = useState(0);
+
+  const changeDays = async () => {
+    if (days === 90) {
+      setDays(60);
+    }
+    console.log(days);
+    if (days === 60) {
+      setDays(30);
+    }
+    if (days === 30) {
+      setDays(14);
+    }
+    if (days === 14) {
+      setDays(7);
+    }
+    if (days === 7) {
+      setDays(90);
+    }
+    setRefresh(refresh + 2);
+  };
+  const [old, setOld] = useState(false);
 
   const GetRecordCard = async () => {
     setIsReady2(false);
@@ -173,10 +194,10 @@ export const AuthProvider = ({ children }) => {
         headers: {
           Authorization: token,
         },
-        // params: {
-        //   days: days,
-        //   old: old,
-        // },
+        params: {
+          days: days,
+          old: old,
+        },
       });
       setRecordData(data.reverse());
       setIsReady2(true);
@@ -189,9 +210,14 @@ export const AuthProvider = ({ children }) => {
     getCategoryData();
   }, []);
 
+  useEffect(() => {
+    GetRecordCard();
+  }, [refresh]);
+
   return (
     <AuthContext.Provider
       value={{
+        changeDays,
         old,
         setOld,
         days,

@@ -64,8 +64,8 @@ export default function Main() {
       {/* Income - Expense */}
 
       <div className="flex gap-6 mb-6 flex-wrap justify-center">
-        <IncomeExpence1 />
         <IncomeExpence2 />
+        <IncomeExpence1 />
       </div>
       <div>
         <div className="w-full h-full rounded-xl bg-white">
@@ -77,6 +77,7 @@ export default function Main() {
         {recordData.map((card, index) => {
           const Icon = icons[card.recordIcon];
 
+          const number = new Intl.NumberFormat("en-US").format(card.amount);
           return (
             <div
               className="flex bg-white border-2 border-gray-200 rounded-md w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mt-2 relative"
@@ -92,21 +93,25 @@ export default function Main() {
                           card.cateColor === "" ? "#000" : card.cateColor,
                       }}
                     ></div>
-                    <div className="m-auto absolute z-20 translate-x-[55%] translate-y-[45%] top-0 left-3.5">
+                    <div className="m-auto absolute z-10 translate-x-[55%] translate-y-[45%] top-0 left-3.5">
                       <Icon size="25px " fill="white"></Icon>
                     </div>
                     <div>
                       <p className="font-bold ">{card.inputText}</p>
-                      <p className="text-[12px] text-gray-500">{card.time}</p>
+                      <p className="text-[12px] text-gray-500 flex gap-3">
+                        <p> {card.date}</p>
+                        {card.time}
+                      </p>
                     </div>
                   </div>
                   <p
                     className="absolute right-4"
                     style={{
-                      color: card.isExpense ? "#23E01F" : "#F54949",
+                      color: card.isExpense ? "#F54949" : "#23E01F",
                     }}
                   >
-                    {card.amount}₮
+                    {card.isExpense ? "- " : "+ "}
+                    {number}₮
                   </p>
                 </div>
               </div>
