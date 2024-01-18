@@ -209,15 +209,15 @@ app.get("/records", async (req, res) => {
 
     const { email } = payload;
     const filterDate = new Date(Date.now() - 3600 * 1000 * 24 * days);
-    console.log(days);
+    // console.log(days);
     const verifyRecord = await Records.find({ userEmail: email });
     const filterRecords = verifyRecord.filter((item) => item.date > filterDate);
 
     const records = filterRecords.sort((a, b) => {
       if (old === "true") {
-        return a.date - b.date;
-      } else {
         return b.date - a.date;
+      } else {
+        return a.date - b.date;
       }
     });
 

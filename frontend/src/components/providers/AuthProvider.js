@@ -100,7 +100,7 @@ export const AuthProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
-
+  const [clickcate, setClickCate] = useState(true);
   const handleCategory = async () => {
     setModal2(false);
 
@@ -130,7 +130,7 @@ export const AuthProvider = ({ children }) => {
         },
       });
 
-      setCategoryData(data.reverse());
+      setCategoryData(data);
       setIsReady2(true);
     } catch (err) {
       console.log(err);
@@ -162,7 +162,7 @@ export const AuthProvider = ({ children }) => {
   const [recordData, setRecordData] = useState([]);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const [days, setDays] = useState(30);
+  const [days, setDays] = useState(90);
   const [refresh, setRefresh] = useState(0);
 
   const changeDays = async () => {
@@ -180,6 +180,25 @@ export const AuthProvider = ({ children }) => {
       setDays(7);
     }
     if (days === 7) {
+      setDays(90);
+    }
+    setRefresh(refresh + 2);
+  };
+  const changeDays2 = async () => {
+    if (days === 90) {
+      setDays(7);
+    }
+    console.log(days);
+    if (days === 7) {
+      setDays(14);
+    }
+    if (days === 14) {
+      setDays(30);
+    }
+    if (days === 30) {
+      setDays(60);
+    }
+    if (days === 60) {
       setDays(90);
     }
     setRefresh(refresh + 2);
@@ -217,6 +236,9 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
+        clickcate,
+        setClickCate,
+        changeDays2,
         changeDays,
         old,
         setOld,

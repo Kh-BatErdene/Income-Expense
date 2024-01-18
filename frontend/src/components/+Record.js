@@ -75,8 +75,7 @@ export default function Modal() {
                 Income
               </button>
             </div>
-
-            <div className="relative w-full background mt-16">
+            <div className="relative w-full background mt-8">
               <input
                 onChange={(e) => {
                   setAmount(e.target.value);
@@ -90,15 +89,26 @@ export default function Modal() {
             <p className="mt-4">Category</p>
             <Category_Input />
             <div className="flex justify-between"></div>
-            <input
-              type="date"
-              onChange={(e) => {
-                setDate(e.target.value);
-              }}
-            />
-            <input type="time" onChange={(e) => setTime(e.target.value)} />
+
+            <div className="w-full flex  gap-[8px] mt-3">
+              <input
+                type="date"
+                className="w-full h-[48px] rounded-lg bg-[#F9FAFB]  border-2 rounded-md p-2"
+                defaultValue={Date.now()}
+                onChange={(e) => {
+                  setDate(e.target.value);
+                }}
+              />
+
+              <input
+                type="time"
+                className="w-full h-[48px] rounded-lg bg-[#F9FAFB]  border-2 rounded-md p-2"
+                onChange={(e) => setTime(e.target.value)}
+              />
+            </div>
+
             <button
-              className="absolute right-0 px-5 py-2 text-white  bg-[#F3F4F6] rounded-3xl w-full h-10 mt-8 mb-6 "
+              className="absolute right-0 px-5 py-2 text-white  bg-[#F3F4F6] rounded-3xl w-full h-10 mt-6 mb-6 "
               style={{
                 background: !isExpense ? "#16A34A" : "#0166FF",
               }}

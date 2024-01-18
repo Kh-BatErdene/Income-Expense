@@ -9,7 +9,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
+import { useAll } from "./providers/AuthProvider";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -19,33 +19,44 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-  },
-};
-
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Income",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      backgroundColor: "rgba(255, 99, 132, 0.8)",
-    },
-    {
-      label: "Expense",
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      backgroundColor: "rgba(53, 162, 235, 0.8)",
-    },
-  ],
-};
 export default function IncomeExpence2() {
+  const { recordData } = useAll();
+
+  const labels = recordData.map((item) => [item.inputText]);
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+    },
+    scales: {
+      y: {
+        min: 0,
+      },
+    },
+  };
+
+  const data = {
+    labels,
+
+    datasets: [
+      {
+        label: "Income",
+        data: recordData.map((item) =>
+          item.isExpense === false ? item.amount : null
+        ),
+        backgroundColor: "#84CC16",
+      },
+      {
+        label: "Expense",
+        data: recordData.map((item) =>
+          item.isExpense === true ? item.amount : null
+        ),
+        backgroundColor: "#0166FF",
+      },
+    ],
+  };
   return (
     <div className="w-full max-w-[588px] h-[284px] rounded-2xl bg-white px-6 ">
       <div className="flex items-center gap-2 w-full h-[56px] border-b-1 border-b mb-8 justify-between">

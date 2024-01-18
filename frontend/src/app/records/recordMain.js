@@ -4,6 +4,7 @@ import AddCategory from "@/components/AddCategory";
 import * as icons from "@/components/ReactIcons";
 import Type from "@/components/Type";
 import { createContext, useState } from "react";
+import { FaEyeSlash } from "react-icons/fa6";
 import { format } from "date-fns";
 export const Record = createContext();
 export default function Main() {
@@ -15,9 +16,11 @@ export default function Main() {
     recordData,
     days,
     old,
-    setDays,
+    changeDays2,
     setOld,
     changeDays,
+    clickcate,
+    setClickCate,
   } = useAll();
   const [selectedType, setSelectedType] = useState("All");
 
@@ -60,7 +63,12 @@ export default function Main() {
               className="  w-full h-full items-center gap-[4px] mb-2 flex justify-between hover:bg-gray-100 cursor-pointer px-2 rounded-md "
               key={index}
             >
-              <div className=" flex flex-row gap-2">
+              <div
+                className=" flex flex-row gap-2"
+                onClick={() => {
+                  setClickCate(false);
+                }}
+              >
                 <img src="/eye.svg" />
                 <p>{card.Category_name}</p>
               </div>
@@ -84,19 +92,23 @@ export default function Main() {
         <div className="w-full h-full">
           <div className="flex justify-between w-full">
             <div className="flex items-center gap-2">
-              <img src="arrow.svg" onClick={changeDays}></img>
+              <img
+                src="arrow.svg"
+                className="cursor-pointer"
+                onClick={changeDays2}
+              ></img>
               <p className="w-[92p]">Last {days} Days</p>
               <img
-                className="rotate-180"
+                className="rotate-180 cursor-pointer"
                 src="arrow.svg"
                 onClick={changeDays}
               ></img>
             </div>
 
             <div className=" pr-2 bg-white border-2 rounded-md">
-              <select className="py-3 px-4 pr-8  rounded-md">
+              <select className="py-3 px-4 pr-8  rounded-md cursor-pointer">
                 <option
-                  className="text-base"
+                  className="text-base cursor-pointer"
                   onClick={() => {
                     setOld(false);
                   }}
@@ -104,7 +116,7 @@ export default function Main() {
                   Newest first
                 </option>
                 <option
-                  className="text-base"
+                  className="text-base cursor-pointer"
                   onClick={() => {
                     setOld(true);
                   }}
@@ -125,13 +137,17 @@ export default function Main() {
               <span>Select all</span>
             </div>
 
-            <span>
-              {recordData.reduce(
-                (total, currentValue) => total + Number(currentValue.amount),
-                0
+            <p>
+              {Math.abs(
+                recordData
+                  .filter((record) => record.isExpense === false)
+                  .reduce((niit, orlogo) => niit + Number(orlogo.amount), 0) -
+                  recordData
+                    .filter((record) => record.isExpense === true)
+                    .reduce((niit, zarlaga) => niit + Number(zarlaga.amount), 0)
               )}
               ₮
-            </span>
+            </p>
           </div>
 
           <div>
