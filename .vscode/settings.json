@@ -6,28 +6,7 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
-    "**/node_modules": true,
-    "frontend/jsconfig.json": true,
-    "frontend/next.config.js": true,
-    "frontend/package-lock.json": true,
-    "frontend/tailwind.config.js": true,
-    "frontend/README.md": true,
-    "package-lock.json": true,
-    "README.md": true,
-    "frontend/postcss.config.js": true,
-    "backend/.gitignore": true,
-    "backend/package.json": true
+    "**/node_modules": true
   },
-  "hide-files.files": [
-    "frontend/jsconfig.json",
-    "frontend/next.config.js",
-    "frontend/package-lock.json",
-    "frontend/tailwind.config.js",
-    "frontend/README.md",
-    "package-lock.json",
-    "README.md",
-    "frontend/postcss.config.js",
-    "backend/.gitignore",
-    "backend/package.json"
-  ]
+  "hide-files.files": []
 }
