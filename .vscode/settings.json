@@ -18,7 +18,8 @@
     "frontend/package.json": true,
     "backend/package-lock.json": true,
     "backend/.gitignore": true,
-    "backend/package.json": true
+    "backend/package.json": true,
+    "frontend/.gitignore": true
   },
   "hide-files.files": [
     "frontend/jsconfig.json",
@@ -32,6 +33,7 @@
     "frontend/package.json",
     "backend/package-lock.json",
     "backend/.gitignore",
-    "backend/package.json"
+    "backend/package.json",
+    "frontend/.gitignore"
   ]
 }
