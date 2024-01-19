@@ -11,6 +11,7 @@ export default function Cash() {
         <div className="w-full h-fit flex flex-col text-white z-10">
           <p>Үлдэгдэл</p>
           <p>
+            {isExpense > !isExpense ? "- " : null}
             {Math.abs(
               recordData
                 .filter((record) => record.isExpense === false)
