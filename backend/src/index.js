@@ -229,7 +229,7 @@ app.get("/records", async (req, res) => {
   }
 });
 
-const port = geld - income.onrender;
+const port = 3001;
 
 app.listen(port, () => {
   console.log(`Backend port on : ${port}`);
