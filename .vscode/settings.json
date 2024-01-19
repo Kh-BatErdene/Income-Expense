@@ -7,8 +7,6 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "**/node_modules": true,
-    "frontend/.eslintrc.json": true,
-    "frontend/.gitignore": true,
     "frontend/jsconfig.json": true,
     "frontend/next.config.js": true,
     "frontend/package-lock.json": true,
@@ -23,8 +21,6 @@
     "backend/package.json": true
   },
   "hide-files.files": [
-    "frontend/.eslintrc.json",
-    "frontend/.gitignore",
     "frontend/jsconfig.json",
     "frontend/next.config.js",
     "frontend/package-lock.json",
