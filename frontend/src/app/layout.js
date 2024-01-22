@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "../components/providers/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
+<link rel="shortcut icon" href="#"></link>;
 
 export default function RootLayout({ children }) {
   return (
