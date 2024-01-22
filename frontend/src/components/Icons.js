@@ -27,7 +27,7 @@ export default function Icons() {
           >
             <div className="flex items-center h-full ml-5">
               <div className="flex items-center gap-3 pt-2">
-                {<Icon size="20px" fill={card.color} />}
+                <Icon size="20px" fill={card.color} />
                 <p> {card.Category_name}</p>
               </div>
             </div>

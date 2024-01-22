@@ -1,6 +1,6 @@
 "use client";
 import { api } from "@/common";
-import ProfilePage from "./profile_main";
+import { ProfilePage } from "./profile_main";
 import { createContext, useContext, useState } from "react";
 
 const UseProfile = createContext();
