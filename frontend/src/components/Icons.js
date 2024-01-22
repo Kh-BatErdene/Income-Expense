@@ -1,4 +1,4 @@
-import * as icons from "./ReactIcons";
+import * as allicons from "./ReactIcons";
 import { useAll } from "./providers/AuthProvider";
 
 export default function Icons() {
@@ -14,7 +14,8 @@ export default function Icons() {
   return (
     <button onClick={ClicktoRecord}>
       {categoryData.map((card, index) => {
-        const Icon = icons[card.Icon];
+        const Icon = allicons[card.Icon];
+
         return (
           <div
             className="flex w-full items-center gap-4  pb-2 cursor-pointer hover:bg-gray-50 mt-2"

@@ -1,11 +1,10 @@
 "use client";
 import { useAll } from "@/components/providers/AuthProvider";
-import React, { useState } from "react";
-const ChangeIcon = createContext();
-import ChangeColor from "./Icon_Pick_Modal";
-import { createContext, useContext } from "react";
 import * as icons from "./ReactIcons";
 
+import ChangeColor from "./Icon_Pick_Modal";
+import { createContext, useContext } from "react";
+const ChangeIcon = createContext();
 function AddCategory() {
   const {
     modal2,
