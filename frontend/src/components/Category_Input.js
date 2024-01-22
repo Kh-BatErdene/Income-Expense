@@ -2,7 +2,6 @@
 "use client";
 import { useAll } from "@/components/providers/AuthProvider";
 import CategoryInner from "./Category_Input_Inner";
-import * as icons from "@/components/ReactIcons";
 export default function AddRecord() {
   const { drop, setDrop, inputIcon, inputText } = useAll();
   const handleClick = () => {
