@@ -1,3 +1,4 @@
+"use client";
 import * as allicons from "./ReactIcons";
 import { useAll } from "./providers/AuthProvider";
 

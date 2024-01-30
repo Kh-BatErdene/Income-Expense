@@ -1,3 +1,5 @@
+"use client";
+
 const Range = () => {
   return (
     <div className="absolute bottom-5 left-10">

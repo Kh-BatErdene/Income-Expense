@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { useAll } from "./providers/AuthProvider";
 

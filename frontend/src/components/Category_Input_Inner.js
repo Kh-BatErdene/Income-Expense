@@ -1,3 +1,4 @@
+"use client";
 import { useAll } from "@/components/providers/AuthProvider";
 import Icons from "./Icons";
 
