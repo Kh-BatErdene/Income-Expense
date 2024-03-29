@@ -93,7 +93,7 @@ export default function Modal() {
             <div className="w-full flex  gap-[8px] mt-3">
               <input
                 type="date"
-                className="w-full h-[48px] rounded-lg bg-[#F9FAFB]  border-2 rounded-md p-2"
+                className="w-full h-[48px] rounded-lg bg-[#F9FAFB]  border-2  p-2"
                 defaultValue={Date.now()}
                 onChange={(e) => {
                   setDate(e.target.value);
@@ -102,7 +102,7 @@ export default function Modal() {
 
               <input
                 type="time"
-                className="w-full h-[48px] rounded-lg bg-[#F9FAFB]  border-2 rounded-md p-2"
+                className="w-full h-[48px]  bg-[#F9FAFB]  border-2 rounded-md p-2"
                 onChange={(e) => setTime(e.target.value)}
               />
             </div>

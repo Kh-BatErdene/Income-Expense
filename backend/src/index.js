@@ -15,7 +15,6 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  console.log(req);
   res.send("Backend successful on 3001 port");
 });
 
@@ -72,6 +71,7 @@ app.post("/login", async (req, res) => {
 
 app.post("/signup", async (req, res) => {
   const { email, password } = req.body;
+  console.log(email, password);
 
   try {
     const user = await User.findOne({ email: email });
@@ -83,7 +83,6 @@ app.post("/signup", async (req, res) => {
     }
     // return;
     await User.create({
-      name: "Hello",
       email,
       password,
       createdAt: new Date(),

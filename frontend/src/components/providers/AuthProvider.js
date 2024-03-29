@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState, useContext } from "react";
 import { api } from "../../common";
 import { toast } from "react-toastify";
+import { AxiosError } from "axios";
 
 const AuthContext = createContext();
 
@@ -47,8 +48,6 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       const { token } = data;
-      localStorage.setItem("token", token);
-      setIsLoggedIn(true);
 
       router.push("/dashboard");
     } catch (error) {
@@ -221,7 +220,9 @@ export const AuthProvider = ({ children }) => {
       setRecordData(data.reverse());
       setIsReady2(true);
     } catch (err) {
-      console.log(err);
+      if (err instanceof AxiosError) {
+        console.log(err);
+      }
     }
   };
   useEffect(() => {
