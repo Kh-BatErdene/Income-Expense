@@ -47,9 +47,7 @@ export const AuthProvider = ({ children }) => {
         email,
         password,
       });
-      const { token } = data;
-
-      router.push("/dashboard");
+      router.push("/");
     } catch (error) {
       if (error.response) {
         toast.error(error.response.data.message);
