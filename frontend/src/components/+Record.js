@@ -122,7 +122,7 @@ export default function Modal() {
 
           <div className="w-1/2">
             <p>Payee</p>
-            <label className="mb-4 form-control w-full max-w-[348px] bg-[#F3F4F6] w-full h-12 text-[#A3A3A3] px-4 py-2 rounded-md border-solid border-2 border-[#D1D5DB]">
+            <label className="mb-4 form-control max-w-[348px] bg-[#F3F4F6] w-full h-12 text-[#A3A3A3] px-4 py-2 rounded-md border-solid border-2 border-[#D1D5DB]">
               <select className="mt-1 bg-[#F3F4F6]  outline-none cursor-pointer">
                 <option className="font-semibold">Visa</option>
                 <option className="font-semibold">PayPal</option>

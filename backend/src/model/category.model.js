@@ -4,7 +4,7 @@ const Category = mongoose.model("Category", {
   userEmail: String,
   Category_name: String,
   iconId: Number,
-  Icon: String,
+  Icon: { type: String, require: false },
   color: String,
   amount: Number,
   time: String,

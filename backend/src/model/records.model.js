@@ -2,13 +2,13 @@ const { default: mongoose } = require("mongoose");
 
 const Records = mongoose.model("Records", {
   userEmail: String,
-  recordIcon: String,
+  recordIcon: { type: String, require: false },
   isExpense: Boolean,
   inputText: String,
-  cateColor: String,
+  cateColor: { type: String, require: false },
   amount: Number,
-  time: String,
-  date: Date,
+  time: { type: String, require: false },
+  date: { Date: String, require: false },
 });
 module.exports = {
   Records,
