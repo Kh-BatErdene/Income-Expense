@@ -8,7 +8,7 @@ const Records = mongoose.model("Records", {
   cateColor: { type: String, require: false },
   amount: Number,
   time: { type: String, require: false },
-  date: { Date: String, require: false },
+  date: { type: String, require: false },
 });
 module.exports = {
   Records,

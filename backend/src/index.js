@@ -1,4 +1,3 @@
-//FileSystem
 const fs = require("fs").promises;
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -41,8 +40,6 @@ app.get("/profile", async (req, res) => {
   }
 });
 
-//Login
-
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -67,8 +64,6 @@ app.post("/login", async (req, res) => {
   }
 });
 
-//SignUp
-
 app.post("/signup", async (req, res) => {
   const { email, password } = req.body;
   console.log(email, password);
@@ -81,7 +76,6 @@ app.post("/signup", async (req, res) => {
         message: "Хэрэглэгч давхцаж байна",
       });
     }
-    // return;
     await User.create({
       email,
       password,
@@ -99,12 +93,10 @@ app.post("/signup", async (req, res) => {
 });
 
 app.get("/users", async (req, res) => {
-  //database-ээс find хийж бн
   const users = await User.find({ name: "Hello" });
   res.json(users);
 });
 
-//Add Category
 app.post("/addcategory", async (req, res) => {
   const { authorization } = req.headers;
   if (!authorization) {
@@ -142,7 +134,6 @@ app.get("/addcategory", async (req, res) => {
       message: "AddCategory Unauthorized",
     });
   }
-  // return res.json( authorization );
   try {
     const verify = jwt.verify(authorization, "secret-key");
     const { email } = verify;
@@ -208,7 +199,6 @@ app.get("/records", async (req, res) => {
 
     const { email } = payload;
     const filterDate = new Date(Date.now() - 3600 * 1000 * 24 * days);
-    // console.log(days);
     const verifyRecord = await Records.find({ userEmail: email });
     const filterRecords = verifyRecord.filter((item) => item.date > filterDate);
 
